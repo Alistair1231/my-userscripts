@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         Gmail no Hangout and all labels
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2
+// @version      0.2.1
 // @description  hides hangouts from sidebar and makes all labels visible
 // @author       Alistair1231
 // @match        https://mail.google.com/mail/u/0/*
 // @icon         https://icons.duckduckgo.com/ip2/google.com.ico
 // @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://gist.github.com/Auncaughbove17/1efc6138988425c938e6289736ada85d/raw/Gmail-no-Hangout-and-all-labels.user.js
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/Gmail-no-Hangout-and-all-labels.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

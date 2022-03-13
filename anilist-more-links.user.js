@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         Anilist more links (MAL/AniDB)
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.4
+// @version      0.4.1
 // @description  adds links to anilist/mal site to anilist (uses just the duckduckgo I'm feeling ducky feature with the anime name)
 // @author       Alistair1231
 // @match        https://anilist.co/*
 // @icon         https://icons.duckduckgo.com/ip2/anilist.co.ico
 // @grant       GM_addStyle
 
-// @downloadURL  https://gist.github.com/Auncaughbove17/1efc6138988425c938e6289736ada85d/raw/anilist-more-links.user.js
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/anilist-more-links.user.js
 // @require https://code.jquery.com/jquery-3.6.0.min.js
 // ==/UserScript==
 

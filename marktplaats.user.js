@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Remove ad/link entries from marktplaats
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2
+// @version      0.2.1
 // @description  Remove ad/link entries from marktplaats!
 // @author       Alistair1231
 // @match        https://www.marktplaats.nl/q/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=marktplaats.nl
-// @downloadURL  https://gist.github.com/Auncaughbove17/1efc6138988425c938e6289736ada85d/raw/marktplaats.user.js
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/marktplaats.user.js
 // @license GPLv3
 // @grant        none
 // ==/UserScript==

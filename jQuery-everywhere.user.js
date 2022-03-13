@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         jQuery everywhere
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2.2
+// @version      0.2.3
 // @description  injects jquery if not exists
 // @author       Alistair1231
 // @match      *://*/*
-// @downloadURL  https://gist.github.com/Auncaughbove17/1efc6138988425c938e6289736ada85d/raw/jQuery-everywhere.user.js
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/jQuery-everywhere.user.js
 // @grant        GM_xmlhttpRequest
 // @license GPL-3.0
 // ==/UserScript==

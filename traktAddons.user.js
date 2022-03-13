@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         TRAKT.TV: YouTube trailer search and RARBG/Torrentleech link
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.8
+// @version      0.8.1
 // @description  adds a RARBG and a Torrentleech link to the link sidebar and a youtube trailer search behind the trailer button
 // @author       Alistair1231
-// @downloadURL  https://gist.github.com/Auncaughbove17/1efc6138988425c938e6289736ada85d/raw/traktAddons.user.js
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/traktAddons.user.js
 // @match        https://trakt.tv/*
 // @icon         https://www.google.com/s2/favicons?domain=trakt.tv
 // @grant        none

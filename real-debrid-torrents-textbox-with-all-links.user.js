@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         real-debrid torrents: textbox with all links
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2
+// @version      0.2.1
 // @description  adds a button which when pressed creates a textbox with all links for you to copy in jDownloader2
 // @author       Alistair1231
 // @match        https://real-debrid.com/torrents
 // @icon         https://icons.duckduckgo.com/ip2/real-debrid.com.ico
 // @grant        none
 // @require     https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://gist.github.com/Auncaughbove17/1efc6138988425c938e6289736ada85d/raw/real-debrid-torrents-textbox-with-all-links.user.js
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/real-debrid-torrents-textbox-with-all-links.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

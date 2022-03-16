@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Elden Ring Fextralife fullscreen map redirect
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1.1
+// @version      0.1.2
 // @description  redirects to fullscreen map when opening a map link
 // @author       Alistair1231
 // @match        https://eldenring.wiki.fextralife.com/Interactive+Ma*

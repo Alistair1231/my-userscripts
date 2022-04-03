@@ -4,7 +4,7 @@
 // @version      0.1.1
 // @description  Adds big thumbnails to the search results on AniDB
 // @author       Alistair1231
-// @match        https://myanimelist.net/anime/*
+// @match        https://anidb.net/anime/?*
 // @icon         https://icons.duckduckgo.com/ip2/anidb.net.ico
 // @grant       none
 // @require https://code.jquery.com/jquery-3.6.0.min.js

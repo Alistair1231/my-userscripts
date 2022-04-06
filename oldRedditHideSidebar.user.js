@@ -26,11 +26,16 @@ setInterval(function (event) {
 
 function hideSide() {
     jQuery(".side").hide()
-    jQuery(".content").css("margin-right", 0)
+    jQuery(".content").css("margin-right", 5)
+    jQuery(".sitetable").css("margin-right", 5)
+    jQuery(".commentarea").css("margin-right", 5)
+    
 }
 function showSide() {
     jQuery(".side").show()
-    jQuery(".content").css("margin-right", 315)
+    jQuery(".content").css("margin-right", '')
+    jQuery(".sitetable").css("margin-right", '')
+    jQuery(".commentarea").css("margin-right", '')
 }
 
 })();

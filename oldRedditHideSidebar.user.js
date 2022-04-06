@@ -6,6 +6,7 @@
 // @author       Alistair1231
 // @match        https://old.reddit.com/r/*
 // @icon         https://icons.duckduckgo.com/ip2/reddit.com.ico
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/oldRedditHideSidebar.user.js
 // @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
 // @license GPL-3.0

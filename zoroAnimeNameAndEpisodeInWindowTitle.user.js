@@ -7,7 +7,7 @@
 // @match        https://zoro.to/watch/*?ep=*
 // @icon         https://icons.duckduckgo.com/ip2/zoro.to.ico
 // @grant        none
-// @downloadURL  https://raw.githubusercontent.com/alistair1231/zoroAnimeNameAndEpisodeInWindowTitle/master/zoroAnimeNameAndEpisodeInWindowTitle.user.js
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/zoroAnimeNameAndEpisodeInWindowTitle.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

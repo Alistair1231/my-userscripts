@@ -8,7 +8,7 @@
 // @icon         https://icons.duckduckgo.com/ip2/fapservice.com.ico
 // @grant        unsafeWindow
 // @require      https://code.jquery.com/jquery-3.3.1.min.js
-// @downloadURL  
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/half-page-scroll.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

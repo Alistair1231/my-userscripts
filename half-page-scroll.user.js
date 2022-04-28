@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Half page scroll
+// @name         Half page (up/down) scroll
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
 // @version      0.1
 // @description  scrolls half a page when pressing page up / down

@@ -5,7 +5,6 @@
 // @description  scrolls half a page when pressing page up / down
 // @author       Alistair1231
 // @match        htt*://*/*
-// @icon         https://icons.duckduckgo.com/ip2/fapservice.com.ico
 // @grant        unsafeWindow
 // @require      https://code.jquery.com/jquery-3.3.1.min.js
 // @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/half-page-scroll.user.js

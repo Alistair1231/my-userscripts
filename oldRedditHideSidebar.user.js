@@ -12,30 +12,34 @@
 // @license GPL-3.0
 // ==/UserScript==
 
-(function() {
-    'use strict';
 
-setInterval(function (event) {
-    var windowWidth = jQuery(window).width();
-    if (windowWidth < 700) {
-        hideSide();
-    }else{
-        showSide();
+function sidebarTweak() {
+    let hidden = false
+    setInterval(() => {
+        var windowWidth = jQuery(document).width();
+        if (windowWidth < 700 && !hidden) {
+            hideSide();
+            hidden = true;
+        } else if (windowWidth > 700 && hidden) {
+            showSide();
+            hidden = false;
+        }
+    }, 500);
+
+    function hideSide() {
+        jQuery(".side").hide()
+        jQuery(".content").css("margin-right", 5)
+        jQuery(".sitetable").css("margin-right", 5)
+        jQuery(".commentarea").css("margin-right", 5)
+
     }
-},500);
-
-function hideSide() {
-    jQuery(".side").hide()
-    jQuery(".content").css("margin-right", 5)
-    jQuery(".sitetable").css("margin-right", 5)
-    jQuery(".commentarea").css("margin-right", 5)
-    
-}
-function showSide() {
-    jQuery(".side").show()
-    jQuery(".content").css("margin-right", '')
-    jQuery(".sitetable").css("margin-right", '')
-    jQuery(".commentarea").css("margin-right", '')
+    function showSide() {
+        jQuery(".side").show()
+        jQuery(".content").css("margin-right", '')
+        jQuery(".sitetable").css("margin-right", '')
+        jQuery(".commentarea").css("margin-right", '')
+    }
 }
 
-})();
+
+sidebarTweak();

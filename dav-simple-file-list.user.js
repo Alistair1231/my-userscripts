@@ -5,7 +5,7 @@
 // @description
 // @author       Alistair1231
 // @match        https://*.seedbox.io/dav/*
-// @icon         https://icons.duckduckgo.com/ip2/seedbox.io.ico
+// @icon         https://icons.duckduckgo.com/ip2/sabre.io.ico
 // @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/dav-simple-file-list.user.jsæ
 // @grant        none
 // @license GPL-3.0

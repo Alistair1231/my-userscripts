@@ -25,7 +25,7 @@ folderText.innerHTML = `
     </div>
 </div>
 `
-document.getElementById("").addEventListener("click", function() {
+document.getElementById("folderPath").addEventListener("click", function() {
     alert("Hello World!");
   });
 

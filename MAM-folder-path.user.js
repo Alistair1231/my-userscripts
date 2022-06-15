@@ -25,7 +25,9 @@ folderText.innerHTML = `
     </div>
 </div>
 `
-
+document.getElementById("").addEventListener("click", function() {
+    alert("Hello World!");
+  });
 
 seriesDiv.after(folderText);
 

@@ -21,7 +21,7 @@ folderText.innerHTML = `
 <div class="torDetRow">
     <div class="torDetLeft">Folder Path</div>
     <div id="Folder" class="torDetRight torSeries">
-        <span class="flex">/${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}</span>
+        <span class="flex"><a id='folderPath'>/${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}</a></span>
     </div>
 </div>
 `

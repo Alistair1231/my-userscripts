@@ -21,14 +21,11 @@ folderText.innerHTML = `
 <div class="torDetRow">
     <div class="torDetLeft">Folder Path</div>
     <div id="Folder" class="torDetRight torSeries">
-        <span class="flex"><a id='folderPath'>/${folderPath}</a></span>
+        <span class="flex"><a id='folderPath'>/${folderPath}</a><p id='textCopied'></p></span>
     </div>
 </div>
 `
-.next().text('text copied');
 
-        setTimeout(function(){$(elem).next().text('');}, 2000);
-seriesDiv.after(folderText);
 
 // make click to copy
 document.getElementById("folderPath").addEventListener("click", function() {
@@ -38,9 +35,9 @@ document.getElementById("folderPath").addEventListener("click", function() {
   // add copied popup
     document.getElementById("folderPath").addEventListener("mouseup", function(e) {
     if (e.button === 2) {
-        document.getElementById("folderPath").innerHTML = "Copied!";
+        document.getElementById("textCopied").innerHTML = "Copied!";
         setTimeout(function() {
-            document.getElementById("folderPath").innerHTML = folderPath;
+            document.getElementById("textCopied").innerHTML = '';
         }, 1000);
     }
 });

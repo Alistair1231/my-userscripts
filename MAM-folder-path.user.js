@@ -13,7 +13,7 @@ var bookTitle = document.getElementsByClassName("TorrentTitle")[0].innerHTML.tri
 var author = document.getElementsByClassName("torDetRight torAuthors")[0].textContent.trim();
 var series = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text.trim();
 var bookOfSeries = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.childNodes[1].data.match(/\d+/);
-var folderPath = `${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`
+var folderPath = `/${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`
 
 var seriesDiv  = document.getElementById("Series").parentElement;
 var folderText = document.createElement("div");

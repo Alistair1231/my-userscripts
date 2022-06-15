@@ -30,14 +30,8 @@ seriesDiv.after(folderText);
 // make click to copy
 document.getElementById("folderPath").addEventListener("click", function() {
     navigator.clipboard.writeText(folderPath);
-  });
-
-  // add copied popup
-    document.getElementById("folderPath").addEventListener("mouseup", function(e) {
-    if (e.button === 2) {
-        document.getElementById("textCopied").innerHTML = "Copied!";
+    document.getElementById("textCopied").innerHTML = "   Copied!";
         setTimeout(function() {
             document.getElementById("textCopied").innerHTML = '';
         }, 1000);
-    }
-});
+  });

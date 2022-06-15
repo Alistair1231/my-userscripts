@@ -26,5 +26,6 @@ folderText.innerHTML = `
 </div>
 `
 
+
 seriesDiv.after(folderText);
 

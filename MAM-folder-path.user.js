@@ -22,7 +22,7 @@ folderText.innerHTML = `
     <div class="torDetLeft">Folder Path</div>
     <div id="Folder" class="torDetRight torSeries">
         <span class="flex"><a id='folderPath'>/${folderPath}</a>
-        <p id='textCopied' ></p></span>
+        <p id='textCopied' style="font-size: 9px;margin-left: 10px;"></p></span>
     </div>
 </div>
 `

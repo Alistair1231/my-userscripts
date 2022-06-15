@@ -30,7 +30,7 @@ seriesDiv.after(folderText);
 // make click to copy
 document.getElementById("folderPath").addEventListener("click", function() {
     navigator.clipboard.writeText(folderPath);
-    document.getElementById("textCopied").innerHTML = "   Copied!";
+    document.getElementById("textCopied").innerHTML = "Copied!";
         setTimeout(function() {
             document.getElementById("textCopied").innerHTML = '';
         }, 1000);

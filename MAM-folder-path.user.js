@@ -41,4 +41,4 @@ document.getElementById("folderPath").addEventListener("click", function() {
             document.getElementById("folderPath").innerHTML = folderPath;
         }, 1000);
     }
-}
+});

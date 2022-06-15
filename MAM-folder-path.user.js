@@ -25,9 +25,10 @@ folderText.innerHTML = `
     </div>
 </div>
 `
-document.getElementById("folderPath").addEventListener("click", function() {
-    alert("Hello World!");
-  });
 
 seriesDiv.after(folderText);
 
+// make click to copy
+document.getElementById("folderPath").addEventListener("click", function() {
+    alert("Hello World!");
+  });

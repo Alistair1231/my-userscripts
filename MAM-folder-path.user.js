@@ -25,7 +25,9 @@ folderText.innerHTML = `
     </div>
 </div>
 `
+.next().text('text copied');
 
+        setTimeout(function(){$(elem).next().text('');}, 2000);
 seriesDiv.after(folderText);
 
 // make click to copy

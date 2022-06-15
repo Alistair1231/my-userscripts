@@ -25,7 +25,7 @@ folderText.innerHTML = `
     </div>
 </div>
 `
-
+seriesDiv.after(folderText);
 
 // make click to copy
 document.getElementById("folderPath").addEventListener("click", function() {

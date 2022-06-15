@@ -32,3 +32,13 @@ seriesDiv.after(folderText);
 document.getElementById("folderPath").addEventListener("click", function() {
     navigator.clipboard.writeText(folderPath);
   });
+
+  // add copied popup
+    document.getElementById("folderPath").addEventListener("mouseup", function(e) {
+    if (e.button === 2) {
+        document.getElementById("folderPath").innerHTML = "Copied!";
+        setTimeout(function() {
+            document.getElementById("folderPath").innerHTML = folderPath;
+        }, 1000);
+    }
+}

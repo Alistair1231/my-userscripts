@@ -20,6 +20,8 @@ var MutationObserver = window.MutationObserver ||
 var observer = new MutationObserver(function(mutation) {
         console.log('fixing width of posts')
         jQuery('td').css('max-width','700px')
+        // images in posts
+        jQuery('.attachcontent img').css('max-width','700px')
     })
     
     var observerConfig = {

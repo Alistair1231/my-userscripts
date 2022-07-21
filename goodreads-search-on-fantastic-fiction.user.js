@@ -11,6 +11,22 @@
 // @license GPL-3.0
 // ==/UserScript==
 
+function createEntry(text,link){
+    var span = document.createElement("span");
+    span.style="float:left; vertical-align:middle;"
+    span.innerHTML = `
+        <font size="+1">
+            <strong>${text}</strong>
+        </font> &nbsp;
+        <a href="${link}">
+            <button>
+                Search
+            </button>
+        </a>
+    `;
+    return span;
+}
+
 (function() {
     'use strict';
 

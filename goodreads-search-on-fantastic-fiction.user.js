@@ -37,7 +37,7 @@ function getBookTitle(){
 
 (function() {
     'use strict';
-    var title = 
+    var title = getBookTitle();
 
     var buttonUl = getButtonList();
     var ffButton = createEntry("Search Fantastic Fiction", "https://www.fantasticfiction.com/search/?searchfor=book&keywords=Aether+Mage+Dante+King");

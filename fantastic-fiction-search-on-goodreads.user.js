@@ -7,9 +7,9 @@
 // @match        https://www.fantasticfiction.com/k/*
 // @icon         https://icons.duckduckgo.com/ip2/fantasticfiction.com.ico
 // @grant        none
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/0binExpire.user.js
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/fantastic-fiction-search-on-goodreads.user.js
 // @license GPL-3.0
 // ==/UserScript==
 
 
-jQuery(".ff span[itemprop='author']").children(0).children()[0].outerText
+var jQuery(".ff span[itemprop='author']").children(0).children()[0].outerText

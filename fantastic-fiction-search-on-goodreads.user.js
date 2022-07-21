@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name         
+// @name         fantastic fiction search on goodreads
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
 // @version      0.1.1
-// @description  auto selects never expire when making a paste
+// @description  adds button to fantastic fiction for searching on goodreads
 // @author       Alistair1231
-// @match        https://www.fantasticfiction.com/k/dante-king/aether-mage-1.htm
+// @match        https://www.fantasticfiction.com/k/*
 // @icon         https://icons.duckduckgo.com/ip2/fantasticfiction.com.ico
 // @grant        none
 // @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/0binExpire.user.js

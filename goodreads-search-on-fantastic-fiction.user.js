@@ -33,7 +33,11 @@ function getButtonList(){
     'use strict';
     var title = jQuery('#bookTitle').html().trim();
     var author = jQuery('.authorName span[itemprop="name"]').html();
-
+    var series= jQuery('#bookSeries a')
+        .html()
+        .trim()
+        .replace(/[\(\)]/g,'')
+        .replace(/ #\d+$/,'');
     var buttonUl = getButtonList();
     var ffButton = createEntry("Search FF", `https://www.fantasticfiction.com/search/?searchfor=book&keywords=${title}+${author}`);
     buttonUl[0].appendChild(ffButton);

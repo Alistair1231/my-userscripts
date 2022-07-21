@@ -16,7 +16,7 @@
 
 function createEntry(text,link){
     var button = document.createElement("li");
-    button.innerHTML = `<a id="ffLink" href="${link}" target="_blank" class="buttonBar">${text}</a>`;
+    button.innerHTML = `<a href="${link}" target="_blank" class="buttonBar">${text}</a>`;
     button.className = "Button";
     return button;
 }

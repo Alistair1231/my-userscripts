@@ -35,5 +35,8 @@ function createEntry(text,link){
     var title= j(".bookheading").children()[0].innerText;
     var link = `https://www.goodreads.com/search?q=${title}+${author}`;
     var entry = createEntry(title,link);
-    j(j("#book-shop").children()[0]).after(document.createElement("br"), entry);
+    j(j("#book-shop").children()[0]).after(
+        document.createElement("br"),
+        document.createElement("br"),
+        entry);
 })();

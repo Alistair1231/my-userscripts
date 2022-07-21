@@ -25,21 +25,28 @@ function createEntry(text,link){
         </a>
     `;
     return span;
+
+    var mamButton = document.createElement("li");
+    mamButton.innerHTML = '<a id="mamLink" href="' + mamSearchUrl + '" target="_blank" class="buttonBar">Search MAM</a>';
+    mamButton.className = "Button";
 }
 // Add 'Search MAM' button
-var buttonBar = document.getElementById("buyButtonContainer");
-if (buttonBar === null || buttonBar == "null") {
-    buttonBar = document.getElementById("asyncBuyButtonContainer");
+
+function getButtonList(){
+    var buttonBar = document.getElementById("buyButtonContainer");
+    if (buttonBar === null || buttonBar == "null") {
+        buttonBar = document.getElementById("asyncBuyButtonContainer");
+    }
+    return buttonBar.getElementsByTagName("ul");
 }
-var buttonUl  = buttonBar.getElementsByTagName("ul");
-var mamButton = document.createElement("li");
-mamButton.innerHTML = '<a id="mamLink" href="' + mamSearchUrl + '" target="_blank" class="buttonBar">Search MAM</a>';
-mamButton.className = "Button";
-buttonUl[0].appendChild(mamButton);
+
+
 console.log("[G+] 'Search MAM' button added!");
 
 (function() {
     'use strict';
-
+    var buttonUl = getButtonList();
+    var mamButton = createEntry();
+    buttonUl[0].appendChild(mamButton);
     
 })();

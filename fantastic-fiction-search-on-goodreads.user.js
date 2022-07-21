@@ -21,9 +21,9 @@ function createEntry(text,link){
             <strong>${text}</strong>
         </font> &nbsp;
         <a href="${link}">
-        <button>
-            Search
-        </button>
+            <button>
+                Search
+            </button>
         </a>
     `;
     return span;

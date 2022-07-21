@@ -20,9 +20,11 @@ function createEntry(text,link){
         <font size="+1">
             <strong>${text}</strong>
         </font> &nbsp;
-        <button onclick="window.location.href='${link}'">
+        <a href="${link}">
+        <button>
             Search
         </button>
+        </a>
     `;
     return span;
 }

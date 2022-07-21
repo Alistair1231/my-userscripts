@@ -21,3 +21,17 @@
     var title= j(".bookheading").children()[0].innerText;
 
 })();
+
+function createEntry(text,link){
+
+    var text = `
+        <span style="float:left; vertical-align:middle;">
+            <font size="+1">
+                <strong>${text}</strong>
+            </font> &nbsp;
+            <button onclick="window.location.href='${link}'">
+                Search
+            </button>
+        </span>
+`
+}

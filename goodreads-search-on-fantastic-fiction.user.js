@@ -11,7 +11,7 @@
 // @license GPL-3.0
 // ==/UserScript==
 
-// Inspired by Slengpung
+// Inspired by Slengpung (https://greasyfork.org/en/users/78880) 
 
 function createEntry(text,link){
     var button = document.createElement("li");

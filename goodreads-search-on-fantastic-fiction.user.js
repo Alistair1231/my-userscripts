@@ -14,23 +14,26 @@
 
 // Inspired by Slengpung (https://greasyfork.org/en/users/78880) "Goodreads Plus" script
 
-function createEntry(text,link){
-    var button = document.createElement("li");
-    button.innerHTML = `<a href="${link}" target="_blank" class="buttonBar">${text}</a>`;
-    button.className = "Button";
-    return button;
-}
-
-function getButtonList(){
-    var buttonBar = document.getElementById("buyButtonContainer");
-    if (buttonBar === null || buttonBar == "null") {
-        buttonBar = document.getElementById("asyncBuyButtonContainer");
-    }
-    return buttonBar.getElementsByTagName("ul");
-}
-
 (function() {
     'use strict';
+
+
+    function createEntry(text,link){
+        var button = document.createElement("li");
+        button.innerHTML = `<a href="${link}" target="_blank" class="buttonBar">${text}</a>`;
+        button.className = "Button";
+        return button;
+    }
+    
+    function getButtonList(){
+        var buttonBar = document.getElementById("buyButtonContainer");
+        if (buttonBar === null || buttonBar == "null") {
+            buttonBar = document.getElementById("asyncBuyButtonContainer");
+        }
+        return buttonBar.getElementsByTagName("ul");
+    }
+    
+
     var title = jQuery('#bookTitle').html().trim();
     var author = jQuery('.authorName span[itemprop="name"]').html();
     var series= jQuery('#bookSeries a')

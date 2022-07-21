@@ -18,6 +18,6 @@
     let j = jQuery;
 
     var author = j(".ff span[itemprop='author']").children(0).children()[0].outerText;
-    
+    var title= j(".bookheading").children()[0].innerText;
 
 })();

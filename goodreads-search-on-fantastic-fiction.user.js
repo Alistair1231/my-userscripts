@@ -28,7 +28,9 @@ function getButtonList(){
 
 (function() {
     'use strict';
+    var title = 
+
     var buttonUl = getButtonList();
-    var ffButton = createEntry("Search Fantastic Fiction", "https://www.fantasticfiction.com/search/?searchfor=book&keywords=Aether+Mage++Dante+King+");
+    var ffButton = createEntry("Search Fantastic Fiction", "https://www.fantasticfiction.com/search/?searchfor=book&keywords=Aether+Mage+Dante+King");
     buttonUl[0].appendChild(ffButton);
 })();

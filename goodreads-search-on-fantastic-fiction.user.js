@@ -12,25 +12,11 @@
 // ==/UserScript==
 
 function createEntry(text,link){
-    var span = document.createElement("span");
-    span.style="float:left; vertical-align:middle;"
-    span.innerHTML = `
-        <font size="+1">
-            <strong>${text}</strong>
-        </font> &nbsp;
-        <a href="${link}">
-            <button>
-                Search
-            </button>
-        </a>
-    `;
-    return span;
-
-    var mamButton = document.createElement("li");
-    mamButton.innerHTML = '<a id="mamLink" href="' + mamSearchUrl + '" target="_blank" class="buttonBar">Search MAM</a>';
-    mamButton.className = "Button";
+    var button = document.createElement("li");
+    button.innerHTML = `<a id="ffLink" href="${link}" target="_blank" class="buttonBar">${text}</a>`;
+    button.className = "Button";
+    return button;
 }
-// Add 'Search MAM' button
 
 function getButtonList(){
     var buttonBar = document.getElementById("buyButtonContainer");
@@ -40,13 +26,9 @@ function getButtonList(){
     return buttonBar.getElementsByTagName("ul");
 }
 
-
-console.log("[G+] 'Search MAM' button added!");
-
 (function() {
     'use strict';
     var buttonUl = getButtonList();
-    var mamButton = createEntry();
-    buttonUl[0].appendChild(mamButton);
-    
+    var ffButton = createEntry("Search Fantastic Fiction", "https://www.goodreads.com/search?q=fantastic+fiction");
+    buttonUl[0].appendChild(ffButton);
 })();

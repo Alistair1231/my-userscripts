@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         
+// @name         goodreads search on fantastic fiction
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
 // @version      0.1
 // @description  auto selects never expire when making a paste

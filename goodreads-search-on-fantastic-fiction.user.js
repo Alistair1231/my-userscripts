@@ -32,7 +32,8 @@ function getButtonList(){
     'use strict';
     var title = jQuery('#bookTitle').html().trim();
     var author = jQuery('.authorName span[itemprop="name"]').html();
+
     var buttonUl = getButtonList();
-    var ffButton = createEntry("Search Fantastic Fiction", "https://www.fantasticfiction.com/search/?searchfor=book&keywords=Aether+Mage+Dante+King");
+    var ffButton = createEntry("Search Fantastic Fiction", `https://www.fantasticfiction.com/search/?searchfor=book&keywords=${title}+${author}`);
     buttonUl[0].appendChild(ffButton);
 })();

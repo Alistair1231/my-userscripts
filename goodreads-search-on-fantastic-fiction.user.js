@@ -41,7 +41,7 @@ function getButtonList(){
 
     var buttonUl = getButtonList();
     var ffButton1 = createEntry("Search FF (title)", `https://www.fantasticfiction.com/search/?searchfor=book&keywords=${title}+${author}`);
-    var ffButton2 = createEntry("Search FF (series)", `https://www.fantasticfiction.com/search/?searchfor=series&keywords=${series}`);
     buttonUl[0].appendChild(ffButton1);
+    var ffButton2 = createEntry("Search FF (series)", `https://www.fantasticfiction.com/search/?searchfor=series&keywords=${series}`);
     buttonUl[0].appendChild(ffButton2);
 })();

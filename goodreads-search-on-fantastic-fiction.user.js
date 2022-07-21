@@ -11,6 +11,8 @@
 // @license GPL-3.0
 // ==/UserScript==
 
+// Inspired by Slengpung
+
 function createEntry(text,link){
     var button = document.createElement("li");
     button.innerHTML = `<a id="ffLink" href="${link}" target="_blank" class="buttonBar">${text}</a>`;

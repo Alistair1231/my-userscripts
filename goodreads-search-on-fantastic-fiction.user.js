@@ -7,6 +7,7 @@
 // @match        https://www.goodreads.com/book/show/*
 // @require https://code.jquery.com/jquery-3.6.0.min.js
 // @icon         https://icons.duckduckgo.com/ip2/goodreads.com.ico
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/goodreads-search-on-fantastic-fiction.user.js
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==

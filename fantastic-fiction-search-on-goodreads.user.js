@@ -20,6 +20,7 @@
     var author = j(".ff span[itemprop='author']").children(0).children()[0].outerText;
     var title= j(".bookheading").children()[0].innerText;
     var link = `https://www.goodreads.com/search?q=${title}+${author}`;
+    var entry = createEntry(title,link);
 })();
 
 function createEntry(text,link){

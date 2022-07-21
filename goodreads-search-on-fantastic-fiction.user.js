@@ -28,16 +28,9 @@ function getButtonList(){
     return buttonBar.getElementsByTagName("ul");
 }
 
-function getBookTitle(){
-    var el = document.getElementById("bookTitle");
-	var bookTitle = el.innerHTML.trim().split('<', 1)+'';
-	console.log("Book title: " + bookTitle.trim());
-	return bookTitle.trim();
-}
-
 (function() {
     'use strict';
-    var title = getBookTitle();
+    var title = jQuery('#bookTitle').html().trim();
     var author = jQuery('.authorName span[itemprop="name"]').html();
     var buttonUl = getButtonList();
     var ffButton = createEntry("Search Fantastic Fiction", "https://www.fantasticfiction.com/search/?searchfor=book&keywords=Aether+Mage+Dante+King");

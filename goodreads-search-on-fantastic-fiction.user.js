@@ -26,6 +26,12 @@ function getButtonList(){
     return buttonBar.getElementsByTagName("ul");
 }
 
+function getBookTitle(el){
+	var bookTitle = el.innerHTML.trim().split('<', 1)+'';
+	console.log("Book title: " + bookTitle.trim());
+	return bookTitle.trim();
+}
+
 (function() {
     'use strict';
     var title = 

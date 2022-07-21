@@ -12,4 +12,10 @@
 // ==/UserScript==
 
 
-var jQuery(".ff span[itemprop='author']").children(0).children()[0].outerText
+(function() {
+    'use strict';
+    
+    var author = jQuery(".ff span[itemprop='author']").children(0).children()[0].outerText;
+    
+
+})();

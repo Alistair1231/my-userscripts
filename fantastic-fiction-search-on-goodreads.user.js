@@ -34,7 +34,7 @@ function createEntry(text,link){
     var author = j(".ff span[itemprop='author']").children(0).children()[0].outerText;
     var title= j(".bookheading").children()[0].innerText;
     var link = `https://www.goodreads.com/search?q=${title}+${author}`;
-    var entry = createEntry(title,link);
+    var entry = createEntry("Search on Goodreads",link);
     j(j("#book-shop").children()[0]).after(
         document.createElement("br"),
         document.createElement("br"),

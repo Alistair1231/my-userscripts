@@ -19,19 +19,19 @@
 
     var author = j(".ff span[itemprop='author']").children(0).children()[0].outerText;
     var title= j(".bookheading").children()[0].innerText;
-
+    var link = `https://www.goodreads.com/search?q=${title}+${author}`;
 })();
 
 function createEntry(text,link){
-
-    var text = `
-        <span style="float:left; vertical-align:middle;">
-            <font size="+1">
-                <strong>${text}</strong>
-            </font> &nbsp;
-            <button onclick="window.location.href='${link}'">
-                Search
-            </button>
-        </span>
-`
+    var span = document.createElement("span");
+    span.style="float:left; vertical-align:middle;"
+    span.innerHTML = `
+        <font size="+1">
+            <strong>${text}</strong>
+        </font> &nbsp;
+        <button onclick="window.location.href='${link}'">
+            Search
+        </button>
+    `;
+    return span;
 }

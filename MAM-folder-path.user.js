@@ -9,9 +9,9 @@
 // @grant        none
 // ==/UserScript==
 
-var bookTitle = document.getElementsByClassName("TorrentTitle")[0].innerHTML.replace(':',' -').replace(',','_').trim();
-var author = document.getElementsByClassName("torDetRight torAuthors")[0].textContent.replace(':',' -').replace(',','_').trim();
-var series = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text.replace(':',' -').replace(',','_').trim();
+var bookTitle = document.getElementsByClassName("TorrentTitle")[0].innerHTML.replaceAll(':',' -').replaceAll(',','_').trim();
+var author = document.getElementsByClassName("torDetRight torAuthors")[0].textContent.replaceAll(':',' -').replaceAll(',','_').trim();
+var series = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text.replaceAll(':',' -').replaceAll(',','_').trim();
 var bookOfSeries = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.childNodes[1].data.match(/\d+/);
 var folderPath = `/${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`
 

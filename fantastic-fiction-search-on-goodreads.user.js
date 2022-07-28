@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  adds button to fantastic fiction for searching on goodreads
 // @author       Alistair1231
-// @match        https://www.fantasticfiction.com/k/*
+// @match        https://www.fantasticfiction.com/*
 // @icon         https://icons.duckduckgo.com/ip2/fantasticfiction.com.ico
 // @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js

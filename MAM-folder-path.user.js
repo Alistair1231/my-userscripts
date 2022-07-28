@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1.2
+// @version      0.1.3
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -10,8 +10,8 @@
 // ==/UserScript==
 
 var bookTitle = document.getElementsByClassName("TorrentTitle")[0].innerHTML.trim();
-var author = document.getElementsByClassName("torDetRight torAuthors")[0].textContent.trim();
-var series = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text.trim();
+var author = document.getElementsByClassName("torDetRight torAuthors")[0].textContent.replace(':',' ').trim();
+var series = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text.replace(':',' ').trim();
 var bookOfSeries = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.childNodes[1].data.match(/\d+/);
 var folderPath = `/${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`
 

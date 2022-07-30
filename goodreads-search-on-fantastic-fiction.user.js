@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         goodreads search on fantastic fiction
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2
+// @version      0.2.1
 // @description  adds button to goodreads for searching on fantastic fiction 
 // @author       Alistair1231
 // @match        https://www.goodreads.com/book/show/*
@@ -37,18 +37,27 @@
     // on book page?
     if (window.location.pathname.indexOf('/book/show') === 0) {
         var title = jQuery('#bookTitle').html().trim();
-        var author = jQuery('.authorName span[itemprop="name"]').html();
-        var series= jQuery('#bookSeries a')
-            .html() // get text
-            .trim() // remove whitespace
-            .replace(/[\(\)]/g,'') // remove parentheses
-            .replace(/ #\d+$/,''); // remove series number
+        var author = jQuery('.authorName span[itemprop="name"]').html().replaceAll('.', " ");
+        var series='';
+        try {
+            series= jQuery('#bookSeries a')
+                .html() // get text
+                .trim() // remove whitespace
+                .replace(/[\(\)]/g,'') // remove parentheses
+                .replace(/ #\d+$/,''); // remove series number
+        } catch (TypeError) {
+            console.log("Book not part of series!");
+        }
+        
 
         var buttonUl = getButtonList();
         var ffButton1 = createEntry("Search FF (title)", `https://www.fantasticfiction.com/search/?searchfor=book&keywords=${title}+${author}`);
         buttonUl[0].appendChild(ffButton1);
-        var ffButton2 = createEntry("Search FF (series)", `https://www.fantasticfiction.com/search/?searchfor=series&keywords=${series}`);
-        buttonUl[0].appendChild(ffButton2);
+        
+        if(series!=''){
+            var ffButton2 = createEntry("Search FF (series)", `https://www.fantasticfiction.com/search/?searchfor=series&keywords=${series}`);
+            buttonUl[0].appendChild(ffButton2);
+        }
     }
     //on series page?
     else if(window.location.pathname.indexOf('/series') === 0) {

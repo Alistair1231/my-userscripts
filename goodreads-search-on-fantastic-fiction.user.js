@@ -69,18 +69,4 @@
         jQuery(".responsiveSeriesHeader__title").detach().appendTo("#seriesTitle")
     }
 
-    
-    var title = jQuery('#bookTitle').html().trim();
-    var author = jQuery('.authorName span[itemprop="name"]').html();
-    var series= jQuery('#bookSeries a')
-        .html() // get text
-        .trim() // remove whitespace
-        .replace(/[\(\)]/g,'') // remove parentheses
-        .replace(/ #\d+$/,''); // remove series number
-
-    var buttonUl = getButtonList();
-    var ffButton1 = createEntry("Search FF (title)", `https://www.fantasticfiction.com/search/?searchfor=book&keywords=${title}+${author}`);
-    buttonUl[0].appendChild(ffButton1);
-    var ffButton2 = createEntry("Search FF (series)", `https://www.fantasticfiction.com/search/?searchfor=series&keywords=${series}`);
-    buttonUl[0].appendChild(ffButton2);
 })();

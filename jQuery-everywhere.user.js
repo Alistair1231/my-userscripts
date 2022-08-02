@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jQuery everywhere
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2.3
+// @version      0.3.0
 // @description  injects jquery if not exists
 // @author       Alistair1231
 // @match      *://*/*
@@ -25,5 +25,6 @@
               document.head.appendChild(e);
             }
           });
+        jQuery.noConflict();
     }
 })();

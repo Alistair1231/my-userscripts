@@ -23,8 +23,8 @@
               let e = document.createElement('script');
               e.innerText = ev.responseText;
               document.head.appendChild(e);
+              jQuery.noConflict();
             }
           });
-        jQuery.noConflict();
     }
 })();

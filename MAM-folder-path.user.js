@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2.2
+// @version      0.3.0
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -10,27 +10,34 @@
 // ==/UserScript==
 
 function decodeHtml(html) {
+    // make sure there is no &amp; or similiar in the string
     var txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
 }
 
-var bookTitle = decodeHtml(document.getElementsByClassName("TorrentTitle")[0].innerHTML).replaceAll(':',' -').replaceAll('&','and').replaceAll(',','_').trim();
-var author = decodeHtml(document.getElementsByClassName("torDetRight torAuthors")[0].textContent).replaceAll(':',' -').replaceAll('&','and').replaceAll(',','_').trim();
+function replaceSymbols(val){
+    return val.replaceAll(':',' -').replaceAll('&','and').replaceAll(',','_');
+}
+
+var bookTitle = replaceSymbols(decodeHtml(document.getElementsByClassName("TorrentTitle")[0].innerHTML)).trim();
+var author = replaceSymbols(decodeHtml(document.getElementsByClassName("torDetRight torAuthors")[0].textContent)).trim();
 var series = "";
 var bookOfSeries= "";
 
 
 try {
-    series = decodeHtml(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text).replaceAll(':',' -').replaceAll('&','and').replaceAll(',','_').trim();
-    bookOfSeries = decodeHtml(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.childNodes[1].data).match(/\d+/);    
+    series = replaceSymbols(decodeHtml(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text)).trim();
+    bookOfSeries = String(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.childNodes[1].data.match(/\d+/)).padStart(2, '0');
 } catch (TypeError) {
 }
     
 if(series != "") {
-var folderPath = `/${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`
+var folderPath = `/_Audiobooks/${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`
+var folderPath2 = `/_Audiobooks1/${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`
 } else {
-var folderPath = `/${author} - Loose Books/${bookTitle}`
+var folderPath = `/_Audiobooks/${author} - Loose Books/${bookTitle}`
+var folderPath2 = `/_Audiobooks1/${author} - Loose Books/${bookTitle}`
 }
 
 var narratorDiv  = document.getElementById("Narrator").parentElement;
@@ -42,6 +49,10 @@ folderText.innerHTML = `
         <span class="flex"><a id='folderPath'>${folderPath}</a>
         <p id='textCopied' style="font-size: 9px;margin-left: 10px;"></p></span>
     </div>
+    <div id="Folder2" class="torDetRight torSeries">
+        <span class="flex"><a id='folderPath2'>${folderPath2}</a>
+        <p id='textCopied2' style="font-size: 9px;margin-left: 10px;"></p></span>
+    </div>
 </div>
 `
 narratorDiv.before(folderText);
@@ -52,5 +63,12 @@ document.getElementById("folderPath").addEventListener("click", function() {
     document.getElementById("textCopied").innerHTML = "Copied!";
         setTimeout(function() {
             document.getElementById("textCopied").innerHTML = '';
+        }, 1000);
+  });
+document.getElementById("folderPath2").addEventListener("click", function() {
+    navigator.clipboard.writeText(folderPath);
+    document.getElementById("textCopied2").innerHTML = "Copied!";
+        setTimeout(function() {
+            document.getElementById("textCopied2").innerHTML = '';
         }, 1000);
   });

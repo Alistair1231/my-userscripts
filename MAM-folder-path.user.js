@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2.0
+// @version      0.2.1
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -9,12 +9,12 @@
 // @grant        none
 // ==/UserScript==
 
-var bookTitle = document.getElementsByClassName("TorrentTitle")[0].innerHTML.replaceAll(':',' -').replaceAll(',','_').trim();
-var author = document.getElementsByClassName("torDetRight torAuthors")[0].textContent.replaceAll(':',' -').replaceAll(',','_').trim();
+var bookTitle = document.getElementsByClassName("TorrentTitle")[0].innerHTML.replaceAll(':',' -').replaceAll('&','and').replaceAll(',','_').trim();
+var author = document.getElementsByClassName("torDetRight torAuthors")[0].textContent.replaceAll(':',' -').replaceAll('&','and').replaceAll(',','_').trim();
 var series = "";
 var bookOfSeries= "";
 try {
-    series = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text.replaceAll(':',' -').replaceAll(',','_').trim();
+    series = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text.replaceAll(':',' -').replaceAll('&','and').replaceAll(',','_').trim();
     bookOfSeries = document.getElementsByClassName("torDetRight torSeries")[0].firstChild.childNodes[1].data.match(/\d+/);    
 } catch (TypeError) {
 }

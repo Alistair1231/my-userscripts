@@ -13,14 +13,17 @@
 /////////////////////////
 // find book info and modify it
 
-const decodeHtml = (html) => {
-    // make sure there is no &amp; or similiar in the string
-    var txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
-}
-const replaceSymbols = (val) => val.replaceAll(':', ' -').replaceAll('&', 'and').replaceAll(',', '_');
-const cleanUpString = (val) => replaceSymbols(decodeHtml(val));
+const cleanUpString = (val) => {
+    const decodeHtml = (html) => {
+        // make sure there is no &amp; or similiar in the string
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
+    const replaceSymbols = (val) => val.replaceAll(':', ' -').replaceAll('&', 'and').replaceAll(',', '_');
+    
+    return replaceSymbols(decodeHtml(val));
+};
 
 var bookTitle = cleanUpString(document.getElementsByClassName("TorrentTitle")[0].innerHTML).trim();
 var author = cleanUpString(document.getElementsByClassName("torDetRight torAuthors")[0].textContent).trim();

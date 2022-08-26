@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.4
+// @version      0.4.1
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -20,9 +20,10 @@ const decodeHtml = (html) => {
     return txt.value;
 }
 const replaceSymbols = (val) => val.replaceAll(':', ' -').replaceAll('&', 'and').replaceAll(',', '_');
+const cleanUpString = (val) => replaceSymbols(decodeHtml(val));
 
-var bookTitle = replaceSymbols(decodeHtml(document.getElementsByClassName("TorrentTitle")[0].innerHTML)).trim();
-var author = replaceSymbols(decodeHtml(document.getElementsByClassName("torDetRight torAuthors")[0].textContent)).trim();
+var bookTitle = cleanUpString(document.getElementsByClassName("TorrentTitle")[0].innerHTML).trim();
+var author = cleanUpString(document.getElementsByClassName("torDetRight torAuthors")[0].textContent).trim();
 var series = "";
 var bookOfSeries = "";
 

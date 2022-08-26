@@ -40,7 +40,7 @@ const addLeadingZero = (bookOfSeries) => {
 }
 
 try {
-    series = replaceSymbols(decodeHtml(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text)).trim();
+    series = cleanUpString(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text).trim();
     // extract number of book including subpart like 3.1 or 3.5 and add leading zero if needed
     bookOfSeries = addLeadingZero(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.childNodes[1].data.match(/\d+\.?\d*/)).padStart(2, '0');}
 catch (TypeError) { }

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.3.0
+// @version      0.3.1
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -28,7 +28,12 @@ var bookOfSeries= "";
 
 try {
     series = replaceSymbols(decodeHtml(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text)).trim();
-    bookOfSeries = String(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.childNodes[1].data.match(/\d+/)).padStart(2, '0');
+    // extract number of book including subpart like 3.1 or 3.5
+    bookOfSeries = String(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.childNodes[1].data.match(/\d+\.?\d*/)).padStart(2, '0');
+    // since you cannot add leading zeros without splitting the float into two integers, we have to do this
+    let array = bookOfSeries.toString().split('.')
+    array[0] = array[0].padStart(2, '0')
+    bookOfSeries = array.join('.')
 } catch (TypeError) {
 }
     

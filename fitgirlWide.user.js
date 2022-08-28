@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fitgirl repacks bigger images/center-alignment and 1080p optimization
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.5.1
+// @version      0.6
 // @description  bigger images/center-alignment and 1080p optimization
 // @author       Alistair1231
 // @match        https://fitgirl-repacks.site/*
@@ -11,14 +11,6 @@
 // @downloadURL https://github.com/Auncaughbove17/my-userscripts/raw/main/fitgirlWide.user.js
 // @license GPL-3.0
 // ==/UserScript==
-
-
-
-/////////////////////////////////////
-/////////////////////////////////////
-// TODO FIX https://fitgirl-repacks.site/not-for-broadcast/
-/////////////////////////////////////
-/////////////////////////////////////
 
 // Shim for MutationObserver interface
 {/*!
@@ -553,52 +545,53 @@ function makeImgBig() {
         .forEach((element) => {
           if (element.flag != 1) {
             // cover images
-            element.width *= 2;
-            element.height *= 2;
+            element.width *= 2.5;
+            element.height *= 2.5;
           }
           element.flag = 1;
         });
     });
 }
 
-function doTheTwoColumnCss(what) {
-  jQuery(what).css({
-    'float': 'left',
-    'width': '30%',
-    "text-align": "left",
-    "padding-left": "10%",
-    "padding-right": "10%"
-  });
-  // make image with torrent stats not center aligned
-  jQuery(what).find("img").removeClass("aligncenter")
-}
-
 function makeArticleTwoColumns(myArticle) {
-  // COLUM 1
-  let myDiv2 = document.createElement('div');
-  // create div after title
-  jQuery(jQuery(myArticle).children()[1]).before(myDiv2);
-  // move everything until mirrors into the new div
-  jQuery(myDiv2).append(jQuery(jQuery(myArticle).children()[2]))
-  //apply css to make it 2 columns
-  doTheTwoColumnCss(myDiv2);
-  //////////////////
-  // COLUM 2
-  // create div before Download Mirrors heading
-  let myDiv1 = document.createElement('div');
-  jQuery(jQuery(myArticle).children()[3]).before(myDiv1);
-  // move all elements until screenshots heading into that div
-  for (let i = 0; i < 3; i++) {
-    jQuery(myDiv1).append(jQuery(jQuery(myArticle).children()[4]));
-  }
-  //apply css to make it 2 columns
-  doTheTwoColumnCss(myDiv1);
-  //////////////////
+  // for testing
+  // var myArticle =   jQuery("article .entry-content:not(:contains('Upcoming repacks'))").first();
+  
+  //  get data from article
+  var origContent = jQuery("p",myArticle).first();
+  var columnContent = jQuery("p",myArticle).first().get(0).childNodes;
+  var downloadHeaderString = jQuery("h3",myArticle)[1].outerHTML;
+  var downloadLinksString = jQuery(jQuery("h3",myArticle)[1]).next().get(0).outerHTML;
+  var downloadHeader = jQuery(jQuery("h3",myArticle)[1]);
+  var downloadLinks = jQuery(jQuery(jQuery("h3",myArticle)[1]).next().get(0));
 
-  //make some space before screenshots
-  jQuery(jQuery(myDiv1).siblings()[3]).css("padding-top", "40px");
-  // and after title
-  jQuery(jQuery(myDiv1).siblings()[0]).css("padding-bottom", "40px");
+  // create table to  put data in
+  var myTable = document.createElement('table');
+  myTable.style="border:none;font-size: inherit;";
+  
+  // populate table with data
+  
+  // column 1 is image and first <br>
+  var column1 = `<td style="border:none; text-align: right; width:50%">${columnContent[0].outerHTML}${columnContent[1].outerHTML}</td>`;
+  // column 2 is all other entries in article
+  var column2= `<td style="border:none; vertical-align: middle; text-align:left;">`;
+  for(var i=2;i<columnContent.length;i++){ // i=2 to skip content from column 1 
+    if(columnContent[i].outerHTML == undefined)
+      column2+=`${columnContent[i].data}`;
+    else
+      column2+=`${columnContent[i].outerHTML}`;
+  }
+  column2+=downloadHeaderString;
+  column2+=downloadLinksString;
+  column2+=`</td>`;
+  myTable.innerHTML=`<tr>${column1}${column2}</tr>`;
+  
+  // insert table into site and hide old content
+  jQuery(origContent).before(myTable);
+  origContent.hide();
+  downloadHeader.hide();
+  downloadLinks.hide();
+
 }
 
 
@@ -610,6 +603,10 @@ function makeArticleTwoColumns(myArticle) {
   makeImgBig();
 
   jQuery("article .entry-content:not(:contains('Upcoming repacks'))").each(function () {
-    makeArticleTwoColumns(this);
+    makeArticleTwoColumns(jQuery(this));
   });
+
+  // make all torrent info pics not centered
+  jQuery("table ul li img[src^='https://torrent-stats']").removeClass()
+
 })();

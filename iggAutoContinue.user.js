@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         igg-games/bluemediafiles auto continue after wait
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2.1
+// @version      0.3
 // @description  waits for cooldown and clicks continue
 // @author       Alistair1231
 // @match        http*://bluemediafiles.com/url-generator.php?url=*
 // @match        http*://bluemediafiles.net/url-generator.php?url=*
+// @match        http*://bluemediafiles.eu/url-generator.php?url=*
 // @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/iggAutoContinue.user.js
 // @grant        none
 // @license GPL-3.0

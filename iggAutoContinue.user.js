@@ -21,13 +21,13 @@
     var interval = setInterval(() =>
     {
         // countdown = document.getElementsByClassName("item")[0].children[0].innerHTML;
-        clickButton = document.getElementById("nut").src;
+        clickButton = document.getElementById("nut");
         count++;
         console.log("Waited "+count+" seconds");
-        console.log("image is: "+clickButton);
-        if(clickButton!==""){
+        console.log("image is: "+clickButton.src);
+        if(clickButton.src!==""){
             //clicking
-            document.getElementsByClassName("item")[0].nextElementSibling.submit();
+            clickButton.parentElement.submit();
             clearInterval(interval);
         }
     }, 1000);

@@ -4,7 +4,6 @@
 // @version      0.8.1
 // @description  adds a RARBG and a Torrentleech link to the link sidebar and a youtube trailer search behind the trailer button
 // @author       Alistair1231
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/traktAddons.user.js
 // @match        https://trakt.tv/*
 // @icon         https://www.google.com/s2/favicons?domain=trakt.tv
 // @grant        none
@@ -12,7 +11,7 @@
 // ==/UserScript==
 
 function waitForSiteToLoad() {
-    let value = document.querySelectorAll(".sidebar.affixable.affix .external a");
+    let value = document.querySelectorAll(".sidebar.affixable .external a");
     if (value == null) {
         setTimeout(waitForSiteToLoad, 300);
         return;
@@ -31,9 +30,9 @@ function injectRarbgButton(path, imdbButton) {
     rarbgButton.id = "rarbgButton";
 
     if (path == "shows")
-        rarbgButton.href = `https://rarbg.to/tv/${imdbId}/`;
+        rarbgButton.href = `https://rarbgproxy.org/tv/${imdbId}/`;
     else if (path == "movies")
-        rarbgButton.href = `https://rarbg.to/torrents.php?imdb=${imdbId}`;
+        rarbgButton.href = `https://rarbgproxy.org/torrents.php?imdb=${imdbId}`;
 
     imdbButton.after(rarbgButton);
 }
@@ -68,7 +67,7 @@ function injectYoutubeSearchButton(title) {
 
 function run() {
     let path = window.location.pathname.split('/');
-    let linkArray = document.querySelectorAll(".sidebar.affixable.affix .external a");
+    let linkArray = document.querySelectorAll(".sidebar.affixable .external a");
 
     linkArray = waitForSiteToLoad();
 

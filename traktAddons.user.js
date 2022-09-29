@@ -6,6 +6,7 @@
 // @author       Alistair1231
 // @match        https://trakt.tv/*
 // @icon         https://www.google.com/s2/favicons?domain=trakt.tv
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/traktAddons.user.js
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==

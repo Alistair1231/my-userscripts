@@ -4,7 +4,10 @@
 // @version      0.4.1
 // @description  waits for cooldown and clicks continue
 // @author       Alistair1231
-// @match        http*://bluemediafiles.*/url-generator.php?url=*
+// @match        http*://bluemediafiles.com/url-generator.php?url=*
+// @match        http*://bluemediafiles.net/url-generator.php?url=*
+// @match        http*://bluemediafiles.eu/url-generator.php?url=*
+// @match        http*://bluemediafiles.homes/url-generator.php?url=*
 // @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/iggAutoContinue.user.js
 // @grant        none
 // @license GPL-3.0

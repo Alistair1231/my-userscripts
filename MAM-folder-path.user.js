@@ -24,7 +24,7 @@ const cleanUpString = (val) => {
         .replaceAll(':', ' -')
         .replaceAll('&', 'and')
         .replaceAll(',', '_')
-        .replaceAll(/\u00a0/g, " "); // replace all &nbsp; with a space
+        .replaceAll(/\u00a0/g, " "); // replace all &nbsp; with a space (https://stackoverflow.com/a/1496863)
 
     return replaceSymbols(decodeHtml(val));
 };

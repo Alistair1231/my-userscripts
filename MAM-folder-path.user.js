@@ -20,8 +20,14 @@ const cleanUpString = (val) => {
         txt.innerHTML = html;
         return txt.value;
     }
-    const replaceSymbols = (val) => val.replaceAll(':', ' -').replaceAll('&', 'and').replaceAll(',', '_');
+    const replaceSymbols = (val) => val
+        .replaceAll(':', ' -')
+        .replaceAll('&', 'and')
+        .replaceAll(',', '_')
+        .replaceAll(/&nbsp;/g, ' '); // replace all &nbsp; with a space
     
+  return str.replace(re, " ");
+
     return replaceSymbols(decodeHtml(val));
 };
 

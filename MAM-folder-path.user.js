@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.4.2
+// @version      0.4.3
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -26,8 +26,6 @@ const cleanUpString = (val) => {
         .replaceAll(',', '_')
         .replaceAll(/&nbsp;/g, ' '); // replace all &nbsp; with a space
     
-  return str.replace(re, " ");
-
     return replaceSymbols(decodeHtml(val));
 };
 

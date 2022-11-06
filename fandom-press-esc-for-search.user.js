@@ -6,7 +6,7 @@
 // @author       Alistair1231
 // @match        *://*.fandom.com/wiki/*
 // @grant        unsafeWindow
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/half-page-scroll.user.js
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/fandom-press-esc-for-search.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

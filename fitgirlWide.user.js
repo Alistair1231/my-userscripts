@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fitgirl repacks bigger images/center-alignment and 1080p optimization
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.6
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.6.1
 // @description  bigger images/center-alignment and 1080p optimization
 // @author       Alistair1231
 // @match        https://fitgirl-repacks.site/*

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         fantastic fiction search on goodreads
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.1.2
 // @description  adds button to fantastic fiction for searching on goodreads
 // @author       Alistair1231
 // @match        https://www.fantasticfiction.com/*

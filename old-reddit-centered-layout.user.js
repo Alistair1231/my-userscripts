@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         old reddit centered layout
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.3
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.3.1
 // @description  makes old reddit centered instead of left-aligned
 // @author       Alistair1231
 // @match        https://old.reddit.com/r/*

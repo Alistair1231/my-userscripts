@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide old reddit sidebar when small window
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.2.1
 // @description  hides the old reddit sidebar when the window is small and restores it when it is large.
 // @author       Alistair1231
 // @match        https://old.reddit.com/r/*

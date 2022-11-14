@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         CS.RIN.RU machsix/Super-preloader width fix
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
 // @version      0.1.1
 // @description  fixes width when using machsix/Super-preloader to make topics infitely scrollable
 // @author       Alistair1231

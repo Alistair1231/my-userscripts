@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Anilist links on MAL
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.1.2
 // @description  adds anilist links to mal
 // @author       Alistair1231
 // @match        https://myanimelist.net/anime/*

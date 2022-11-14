@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         real-debrid torrents: textbox with all links
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.2.2
 // @description  adds a button which when pressed creates a textbox with all links for you to copy in jDownloader2
 // @author       Alistair1231
 // @match        https://real-debrid.com/torrents

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         is.gd auto pronouncable
-// @namespace    https://github.com/Alistair1231/
-// @version      3.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      3.1.1
 // @description  auto selects 'lowercase pronouncable'
 // @author       Alistair1231
 // @match        https://is.gd/

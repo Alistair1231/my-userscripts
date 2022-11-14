@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Anilist more links (MAL/AniDB)
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.4.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.4.2
 // @description  adds links to anilist/mal site to anilist (uses just the duckduckgo I'm feeling ducky feature with the anime name)
 // @author       Alistair1231
 // @match        https://anilist.co/*

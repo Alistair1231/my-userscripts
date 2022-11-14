@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Path of Exile Trade always fuzzy search (tilde)
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2.2
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.2.3
 // @description  always use fuzzy search, waits for active input bar and puts ~ (tilde) at the front
 // @author       Alistair1231
 // @match        https://www.pathofexile.com/trade*

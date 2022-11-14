@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jQuery everywhere
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.3.0
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.3.1
 // @description  injects jquery if not exists
 // @author       Alistair1231
 // @match      *://*/*

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Radio.net space for toggle play/pause
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1.2
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.1.3
 // @description  Makes it so spacebar toggles pause/play instead of scrolling down the page.
 // @author       Alistair1231
 // @match        https://www.radio.net/s/*

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM search on Goodreads
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.7.6
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.7.8
 // @description  Add "Search Goodreads" button to MAM
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*

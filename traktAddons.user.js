@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TRAKT.TV: YouTube trailer search and RARBG/Torrentleech link
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.8.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.8.2
 // @description  adds a RARBG and a Torrentleech link to the link sidebar and a youtube trailer search behind the trailer button
 // @author       Alistair1231
 // @match        https://trakt.tv/*

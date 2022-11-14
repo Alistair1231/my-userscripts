@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DAV simple file list of videos at the top
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.1.1
 // @description
 // @author       Alistair1231
 // @match        https://*.seedbox.io/dav/*

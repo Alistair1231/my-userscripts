@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         IMDB bigger thumbnails/images/poster on chart pages
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.3.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.3.2
 // @description  edits image url to get the full size picture and increases poster size
 // @author       Alistair1231
 // @match        https://www.imdb.com/chart*

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AniDB Big Thumbnails on Search
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1.2
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.1.3
 // @description  Adds big thumbnails to the search results on AniDB
 // @author       Alistair1231
 // @match        https://anidb.net/anime/?*

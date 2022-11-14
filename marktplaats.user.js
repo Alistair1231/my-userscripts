@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Remove ad/link entries from marktplaats
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.2.2
 // @description  Remove ad/link entries from marktplaats!
 // @author       Alistair1231
 // @match        https://www.marktplaats.nl/q/*

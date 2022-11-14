@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gmail no Hangout and all labels
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.2.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.2.2
 // @description  hides hangouts from sidebar and makes all labels visible
 // @author       Alistair1231
 // @match        https://mail.google.com/mail/u/0/*

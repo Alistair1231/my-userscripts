@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         progresswww grade colors and look different
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.1.2
 // @description  progress now shows colorful grades
 // @author       Alistair1231
 // @match        https://progresswww.nl/fontys/resultaten/overzicht.asp*

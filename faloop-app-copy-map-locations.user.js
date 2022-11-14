@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         faloop.app copy map locations
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1.3
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.1.4
 // @description  copy map location when clicked
 // @author       Alistair1231
 // @match        https://faloop.app/*

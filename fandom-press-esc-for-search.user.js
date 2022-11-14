@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fandom press ESC for search
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.1.1
 // @description  when you press esc on a fandom wiki it will now open and select the search bar
 // @author       Alistair1231
 // @match        *://*.fandom.com/wiki/*

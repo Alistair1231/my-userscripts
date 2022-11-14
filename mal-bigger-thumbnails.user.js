@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL bigger images
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.3.1
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.3.2
 // @description  bigger thumbnails on MAL
 // @author       Alistair1231
 // @match        https://myanimelist.net/*

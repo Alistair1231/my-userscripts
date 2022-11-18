@@ -51,11 +51,11 @@ catch (TypeError) { }
 
 if (series != "") {
     var folderPath = `${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`;
-    var folderPath2 = `${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`;
+    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`;
     var folderPath3 = `Book ${bookOfSeries} - ${bookTitle}`;
 } else {
-    var folderPath = `/_Audiobooks/${author} - Loose Books/${bookTitle}`;
-    var folderPath2 = `/_Audiobooks1/${author} - Loose Books/${bookTitle}`;
+    var folderPath = `_Audiobooks/${author} - Loose Books/${bookTitle}`;
+    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/${author} - Loose Books/${bookTitle}`;
     var folderPath3 = `${bookTitle}`;
 }
 

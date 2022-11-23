@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.4.7
+// @version      0.4.8
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -59,7 +59,7 @@ if (series != "") {
     var folderPath3 = `${bookTitle}`;
 }
 
-var seriesDiv = document.getElementById("Series").parentElement;
+var submitInfoDiv = document.getElementById("submitInfo").parentElement;
 var folderText = document.createElement("div");
 
 
@@ -81,7 +81,7 @@ folderText.innerHTML = `
     ${createFolderText("folderPath3", "textCopied3", folderPath3)}
 </div>
 `
-seriesDiv.after(folderText);
+submitInfoDiv.before(folderText);
 
 /////////////////////////
 // make click to copy

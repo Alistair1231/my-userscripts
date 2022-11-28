@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Audible series copy ids
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1
+// @version      0.1.1
 // @description  adds button do ccopy id of an audiobook in the series view
 // @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/audible-series-copy-ids.user.js
 // @author       Alistair1231

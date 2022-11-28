@@ -37,7 +37,8 @@ const createButton = ($text, $id) => {
     var $a = document.createElement("a");
     $a.href = "#";
     $a.className = "bc-button-text";
-    $a.id = "ab-id-" + $id;
+    $a_id="ab-id-" + $id;
+    $a.id = $a_id;
     $a.setAttribute("role", "button");
     $a.setAttribute("tabindex", "0");
 
@@ -48,7 +49,8 @@ const createButton = ($text, $id) => {
 
     // create copy notification p
     var $p = document.createElement("p");
-    $p.id = "ab-id-copy-" + $id;
+    $p_id= "ab-id-copy-" + $id;
+    $p.id=$p_id;
     $p.style = "font-size: 9px;margin-left: 10px;";
 
     // add link text into link
@@ -61,7 +63,7 @@ const createButton = ($text, $id) => {
     $div.appendChild($p);
 
     // make clickable
-    createClickToCopy($a.id, $p.id, $id);
+    createClickToCopy($a_id, $p_id, $id);
 
     return $div;
 }
@@ -76,7 +78,7 @@ const createButton = ($text, $id) => {
     $ids.forEach(x => console.log(x));
 
     document.querySelectorAll("div[data-widget='productList'] li.bc-list-item .adblBuyBoxArea").forEach(x => {
-        x.appendChild(createButton("Copy ID", $ids.shift()));
+        x.appendChild(createButton(, $ids.shift()));
     })
 
 

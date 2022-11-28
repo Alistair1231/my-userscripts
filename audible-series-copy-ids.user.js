@@ -72,13 +72,10 @@ const createButton = ($text, $id) => {
     'use strict';
 
     // log all ids
-    getIds().forEach(x => { console.log(x.href.replace(/.*?Audiobook\/([\d\w]+)\?.*/gm, `$1`)) });
+    getIds().forEach(x => console.log(x));
 
     document.querySelectorAll("div[data-widget='productList'] li.bc-list-item .adblBuyBoxArea").forEach(x => {
-        $element = document.createElement("span")
-        $element.innerHTML = "test"
-        // add element under buy button
-        x.parentElement.appendChild($element)
+        x.appendChild(createButton("Copy ID", x.parentNode.querySelector("h3.bc-heading a").href.replace(/.*?Audiobook\/([\d\w]+)\?.*/gm, `$1`)));
     })
 
 

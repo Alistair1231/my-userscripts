@@ -78,7 +78,7 @@ const createButton = ($text, $id) => {
     $ids.forEach(x => console.log(x));
 
     document.querySelectorAll("div[data-widget='productList'] li.bc-list-item .adblBuyBoxArea").forEach(x => {
-        x.appendChild(createButton(, $ids.shift()));
+        x.appendChild(createButton("Copy ID", $ids.shift()));
     })
 
 

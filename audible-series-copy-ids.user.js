@@ -35,8 +35,7 @@ const createButton = ($text, $id, $addWhere) => {
     $div.className = "bc-row bc-spacing-top-micro";
 
     // create link
-    var $a = document.createElement("a");
-    
+    var $a = document.createElement("a"); 
     $a.className = "bc-button-text";
     $a_id="ab-id-" + $id;
     $a.id = $a_id;

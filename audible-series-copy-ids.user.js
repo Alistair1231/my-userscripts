@@ -11,7 +11,7 @@
 // @license GPL-3.0
 // ==/UserScript==
 
-function getIds() {
+const getIds = () => {
     return document.querySelectorAll("div[data-widget='productList'] li.bc-list-item h3.bc-heading a");
 }
 
@@ -25,12 +25,11 @@ const createClickToCopy = (idToMakeClickable, idClickedNotifier, valueToCopy) =>
     });
 }
 
-
-function createButton($text,$id){
+const createButton = ($text, $id) => {
     // parent div with link and copy notification p
     var $div = document.createElement("div");
-    
-    // link
+
+    // create link
     var $a = document.createElement("a");
     $a.href = "#";
     $a.className = "bc-button-text";
@@ -38,22 +37,22 @@ function createButton($text,$id){
     $a.setAttribute("role", "button");
     $a.setAttribute("tabindex", "0");
 
-    // link text
+    // create link text
     var $span = document.createElement("span");
     $span.className = "bc-text bc-button-text-inner bc-size-action-small";
     $span.textContent = $text;
-    
-    // link text into link
+
+    // create copy notification p
+    var $p = document.createElement("p");
+    $p.id = "ab-id-copy-" + $id;
+    $p.style = "font-size: 9px;margin-left: 10px;";
+
+    // add link text into link
     $a.appendChild($span);
 
     // add link to parent div
     $div.appendChild($a);
 
-    // copy notification p
-    var $p = document.createElement("p");
-    $p.id = "ab-id-copy-" + $id;
-    $p.style = "font-size: 9px;margin-left: 10px;";
-    
     // add copy notification p to parent div
     $div.appendChild($p);
 

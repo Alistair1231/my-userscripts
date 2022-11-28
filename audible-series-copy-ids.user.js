@@ -5,7 +5,7 @@
 // @description  adds button do ccopy id of an audiobook in the series view
 // @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/audible-series-copy-ids.user.js
 // @author       Alistair1231
-// @match        https://*.audible.*/series/*-Audiobooks/*
+// @match        https://www.audible.*/series/*-Audiobooks/*
 // @icon         https://icons.duckduckgo.com/ip2/audible.com.ico
 // @grant        none
 // @license GPL-3.0

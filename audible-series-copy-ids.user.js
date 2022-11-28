@@ -72,10 +72,11 @@ const createButton = ($text, $id) => {
     'use strict';
 
     // log all ids
-    getIds().forEach(x => console.log(x));
+    var $ids=getIds();
+    $ids.forEach(x => console.log(x));
 
     document.querySelectorAll("div[data-widget='productList'] li.bc-list-item .adblBuyBoxArea").forEach(x => {
-        x.appendChild(createButton("Copy ID", x.parentNode.querySelector("h3.bc-heading a").href.replace(/.*?Audiobook\/([\d\w]+)\?.*/gm, `$1`)));
+        x.appendChild(createButton("Copy ID", $ids.shift()));
     })
 
 

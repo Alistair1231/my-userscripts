@@ -12,7 +12,10 @@
 // ==/UserScript==
 
 const getIds = () => {
-    return document.querySelectorAll("div[data-widget='productList'] li.bc-list-item h3.bc-heading a");
+    const ids = [];
+    return Array.from(document.querySelectorAll("div[data-widget='productList'] li.bc-list-item h3.bc-heading a")).forEach(x=>{
+        ids += x.href.replace(/.*?Audiobook\/([\d\w]+)\?.*/gm, `$1`);
+    });
 }
 
 const createClickToCopy = (idToMakeClickable, idClickedNotifier, valueToCopy) => {

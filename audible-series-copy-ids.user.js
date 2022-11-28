@@ -63,6 +63,7 @@ const createButton = ($text, $id) => {
     $div.appendChild($p);
 
     // make clickable
+    console.log($a_id, $p_id, $id);
     createClickToCopy($a_id, $p_id, $id);
 
     return $div;

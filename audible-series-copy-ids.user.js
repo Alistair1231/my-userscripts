@@ -32,6 +32,7 @@ const createClickToCopy = (idToMakeClickable, idClickedNotifier, valueToCopy) =>
 const createButton = ($text, $id, $addWhere) => {
     // parent div with link and copy notification p
     var $div = document.createElement("div");
+    $div.className = "bc-row bc-spacing-top-micro";
 
     // create link
     var $a = document.createElement("a");
@@ -49,7 +50,7 @@ const createButton = ($text, $id, $addWhere) => {
     // span with the text
     var $spanText = document.createElement("span");
     $spanText.className = "bc-text bc-button-text-inner bc-size-action-small";
-    $span.textContent = $text;
+    $span.innerHTML = $text;
 
     // create copy notification p
     var $p = document.createElement("p");

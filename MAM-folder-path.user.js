@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.4.8
+// @version      0.4.9
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -86,12 +86,12 @@ submitInfoDiv.before(folderText);
 /////////////////////////
 // make click to copy
 
-const createClickToCopy = (idA, idP, value) => {
-    document.getElementById(idA).addEventListener("click", function () {
-        navigator.clipboard.writeText(value);
-        document.getElementById(idP).innerHTML = "Copied!";
+const createClickToCopy = (idToMakeClickable, idClickedNotifier, valueToCopy) => {
+    document.getElementById(idToMakeClickable).addEventListener("click", function () {
+        navigator.clipboard.writeText(valueToCopy);
+        document.getElementById(idClickedNotifier).innerHTML = "Copied!";
         setTimeout(function () {
-            document.getElementById(idP).innerHTML = '';
+            document.getElementById(idClickedNotifier).innerHTML = '';
         }, 1000);
     });
 }

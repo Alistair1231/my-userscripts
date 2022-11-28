@@ -29,7 +29,7 @@ const createClickToCopy = (idToMakeClickable, idClickedNotifier, valueToCopy) =>
     });
 }
 
-const createButton = ($text, $id) => {
+const createButton = ($text, $id, $addWhere) => {
     // parent div with link and copy notification p
     var $div = document.createElement("div");
 
@@ -62,6 +62,9 @@ const createButton = ($text, $id) => {
     // add copy notification p to parent div
     $div.appendChild($p);
 
+    // add parent div to page
+    document.getElementById($addWhere).appendChild($div);
+
     // make clickable
     console.log($a_id, $p_id, $id);
     createClickToCopy($a_id, $p_id, $id);
@@ -79,7 +82,7 @@ const createButton = ($text, $id) => {
     $ids.forEach(x => console.log(x));
 
     document.querySelectorAll("div[data-widget='productList'] li.bc-list-item .adblBuyBoxArea").forEach(x => {
-        x.appendChild(createButton("Copy ID", $ids.shift()));
+        x.appendChild(createButton("Copy ID", $ids.shift(), x.id));
     })
 
 

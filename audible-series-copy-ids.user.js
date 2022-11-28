@@ -36,7 +36,7 @@ const createButton = ($text, $id, $addWhere) => {
 
     // create link
     var $a = document.createElement("a");
-    $a.href = "#";
+    
     $a.className = "bc-button-text";
     $a_id="ab-id-" + $id;
     $a.id = $a_id;

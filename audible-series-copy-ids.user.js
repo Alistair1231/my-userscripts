@@ -37,7 +37,7 @@ const createButton = ($text, $id, $addWhere) => {
     // create link
     var $a = document.createElement("a");
     $a.href = "#";
-    $a.className = "bc-button bc-button-primary bc-spacing-top-mini bc-button-small";
+    $a.className = "bc-button-text";
     $a_id="ab-id-" + $id;
     $a.id = $a_id;
     $a.setAttribute("role", "button");
@@ -50,7 +50,7 @@ const createButton = ($text, $id, $addWhere) => {
     // span with the text
     var $spanText = document.createElement("span");
     $spanText.className = "bc-text bc-button-text-inner bc-size-action-small";
-    $span.innerHTML = $text;
+    $spanText.innerHTML = $text;
 
     // create copy notification p
     var $p = document.createElement("p");

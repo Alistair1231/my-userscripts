@@ -42,9 +42,13 @@ const createButton = ($text, $id, $addWhere) => {
     $a.setAttribute("role", "button");
     $a.setAttribute("tabindex", "0");
 
-    // create link text
+    // span that houses the link
     var $span = document.createElement("span");
-    $span.className = "bc-text bc-button-text-inner bc-size-action-small";
+    $span.className = "bc-button bc-button-primary bc-spacing-top-mini bc-button-small";
+    
+    // span with the text
+    var $spanText = document.createElement("span");
+    $spanText.className = "bc-text bc-button-text-inner bc-size-action-small";
     $span.textContent = $text;
 
     // create copy notification p
@@ -53,11 +57,10 @@ const createButton = ($text, $id, $addWhere) => {
     $p.id=$p_id;
     $p.style = "font-size: 9px;margin-left: 10px;";
 
-    // add link text into link
-    $a.appendChild($span);
-
-    // add link to parent div
-    $div.appendChild($a);
+    
+    $span.appendChild($a);      // add link into outer span
+    $a.appendChild($spanText);  // add span with text into link
+    $div.appendChild($span);    // add outer span to parent div
 
     // add copy notification p to parent div
     $div.appendChild($p);

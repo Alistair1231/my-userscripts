@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.4.9
+// @version      0.4.7
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -51,15 +51,15 @@ catch (TypeError) { }
 
 if (series != "") {
     var folderPath = `${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`;
-    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`;
+    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/_temp/${author} - ${series} - Book ${bookOfSeries} - ${bookTitle}`;
     var folderPath3 = `Book ${bookOfSeries} - ${bookTitle}`;
 } else {
-    var folderPath = `_Audiobooks/${author} - Loose Books/${bookTitle}`;
-    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/${author} - Loose Books/${bookTitle}`;
+    var folderPath = `/_Audiobooks/${author} - Loose Books/${bookTitle}`;
+    var folderPath2 = `/_Audiobooks1/${author} - Loose Books/${bookTitle}`;
     var folderPath3 = `${bookTitle}`;
 }
 
-var submitInfoDiv = document.getElementById("submitInfo").parentElement;
+var seriesDiv = document.getElementById("Series").parentElement;
 var folderText = document.createElement("div");
 
 
@@ -81,17 +81,17 @@ folderText.innerHTML = `
     ${createFolderText("folderPath3", "textCopied3", folderPath3)}
 </div>
 `
-submitInfoDiv.before(folderText);
+seriesDiv.after(folderText);
 
 /////////////////////////
 // make click to copy
 
-const createClickToCopy = (idToMakeClickable, idClickedNotifier, valueToCopy) => {
-    document.getElementById(idToMakeClickable).addEventListener("click", function () {
-        navigator.clipboard.writeText(valueToCopy);
-        document.getElementById(idClickedNotifier).innerHTML = "Copied!";
+const createClickToCopy = (idA, idP, value) => {
+    document.getElementById(idA).addEventListener("click", function () {
+        navigator.clipboard.writeText(value);
+        document.getElementById(idP).innerHTML = "Copied!";
         setTimeout(function () {
-            document.getElementById(idClickedNotifier).innerHTML = '';
+            document.getElementById(idP).innerHTML = '';
         }, 1000);
     });
 }

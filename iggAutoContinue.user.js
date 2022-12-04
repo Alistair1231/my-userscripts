@@ -8,7 +8,7 @@
 // @match        http*://bluemediafiles.net/url-generator.php?url=*
 // @match        http*://bluemediafiles.eu/url-generator.php?url=*
 // @match        http*://bluemediafiles.homes/url-generator.php?url=*
-// @match        http*://bluemediafiles.sbs/url-generator.php?url=*
+// @match        http*://bluemediafile.sbs/url-generator.php?url=*
 // @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/iggAutoContinue.user.js
 // @grant        none
 // @license GPL-3.0

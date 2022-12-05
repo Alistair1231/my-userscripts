@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         real-debrid torrents: textbox with all links
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.2.2
+// @version      0.2.3
 // @description  adds a button which when pressed creates a textbox with all links for you to copy in jDownloader2
 // @author       Alistair1231
-// @match        https://real-debrid.com/torrents
+// @match        https://real-debrid.com/torrents*
 // @icon         https://icons.duckduckgo.com/ip2/real-debrid.com.ico
 // @grant        none
 // @require     https://code.jquery.com/jquery-3.6.0.min.js

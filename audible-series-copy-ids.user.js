@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Audible series copy ids
 // @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1.1
+// @version      0.2
 // @description  adds button do ccopy id of an audiobook in the series view
 // @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/audible-series-copy-ids.user.js
 // @author       Alistair1231
@@ -14,11 +14,12 @@
 // @license GPL-3.0
 // ==/UserScript==
 
-const getIds = () => {
-    var ids = [];
-    Array.from(document.querySelectorAll("div[data-widget='productList'] li.bc-list-item h3.bc-heading a")).forEach(x=>{
-        ids.push(x.href.replace(/.*?Audiobook\/([\d\w]+)\?.*/gm, `$1`));
-    });
+const getIds = (entries) => {
+    // links that aren't searches for the author and aren't "not available" links (they need to have a href attribute)
+    var links = entries.map(x => x.querySelector("a.bc-link[href]:not([href*='search?searchAuthor'])"))
+
+    // get all ids
+    var ids = links.map(x => x?.href.replace(/.*Audiobook\/([\w\d]+)\?.*/g, "$1"))
     return ids;
 }
 
@@ -38,9 +39,9 @@ const createButton = ($text, $id, $addWhere) => {
     $div.className = "bc-row bc-spacing-top-micro";
 
     // create link
-    var $a = document.createElement("a"); 
+    var $a = document.createElement("a");
     $a.className = "bc-button-text";
-    $a_id="ab-id-" + $id;
+    $a_id = "ab-id-" + $id;
     $a.id = $a_id;
     $a.setAttribute("role", "button");
     $a.setAttribute("tabindex", "0");
@@ -48,7 +49,7 @@ const createButton = ($text, $id, $addWhere) => {
     // span that houses the link
     var $span = document.createElement("span");
     $span.className = "bc-button bc-button-primary bc-spacing-top-mini bc-button-small";
-    
+
     // span with the text
     var $spanText = document.createElement("span");
     $spanText.className = "bc-text bc-button-text-inner bc-size-action-small";
@@ -56,11 +57,11 @@ const createButton = ($text, $id, $addWhere) => {
 
     // create copy notification p
     var $p = document.createElement("p");
-    $p_id= "ab-id-copy-" + $id;
-    $p.id=$p_id;
+    $p_id = "ab-id-copy-" + $id;
+    $p.id = $p_id;
     $p.style = "font-size: 9px;margin-left: 10px;";
 
-    
+
     $span.appendChild($a);      // add link into outer span
     $a.appendChild($spanText);  // add span with text into link
     $div.appendChild($span);    // add outer span to parent div
@@ -83,12 +84,22 @@ const createButton = ($text, $id, $addWhere) => {
 (function () {
     'use strict';
 
+    var entries = Array.from(document.querySelectorAll("li.bc-list-item.productListItem"))
+
+    // buyBoxArea
+    var addWhere = document.querySelectorAll("div[data-widget='productList'] li.bc-list-item .adblBuyBoxArea")
+    
     // log all ids
-    var $ids=getIds();
-    $ids.forEach(x => console.log(x));
+    var ids = getIds(entries);
+    ids.forEach(x => console.log(x));
+
 
     document.querySelectorAll("div[data-widget='productList'] li.bc-list-item .adblBuyBoxArea").forEach(x => {
-        x.appendChild(createButton("Copy ID", $ids.shift(), x.id));
+        // console.log(`"Copy ID", ${$ids.shift()}, ${x.id}`);
+        var id= ids.shift();
+        if(id){
+            x.appendChild(createButton("Copy ID", id, x.id));
+        }
     })
 
 

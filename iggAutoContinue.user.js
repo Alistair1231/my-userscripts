@@ -9,6 +9,7 @@
 // @match        http*://bluemediafiles.eu/url-generator.php?url=*
 // @match        http*://bluemediafiles.homes/url-generator.php?url=*
 // @match        http*://bluemediafile.sbs/url-generator.php?url=*
+// @match        http*://bluemediafile*.*/url-generator.php?url=*
 // @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/iggAutoContinue.user.js
 // @grant        none
 // @license GPL-3.0

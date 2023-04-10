@@ -20,10 +20,7 @@
             if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
                 for (var i = 0; i < mutation.addedNodes.length; i++) {
                     var node = mutation.addedNodes[i];
-                    // check if the search button is added to the DOM
-                    if (node.tagName === 'A' && node.classList.contains('wiki-tools__search')) {
-                        // addEventListenerToSearchButton(node);
-                    }
+                    document.querySelector(".resizable-container").style.maxWidth = "80%";
                 }
             }
         });
@@ -31,24 +28,7 @@
     observer.observe(document.body, { childList: true, subtree: true });
 
     var active = false;
-    function addEventListenerToSearchButton(searchButton) {
-        // check if the event listener is already added
-        if (searchButton.hasAttribute('data-esc-listener')) {
-            return;
-        }
-        searchButton.setAttribute('data-esc-listener', true);
-
-        // add event listener to the search button
-        searchButton.addEventListener('click', function (e) {
-            // select search bar
-            setTimeout(function () {
-                var searchBar = document.querySelector("div.search-modal input[data-testid='search-modal-input']");
-                if (searchBar) {
-                    searchBar.click();
-                }
-            }, 100);
-        });
-    }
+    
 
     window.addEventListener('keydown', function (e) {
         // escape

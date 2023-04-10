@@ -45,7 +45,6 @@
                 var searchBar = document.querySelector("div.search-modal input[data-testid='search-modal-input']");
                 if (searchBar) {
                     searchBar.click();
-                    active = true;
                 }
             }, 100);
         });

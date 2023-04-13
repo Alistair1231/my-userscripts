@@ -147,7 +147,7 @@ function increaseScreenshotSize() {
       element.style.width = "30%";
       const imageUrl = element.src.replace(/(.*)\.240p\.jpg$/, "$1");
       const imageUrlAlt = element.src.replace(/(.*)\.240p\.jpg$/, "$1.1080p.jpg");
-
+      removeLinkFromImage(element);
       checkImage(imageUrl, () => { element.src = imageUrl; }, () => { element.src = imageUrlAlt; });
 
       element.flag = 1;

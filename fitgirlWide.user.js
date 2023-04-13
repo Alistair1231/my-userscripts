@@ -170,8 +170,6 @@ function increaseCoverImageSize() {
 (function () {
   "use strict";
 
-  jQuery.noConflict();
-
   createTwoColumnCss();
   applyTwoColumnLayout();
   // Call the function on window resize
@@ -183,14 +181,5 @@ function increaseCoverImageSize() {
 
   increaseScreenshotSize();
   increaseCoverImageSize();
-
-
-
-  // jQuery("article .entry-content:not(:contains('Upcoming repacks'))").each(function () {
-  //   makeArticleTwoColumns(jQuery(this));
-  // });
-
-  // make all torrent info pics not centered
-  // jQuery("table ul li img[src^='https://torrent-stats']").removeClass()
 
 })();

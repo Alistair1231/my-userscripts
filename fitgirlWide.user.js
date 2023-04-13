@@ -12,48 +12,10 @@
 // @license GPL-3.0
 // ==/UserScript==
 
-// https://draeton.github.io/javascript/library/2011/09/11/check-if-image-exists-javascript.html
-{
-  var checkImageErrors = {};
-  function checkImage(url, success, failure) {
-    var img = new Image(),    // the
-      loaded = false,
-      errored = false;
-    img.onload = function () {
-      if (loaded)
-        return;
-      loaded = true;
-      if (success && success.call)
-        success.call(img);
-    };
-    img.onerror = function () {
-      if (errored) {
-        return;
-      }
-      checkImageErrors[url] = errored = true;
-      if (failure && failure.call) {
-        failure.call(img);
-      }
-    };
-    if (checkImageErrors[url]) {
-      img.onerror.call(img);
-      return;
-    }
-
-    img.src = url;
-    if (img.complete) {
-      img.onload.call(img);
-    }
-  }
-}
-////////////////
-
-/////////////////////
-// my code
-/////////////////////
 function makeImgBig() {
   // make more space on the site
   jQuery(".site").css("max-width", "1920px");
+  jQuery(".site").css("margin", "auto");
   jQuery(".entry-content").css("max-width", "1920px");
   jQuery("#masthead").css("max-width", "1920px"); // search bar
 

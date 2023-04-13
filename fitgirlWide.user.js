@@ -139,6 +139,22 @@ function centerAlignText() {
   });
 }
 
+function increaseScreenshotSize() {
+  const h3Images = document.querySelectorAll("article .entry-content h3:not(:first-of-type)+p img"); //screenshots
+  h3Images.forEach(element => {
+    if (!element.flag) {
+      // preview images
+      element.style.width = "30%";
+      const imageUrl = element.src.replace(/(.*)\.240p\.jpg$/, "$1");
+      const imageUrlAlt = element.src.replace(/(.*)\.240p\.jpg$/, "$1.1080p.jpg");
+
+      checkImage(imageUrl, () => { element.src = imageUrl; }, () => { element.src = imageUrlAlt; });
+
+      element.flag = 1;
+    }
+  });
+}
+
 (function () {
   "use strict";
 
@@ -153,30 +169,17 @@ function centerAlignText() {
   centerAlignImages();
   centerAlignText();
 
+  increaseScreenshotSize();
 
-  const h3Images = document.querySelectorAll("article .entry-content h3:not(:first-of-type)+p img"); //screenshots
-  h3Images.forEach(element => {
-    if (!element.flag) {
-      // preview images
-      element.style.width = "30%";
-      const imageUrl = element.src.replace(/(.*)\.240p\.jpg$/, "$1");
-      const imageUrlAlt = element.src.replace(/(.*)\.240p\.jpg$/, "$1.1080p.jpg");
-
-      checkImage(imageUrl, () => { element.src = imageUrl; }, () => { element.src = imageUrlAlt; });
-
-      element.flag = 1;
-    }
-  });
-
-  const coverImages = document.querySelectorAll("article .entry-content p:first-of-type img"); //cover images
-  coverImages.forEach(element => {
-    if (!element.flag) {
-      // cover images
-      element.width *= 2.5;
-      element.height *= 2.5;
-    }
-    element.flag = 1;
-  });
+  // const coverImages = document.querySelectorAll("article .entry-content p:first-of-type img"); //cover images
+  // coverImages.forEach(element => {
+  //   if (!element.flag) {
+  //     // cover images
+  //     element.width *= 2.5;
+  //     element.height *= 2.5;
+  //   }
+  //   element.flag = 1;
+  // });
   // jQuery("article .entry-content:not(:contains('Upcoming repacks'))").each(function () {
   //   makeArticleTwoColumns(jQuery(this));
   // });

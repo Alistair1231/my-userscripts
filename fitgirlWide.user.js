@@ -219,6 +219,26 @@ function main() {
   
 
 // }
+function createTwoColumnCss(){
+  const twoColumnStyle = document.createElement('style');
+  twoColumnStyle.textContent = `
+    /* Define the two-column layout for articles */
+    .two-column {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .two-column article {
+      width: 50%;
+      box-sizing: border-box;
+      padding: 0 10px;
+    }
+  `;
+  
+  // Append the twoColumnStyle element to the document head
+  document.head.appendChild(twoColumnStyle);
+}
+
 function applyTwoColumnLayout() {
   const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   const articles = document.querySelectorAll('div#content > article');
@@ -249,23 +269,7 @@ function applyTwoColumnLayout() {
 
   jQuery.noConflict();
 
-  const twoColumnStyle = document.createElement('style');
-  twoColumnStyle.textContent = `
-    /* Define the two-column layout for articles */
-    .two-column {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  
-    .two-column article {
-      width: 50%;
-      box-sizing: border-box;
-      padding: 0 10px;
-    }
-  `;
-  
-  // Append the twoColumnStyle element to the document head
-  document.head.appendChild(twoColumnStyle);
+  createTwoColumnCss();
 
   main();
 

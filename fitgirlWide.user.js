@@ -155,6 +155,18 @@ function increaseScreenshotSize() {
   });
 }
 
+function increaseCoverImageSize() {
+    const coverImages = document.querySelectorAll("article .entry-content p:first-of-type img"); //cover images
+  coverImages.forEach(element => {
+    if (!element.flag) {
+      // cover images
+      element.width *= 2.5;
+      element.height *= 2.5;
+    }
+    element.flag = 1;
+  });
+}
+
 (function () {
   "use strict";
 
@@ -170,16 +182,10 @@ function increaseScreenshotSize() {
   centerAlignText();
 
   increaseScreenshotSize();
+  increaseCoverImageSize();
 
-  // const coverImages = document.querySelectorAll("article .entry-content p:first-of-type img"); //cover images
-  // coverImages.forEach(element => {
-  //   if (!element.flag) {
-  //     // cover images
-  //     element.width *= 2.5;
-  //     element.height *= 2.5;
-  //   }
-  //   element.flag = 1;
-  // });
+
+
   // jQuery("article .entry-content:not(:contains('Upcoming repacks'))").each(function () {
   //   makeArticleTwoColumns(jQuery(this));
   // });

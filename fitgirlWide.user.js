@@ -224,7 +224,7 @@ function applyTwoColumnLayout() {
   const articles = document.querySelectorAll('div#content > article');
   const articlesParent = document.querySelector('div#content');
   
-  if (windowWidth >= 2200) {
+  if (windowWidth >= 1920) {
     // Add CSS classes to articles for two-column layout
     articlesParent.classList.add('two-column');
     articles.forEach(article => {

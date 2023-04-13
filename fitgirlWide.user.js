@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fitgirl repacks bigger images/center-alignment and 1080p optimization
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.7
+// @version      0.7.1
 // @description  bigger images/center-alignment and 1080p optimization
 // @author       Alistair1231
 // @match        https://fitgirl-repacks.site/*

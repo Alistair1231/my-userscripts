@@ -7,7 +7,6 @@
 // @match        https://anilist.co/*
 // @icon         https://icons.duckduckgo.com/ip2/anilist.co.ico
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/anilist-more-links.user.js
-// @require https://code.jquery.com/jquery-3.6.0.min.js
 // @license GPL-3.0
 // ==/UserScript==
 

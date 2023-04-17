@@ -5,7 +5,6 @@
 // @description  adds links to anilist/mal site to anilist (uses just the duckduckgo I'm feeling ducky feature with the anime name)
 // @author       Alistair1231
 // @match        https://anilist.co/*
-// @match        https://www.google.com/url?q=*
 // @icon         https://icons.duckduckgo.com/ip2/anilist.co.ico
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/anilist-more-links.user.js
 // @require https://code.jquery.com/jquery-3.6.0.min.js
@@ -56,10 +55,10 @@ function run() {
   }
   var linkBar = document.querySelectorAll("div.external-links h2~div");
 
-  var name = document.querySelector(".content h1").innerText;
-  var mal = "https://www.google.com/search?btnI=I&q=" + name + "+site%3Amyanimelist.net%2Fanime";
+  var name = document.querySelector(".content h1").innerText.replace(':','');
+  var mal = "https://duckduckgo.com/?q=!myanimelist+" + name;
   var malButton = createButton(linkcolor="#5B0BB5e0", link=mal, text="MAL",iconDomain="myanimelist.net");
-  var anidb = "https://www.google.com/search?btnI=I&q=" + name + "+site%3Aanidb.net+inurl%3Aanime%2F";
+  var anidb = "https://duckduckgo.com/?q=!anidb+" + name;
   var anidbButton = createButton(linkcolor="#5B0BB5e0", link=anidb, text="AniDB",iconDomain="anidb.net");
   if (document.querySelectorAll("a.external-link[href*='https://duckduckgo.']").length === 0) {
     linkBar[0].prepend(malButton);
@@ -93,7 +92,4 @@ function checkReady() {
 
   mutationObserver.observe(document, { subtree: true, childList: true });
   checkReady();
-
-  // code to automatically redirect to the google search result
-  document.querySelector("body>div>div>font>b").innerHTML=="Redirect Notice" && document.querySelector("body>div>a").click();
 })();

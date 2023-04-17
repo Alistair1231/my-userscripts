@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         MAL bigger images
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.3.2
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.3.3
 // @description  bigger thumbnails on MAL
 // @author       Alistair1231
 // @match        https://myanimelist.net/*
 // @icon         https://icons.duckduckgo.com/ip2/myanimelist.net.ico
 // @grant        none
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/mal-bigger-thumbnails.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/mal-bigger-thumbnails.user.js
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @license GPL-3.0
 // ==/UserScript==

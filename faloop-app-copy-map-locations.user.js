@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         faloop.app copy map locations
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1.4
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.1.5
 // @description  copy map location when clicked
 // @author       Alistair1231
 // @match        https://faloop.app/*
 // @icon         https://icons.duckduckgo.com/ip2/faloop.app.ico
 // @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/faloop-app-copy-map-locations.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/faloop-app-copy-map-locations.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

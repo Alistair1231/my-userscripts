@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         DAV simple file list of videos at the top
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1.1
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.1.2
 // @description
 // @author       Alistair1231
 // @match        https://*.seedbox.io/dav/*
 // @match        https://dav.qaaq.cc/*
 // @icon         https://icons.duckduckgo.com/ip2/sabre.io.ico
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/dav-simple-file-list.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/dav-simple-file-list.user.js
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==

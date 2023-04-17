@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Bing URL Decoder
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.1.1
 // @description  Decode the Bing URLs to get the direct result page URL
 // @author       Alistair1231
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/bing-url-decoder.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/bing-url-decoder.user.js
 // @icon         https://icons.duckduckgo.com/ip2/bing.com.ico
 // @grant        none
 // @match        https://www.bing.com/*

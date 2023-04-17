@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         TRAKT.TV: YouTube trailer search and RARBG/Torrentleech link
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.8.2
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.8.4
 // @description  adds a RARBG and a Torrentleech link to the link sidebar and a youtube trailer search behind the trailer button
 // @author       Alistair1231
 // @match        https://trakt.tv/*
 // @icon         https://www.google.com/s2/favicons?domain=trakt.tv
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/traktAddons.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/traktAddons.user.js
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==

@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Radio.net space for toggle play/pause
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1.3
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.1.4
 // @description  Makes it so spacebar toggles pause/play instead of scrolling down the page.
 // @author       Alistair1231
 // @match        https://www.radio.net/s/*
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/radionetSpacePause.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/radionetSpacePause.user.js
 // @icon         https://icons.duckduckgo.com/ip2/radio.net.ico
 // @grant        none
 // @license GPL-3.0

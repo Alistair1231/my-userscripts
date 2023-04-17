@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Hide old reddit sidebar when small window
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.2.1
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.2.2
 // @description  hides the old reddit sidebar when the window is small and restores it when it is large.
 // @author       Alistair1231
 // @match        https://old.reddit.com/r/*
 // @icon         https://icons.duckduckgo.com/ip2/reddit.com.ico
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/oldRedditHideSidebar.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/oldRedditHideSidebar.user.js
 // @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
 // @license GPL-3.0

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         igg-games/bluemediafiles auto continue after wait
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.4.4
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.4.5
 // @description  waits for cooldown and clicks continue
 // @author       Alistair1231
 // @match        http*://bluemediafiles.com/url-generator.php?url=*
@@ -10,7 +10,7 @@
 // @match        http*://bluemediafiles.homes/url-generator.php?url=*
 // @match        http*://bluemediafile.sbs/url-generator.php?url=*
 // @match        http*://bluemediafile.site/url-generator.php?url=*
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/iggAutoContinue.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/iggAutoContinue.user.js
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==

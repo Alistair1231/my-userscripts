@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         old reddit centered layout
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.3.1
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.3.2
 // @description  makes old reddit centered instead of left-aligned
 // @author       Alistair1231
 // @match        https://old.reddit.com/r/*
 // @match        https://old.reddit.com/
 // @icon         https://icons.duckduckgo.com/ip2/reddit.com.ico
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/old-reddit-centered-layout.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/old-reddit-centered-layout.user.js
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==

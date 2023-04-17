@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         Pastebin auto select Unlisted
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1.2
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.1.3
 // @description  auto selects unlisted when making a paste
 // @author       Alistair1231
 // @include      https://pastebin.com/edit/*
 // @include      https://pastebin.com/clone/*
 // @include      https://pastebin.com/
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/pastebinUnlisted.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/pastebinUnlisted.user.js
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==

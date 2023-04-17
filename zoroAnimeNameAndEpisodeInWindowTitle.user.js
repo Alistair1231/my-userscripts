@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         zoro.to anime name and episode number as windw title
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1.1
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.1.2
 // @description  sets anime name and episode number as windw title on zoro.to
 // @author       Alistair1231
 // @match        https://zoro.to/watch/*?ep=*
 // @icon         https://icons.duckduckgo.com/ip2/zoro.to.ico
 // @grant        none
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/zoroAnimeNameAndEpisodeInWindowTitle.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/zoroAnimeNameAndEpisodeInWindowTitle.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

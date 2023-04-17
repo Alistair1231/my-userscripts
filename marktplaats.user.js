@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Remove ad/link entries from marktplaats
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.2.2
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.2.3
 // @description  Remove ad/link entries from marktplaats!
 // @author       Alistair1231
 // @match        https://www.marktplaats.nl/q/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=marktplaats.nl
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/marktplaats.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/marktplaats.user.js
 // @license GPLv3
 // @grant        none
 // ==/UserScript==

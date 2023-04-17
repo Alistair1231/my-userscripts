@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         IMDB bigger thumbnails/images/poster on chart pages
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.3.2
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.3.3
 // @description  edits image url to get the full size picture and increases poster size
 // @author       Alistair1231
 // @match        https://www.imdb.com/chart*
 // @icon         https://www.google.com/s2/favicons?domain=imdb.com
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/imdbBigCharts.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/imdbBigCharts.user.js
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==

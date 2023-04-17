@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         goodreads search on fantastic fiction
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.2.2
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.2.3
 // @description  adds button to goodreads for searching on fantastic fiction 
 // @author       Alistair1231
 // @match        https://www.goodreads.com/book/show/*
 // @match        https://www.goodreads.com/series/*
 // @require https://code.jquery.com/jquery-3.6.0.min.js
 // @icon         https://icons.duckduckgo.com/ip2/goodreads.com.ico
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/goodreads-search-on-fantastic-fiction.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/goodreads-search-on-fantastic-fiction.user.js
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==

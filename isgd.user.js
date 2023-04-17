@@ -1,13 +1,16 @@
 // ==UserScript==
-// @name         is.gd auto pronouncable
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      3.1.1
+// @name         is.gd/v.gd auto pronouncable
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      4.0
 // @description  auto selects 'lowercase pronouncable'
 // @author       Alistair1231
 // @match        https://is.gd/
 // @match        https://is.gd/create.php
 // @match        https://is.gd/index.php
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/isgd.user.js
+// @match        https://v.gd/
+// @match        https://v.gd/create.php
+// @match        https://v.gd/index.php
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/isgd.user.js
 // @grant        none
 // @license GPL-3.0
 // @copyright 2020, Alistair1231 (https://openuserjs.org/users/Alistair1231)

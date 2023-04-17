@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Fandom press ESC for search + widescreen
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.2.0
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.2.1
 // @description  when you press esc on a fandom wiki it will now open and select the search bar, also makes the page wider
 // @author       Alistair1231
 // @match        *://*.fandom.com/wiki/*
 // @grant        unsafeWindow
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/fandom-press-esc-for-search.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/fandom-press-esc-for-search.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

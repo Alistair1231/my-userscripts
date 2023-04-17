@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         Fitgirl repacks bigger images/center-alignment and 1080p optimization
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.7.1
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.7.2
 // @description  bigger images/center-alignment and 1080p optimization
 // @author       Alistair1231
 // @match        https://fitgirl-repacks.site/*
 // @icon         https://icons.duckduckgo.com/ip2/fitgirl-repacks.site.ico
 // @grant        none
 // @require      none
-// @downloadURL https://github.com/Auncaughbove17/my-userscripts/raw/main/fitgirlWide.user.js
+// @downloadURL https://github.com/Alistair1231/my-userscripts/raw/main/fitgirlWide.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

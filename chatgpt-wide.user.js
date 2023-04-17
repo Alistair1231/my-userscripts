@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         ChatGPT use full window width for responses
-// @namespace    https://greasyfork.org/en/users/12725-alistair1231
-// @version      0.1
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.1.1
 // @description  ChatGPT use full window width for responses!
 // @author       Alistair1231
 // @match        https://chat.openai.com/*
 // @icon         https://icons.duckduckgo.com/ip2/openai.com.ico
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/chatgpt-wide.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/chatgpt-wide.user.js
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==

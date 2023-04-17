@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         HTML5 Video Player Enhance
-// @version      2.9.6.1
+// @version      2.9.6.1.1
 // @description  To enhance the functionality of HTML5 Video Player (h5player) supporting all websites using shortcut keys similar to PotPlayer.
 // @author       CY Fung (mods by Alistair1231)
 // @icon https://image.flaticon.com/icons/png/128/3291/3291444.png
@@ -9,8 +9,8 @@
 // @exclude      https://www.youtube.com/live_chat*
 // @run-at       document-start
 // @require https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js
-// @namespace https://github.com/Auncaughbove17/my-userscripts/
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/html5-video-hotkeys.user.js
+// @namespace https://github.com/Alistair1231/my-userscripts/
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/html5-video-hotkeys.user.js
 // @grant   GM_getValue
 // @grant   GM_setValue
 // @grant   unsafeWindow

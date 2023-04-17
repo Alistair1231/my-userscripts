@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         AniDB Big Thumbnails on Search
-// @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1.3
+// @namespace    https://github.com/Alistair1231/my-userscripts/
+// @version      0.1.4
 // @description  Adds big thumbnails to the search results on AniDB
 // @author       Alistair1231
 // @match        https://anidb.net/anime/?*
 // @icon         https://icons.duckduckgo.com/ip2/anidb.net.ico
 // @grant       none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/anidb-big-thumbnails-search.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/anidb-big-thumbnails-search.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

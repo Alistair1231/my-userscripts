@@ -1,15 +1,13 @@
 // ==UserScript==
 // @name         Anilist links on MAL
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.2
+// @version      0.2.3
 // @description  adds anilist links to mal
 // @author       Alistair1231
 // @match        https://myanimelist.net/anime/*
 // @match        https://www.google.com/url?q=*
 // @icon         https://icons.duckduckgo.com/ip2/myanimelist.net.ico
-// @grant none
-// @require none
-// @downloadURL  https://gist.github.com/Alistair1231/1efc6138988425c938e6289736ada85d/raw/Anilist-links-on-MAL.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/Anilist-links-on-MAL.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

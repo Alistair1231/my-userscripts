@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Anilist links on MAL
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.3
+// @version      0.3.1
 // @description  adds anilist links to mal
 // @author       Alistair1231
 // @match        https://myanimelist.net/anime/*
@@ -42,7 +42,4 @@ function createButton(href, icon, textContent) {
         createButton(anilistLink, "https://icons.duckduckgo.com/ip2/anilist.co.ico", "Anilist"),
         createButton(livechartLink, "https://icons.duckduckgo.com/ip2/livechart.me.ico", "livechart.me")
     );
-
-    // code to automatically redirect to the google search result
-    document.querySelector("body>div>div>font>b").innerHTML=="Redirect Notice" && document.querySelector("body>div>a").click();
 })(window);

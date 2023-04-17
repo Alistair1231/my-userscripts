@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Anilist more links (MAL/AniDB)
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.5.0
+// @version      0.5.1
 // @description  adds links to anilist/mal site to anilist (uses just the duckduckgo I'm feeling ducky feature with the anime name)
 // @author       Alistair1231
 // @match        https://anilist.co/*
+// @match        https://www.google.com/url?q=*
 // @icon         https://icons.duckduckgo.com/ip2/anilist.co.ico
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/anilist-more-links.user.js
 // @require https://code.jquery.com/jquery-3.6.0.min.js
@@ -93,4 +94,6 @@ function checkReady() {
   mutationObserver.observe(document, { subtree: true, childList: true });
   checkReady();
 
+  // code to automatically redirect to the google search result
+  document.querySelector("body>div>div>font>b").innerHTML=="Redirect Notice" && document.querySelector("body>div>a").click();
 })();

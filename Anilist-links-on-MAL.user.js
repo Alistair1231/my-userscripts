@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Anilist links on MAL
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.3
+// @version      0.3
 // @description  adds anilist links to mal
 // @author       Alistair1231
 // @match        https://myanimelist.net/anime/*
@@ -34,14 +34,15 @@ function createButton(href, icon, textContent) {
 }
 
 (function (window, undefined) {
-    var anilistLink = `https://www.google.com/search?btnI=I&q=${document.querySelector(".title-name.h1_bold_none strong").innerHTML}+site%3Aanilist.co%2Fanime`;
-    var anilistIcon = "https://icons.duckduckgo.com/ip2/anilist.co.ico";
+    var anilistLink = `https://duckduckgo.com/?q=!anilist+${document.querySelector(".title-name.h1_bold_none strong").innerHTML}`;
+    var livechartLink = `https://duckduckgo.com/?q=!livec+${document.querySelector(".title-name.h1_bold_none strong").innerHTML}`;
 
     // array from all div.external_links -> get the last one -> get the first child -> add the button before that
     [...document.querySelectorAll("div.external_links")].splice(-1)[0].firstChild.before(
-        createButton(anilistLink, anilistIcon, "Anilist")
+        createButton(anilistLink, "https://icons.duckduckgo.com/ip2/anilist.co.ico", "Anilist"),
+        createButton(livechartLink, "https://icons.duckduckgo.com/ip2/livechart.me.ico", "livechart.me")
     );
-    
+
     // code to automatically redirect to the google search result
     document.querySelector("body>div>div>font>b").innerHTML=="Redirect Notice" && document.querySelector("body>div>a").click();
 })(window);

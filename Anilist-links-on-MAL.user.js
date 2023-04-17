@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Anilist links on MAL
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.1
+// @version      0.2.2
 // @description  adds anilist links to mal
 // @author       Alistair1231
 // @match        https://myanimelist.net/anime/*
+// @match        https://www.google.com/url?q=*
 // @icon         https://icons.duckduckgo.com/ip2/myanimelist.net.ico
 // @grant none
 // @require none
@@ -42,5 +43,7 @@ function createButton(href, icon, textContent) {
     [...document.querySelectorAll("div.external_links")].splice(-1)[0].firstChild.before(
         createButton(anilistLink, anilistIcon, "Anilist")
     );
-
+    
+    // code to automatically redirect to the google search result
+    document.querySelector("body>div>div>font>b").innerHTML=="Redirect Notice" && document.querySelector("body>div>a").click();
 })(window);

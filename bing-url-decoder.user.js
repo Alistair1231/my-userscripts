@@ -26,6 +26,7 @@
             }
             return x.substring(urlStartIndex, urlEndIndex);
         };
+        
         // Remove the leading "a1" characters from the value of the "u" parameter
         const uParamValue = url.searchParams.get('u').substring(2);
         // Decode the URL-safe Base64-encoded value

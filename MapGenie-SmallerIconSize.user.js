@@ -7,7 +7,6 @@
 // @match        https://mapgenie.io/*
 // @icon         https://icons.duckduckgo.com/ip2/mapgenie.io.ico
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/MapGenie-SmallerIconSize.user.js
-// @grant        none
 // @license GPL-3.0
 // ==/UserScript==
 
@@ -19,7 +18,7 @@
       var maxZoom = map.getMaxZoom();
       var minZoom = map.getMinZoom();
       // Loop through all the symbols on the 'locations' layer
-      map.queryRenderedFeatures({MapGenie-SmallerIconSize.user.js
+      map.queryRenderedFeatures({
         layers: ['locations'],
         filter: ['==', '$type', 'Point']
       }).forEach(function (feature) {

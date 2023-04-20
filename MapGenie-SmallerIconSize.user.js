@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MapGenie - Smaller Icon Size
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1.1
+// @version      0.2
 // @description  Makes the icons smaller on the map, so you can see more of the map at once.
 // @author       Alistair1231
 // @match        https://mapgenie.io/*
@@ -12,24 +12,32 @@
 
 (function () {
 
-    function setIconSize() {
-      // Get the current zoom level
-      var zoom = map.getZoom();
-      var maxZoom = map.getMaxZoom();
-      var minZoom = map.getMinZoom();
-      // Loop through all the symbols on the 'locations' layer
-      map.queryRenderedFeatures({
-        layers: ['locations','notes','suggestions'],
-        filter: ['==', '$type', 'Point']
-      }).forEach(function (feature) {
-        // Set the new icon size based on the current zoom level
-        var newIconSize = Math.max(0.2, Math.min(1, (zoom - 4) / maxZoom)); // Adjust the minimum and maximum size as needed
-        map.setLayoutProperty('locations', 'icon-size', newIconSize, ['==', 'locationId', feature.properties.locationId]);
-      });
+    function run() {
+        // Get the current zoom level
+        var zoom = map.getZoom();
+        var maxZoom = map.getMaxZoom();
+        var minZoom = map.getMinZoom();
+        // Loop through all the symbols on the 'locations' layer
+        
+        function setIconSize(layer, propertiesName){
+            map.queryRenderedFeatures({
+                layers: [layer],
+                filter: ['==', '$type', 'Point']
+            }).forEach(function (feature) {
+                // Set the new icon size based on the current zoom level
+                var newIconSize = Math.max(0.2, Math.min(1, (zoom - 4) / maxZoom)); // Adjust the minimum and maximum size as needed
+                map.setLayoutProperty(layer, 'icon-size', newIconSize, ['==', propertiesName, feature.properties[propertiesName]]);
+            });
+        }
+        
+        setIconSize('locations', 'locationId');
+        setIconSize('notes', 'id');
+        setIconSize('suggestions', 'id');
+        
     }
     if (typeof map !== "undefined") {
-      map.on('zoom', function () {
-        setIconSize();
-      });
+        map.on('zoom', function () {
+            run();
+        });
     }
-  })();
+})();

@@ -19,7 +19,7 @@
       var minZoom = map.getMinZoom();
       // Loop through all the symbols on the 'locations' layer
       map.queryRenderedFeatures({
-        layers: ['locations'],
+        layers: ['locations','notes','suggestions'],
         filter: ['==', '$type', 'Point']
       }).forEach(function (feature) {
         // Set the new icon size based on the current zoom level

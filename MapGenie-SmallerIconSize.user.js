@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MapGenie - Smaller Icon Size
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1
+// @version      0.1.1
 // @description  Makes the icons smaller on the map, so you can see more of the map at once.
 // @author       Alistair1231
 // @match        https://mapgenie.io/*

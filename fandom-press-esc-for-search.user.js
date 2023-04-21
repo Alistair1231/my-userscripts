@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fandom press ESC for search + widescreen
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.3
+// @version      0.2.4
 // @description  when you press esc on a fandom wiki it will now open and select the search bar, also makes the page wider
 // @author       Alistair1231
 // @match        *://*.fandom.com/wiki/*
@@ -12,26 +12,49 @@
 
 (function () {
     'use strict';
-    // observe for changes in the document body
+
+    const qS = (x) => document.querySelector(x);
+    // const qSA = (x) => document.querySelectorAll(x);
+
+    function resizeContainer() {
+        var resizableContainer = qS(".resizable-container");
+        if (resizableContainer && resizableContainer.offsetLeft > 200) {
+            resizableContainer.style.maxWidth = "80%";
+        }else{
+            resizableContainer.style.maxWidth = "100%";
+        }
+    }
+
+
+    // observe for changes in the document body (this is for when a new page is clicked)
     var observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
             // check if the mutation is a node insertion
             if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
                 for (var i = 0; i < mutation.addedNodes.length; i++) {
-                    var node = mutation.addedNodes[i];
-                    document.querySelector(".resizable-container").style.maxWidth = "80%";
+                    resizeContainer();
                 }
             }
         });
     });
+
+    // resize the container on window resize
+    window.addEventListener('resize', function () {
+        resizeContainer();
+    });
+
+    // resize the container if already present on the page
+    resizeContainer();
+
+
+
     observer.observe(document.body, { childList: true, subtree: true });
 
     var active = false;
-    
+
 
     window.addEventListener('keydown', function (e) {
-        // escape
-        if (e.keyCode === 27) {
+        if (e.key === "Escape") {
             e.preventDefault();
             console.log(active);
             // close search if it is open
@@ -41,14 +64,14 @@
             }
             // open search
             else {
-                var searchButton = document.querySelector("header.fandom-community-header a.wiki-tools__search[title='Search']");
+                const searchButton = document.querySelector("header.fandom-community-header a.wiki-tools__search[title='Search']");
                 if (searchButton) {
                     searchButton.click();
                     active = true;
-
                 }
             }
         }
     });
+
 
 })();

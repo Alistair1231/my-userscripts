@@ -8,7 +8,7 @@
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/fandom-press-esc-for-search.user.js
 // @license GPL-3.0
 // ==/UserScript==
-
+// https://greasyfork.org/en/scripts/454358-fandom-press-esc-for-search-widescreen
 
 (function () {
     'use strict';

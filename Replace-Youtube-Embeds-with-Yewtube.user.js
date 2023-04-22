@@ -10,18 +10,26 @@
 // @license      GPL-3.0
 // ==/UserScript==
 
-(function() {
+const qSA = x => document.querySelectorAll(x);
+const replaceIframe = (iframe) => {
+    iframe.src = iframe.src.replace("https://www.youtube.com/embed", "https://yewtu.be/embed");
+}
+
+(function () {
     'use strict';
-   
-    var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            [...mutation.addedNodes].forEach(function(node) {
-                if (node.tagName === "IFRAME" && node.src.includes("https://www.youtube.com/embed")) {
-                    node.src = node.src.replace("https://www.youtube.com/embed", "https://yewtu.be/embed");
-                }
-            });
+    var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.type == "childList") {
+                // check for new youtube embeds and replace them with invidious embeds
+                qSA("iframe[src*='https://www.youtube.com/embed']").forEach(replaceIframe);
+            }
+
         });
     });
-    
-    observer.observe(document.body, { childList: true, subtree: true });
+
+    // run this once for each iframe that is already on the page
+    qSA("iframe[src*='https://www.youtube.com/embed']").forEach(replaceIframe);
+
+    // keep observing for new iframes and run code from above
+    observer.observe(document, { childList: true, subtree: true });
 })();

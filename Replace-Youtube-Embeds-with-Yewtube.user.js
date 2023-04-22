@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Replace Youtube Embeds with Yewtube (invidious) Embeds
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1.1
+// @version      0.1.2
 // @description  Replaces youtube embeds with yewtube (invidious) embeds
 // @author       Alistair1231
 // @match        http*://*/*
@@ -13,6 +13,12 @@
 const qSA = x => document.querySelectorAll(x);
 const replaceIframe = (iframe) => {
     iframe.src = iframe.src.replace("https://www.youtube.com/embed", "https://yewtu.be/embed");
+    iframe.setAttribute("allowfullscreen", "allowfullscreen");
+    iframe.setAttribute("mozallowfullscreen", "mozallowfullscreen");
+    iframe.setAttribute("msallowfullscreen", "msallowfullscreen");
+    iframe.setAttribute("oallowfullscreen", "oallowfullscreen");
+    iframe.setAttribute("webkitallowfullscreen", "webkitallowfullscreen");
+
 }
 
 (function () {

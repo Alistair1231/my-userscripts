@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Replace Youtube Embeds with Yewtube (invidious) Embeds
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1
+// @version      0.1.1
 // @description  Replaces youtube embeds with yewtube (invidious) embeds
 // @author       Alistair1231
 // @match        http*://*/*

@@ -9,7 +9,7 @@
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/Replace-Youtube-Embeds-with-Yewtube.user.js
 // @license      GPL-3.0
 // ==/UserScript==
-
+// https://greasyfork.org/en/scripts/464638-replace-youtube-embeds-with-yewtube-invidious-embeds
 const qSA = x => document.querySelectorAll(x);
 const replaceIframe = (iframe) => {
     iframe.src = iframe.src.replace("https://www.youtube.com/embed", "https://yewtu.be/embed");

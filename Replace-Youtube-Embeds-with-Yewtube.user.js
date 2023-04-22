@@ -6,6 +6,7 @@
 // @author       Alistair1231
 // @match        http*://*/*
 // @grant        none
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/Replace-Youtube-Embeds-with-Yewtube.user.js
 // @license      GPL-3.0
 // ==/UserScript==
 

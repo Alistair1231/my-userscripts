@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Path of Exile Trade always fuzzy search (tilde)
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.4
+// @version      0.3
 // @description  always use fuzzy search, waits for active input bar and puts ~ (tilde) at the front
 // @author       Alistair1231
 // @match        https://www.pathofexile.com/trade*
@@ -10,14 +10,22 @@
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==
-
-(function() {
+(function () {
     'use strict';
-    setInterval(() => {
-        let searchbox = document.querySelectorAll(".multiselect--active .multiselect__input");
-        Array.from(searchbox).map(x => {
-            if ((x != null) && (x.value.match(/^~.*$/)==null))
-                x.value= "~"+x.value;
-        })
-    }, 1000);
+    // Select the target node
+    var searchboxObserver = new MutationObserver(mutations => {
+        mutations.filter(node => node.target.classList && node.target.classList.contains('multiselect--active')).forEach(activeNodes => {
+            console.log(activeNodes);
+            activeNodes = activeNodes.target;
+            // find all input fields in the active nodes
+            var inputField = activeNodes.querySelector('.multiselect__input');
+            if(inputField.value.startsWith('~')) return;
+            inputField.value = '~' + inputField.value;
+            // select contents of input field, except the ~
+            inputField.setSelectionRange(1, inputField.value.length);
+        });
+    });
+    searchboxObserver.observe(document, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+
+
 })();

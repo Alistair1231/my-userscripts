@@ -15,7 +15,6 @@
     // Select the target node
     var searchboxObserver = new MutationObserver(mutations => {
         mutations.filter(node => node.target.classList && node.target.classList.contains('multiselect--active')).forEach(activeNodes => {
-            console.log(activeNodes);
             activeNodes = activeNodes.target;
             // find all input fields in the active nodes
             var inputField = activeNodes.querySelector('.multiselect__input');

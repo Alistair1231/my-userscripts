@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Replace Youtube Embeds with Yewtube (invidious) Embeds
+// @name         Replace Youtube Embeds with Yewtube (invidious) and allow fullscreen
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
 // @version      0.1.3
 // @description  Replaces youtube embeds with yewtube (invidious) embeds

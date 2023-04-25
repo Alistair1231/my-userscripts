@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         jQuery and common function shortcuts everywhere
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.4.3
-// @description  injects jquery if not exists
+// @version      0.4.4
+// @description  injects jquery if not exists and adds some common function shortcuts to the window object. See al.help() for details.
 // @author       Alistair1231
 // @match      *://*/*
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/jQuery-and-common-function-shortcuts-everywhere.user.js

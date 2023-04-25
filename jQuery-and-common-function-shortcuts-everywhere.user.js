@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jQuery and common function shortcuts everywhere
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.4.2
+// @version      0.4.3
 // @description  injects jquery if not exists
 // @author       Alistair1231
 // @match      *://*/*

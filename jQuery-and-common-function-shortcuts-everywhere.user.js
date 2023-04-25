@@ -49,7 +49,6 @@ const al = {
       url: "https://code.jquery.com/jquery-3.6.0.min.js",
       onload: (ev) => {
         e.innerText += ev.responseText;
-        jQuery.noConflict();
       }
     });
   }

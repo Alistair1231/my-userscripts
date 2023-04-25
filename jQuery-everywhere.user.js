@@ -12,6 +12,12 @@
 // https://greasyfork.org/en/scripts/439017-jquery-and-common-function-shortcuts-everywhere
 (function () {
   'use strict';
+  let e = document.createElement('script');
+  e.id = 'injected-script';
+  e.innerText = "";
+  document.head.appendChild(e);
+
+
   if (typeof jQuery == 'undefined') {
     // https://stackoverflow.com/questions/54499985/how-can-i-load-an-external-script-on-a-webpage-using-tampermonkey
     GM_xmlhttpRequest({
@@ -19,10 +25,7 @@
       // from other domain than the @match one (.org / .com):
       url: "https://code.jquery.com/jquery-3.6.0.min.js",
       onload: (ev) => {
-        let e = document.createElement('script');
-        e.id = 'injected-script';
-        e.innerText = ev.responseText;
-        document.head.appendChild(e);
+        e.innerText += ev.responseText;
         jQuery.noConflict();
       }
     });
@@ -63,8 +66,6 @@
       gid: (id) => document.getElementById(id),
     };
 `;
-  const el = document.getElementById('injected-script');
-  if (el) {
-    el.innerText += shortcuts;
-  }
+
+  e.innerText += shortcuts;
 })();

@@ -11,6 +11,7 @@
 // @grant        GM_setValue
 // @grant        GM_registerMenuCommand
 // @grant        GM_config
+// @require https://openuserjs.org/src/libs/sizzle/GM_config.min.js
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/audiobookshelf-media-session-controls-tweak.user.js
 // @license GPL-3.0
 // ==/UserScript==

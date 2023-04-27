@@ -11,50 +11,50 @@
 // @license GPL-3.0
 // ==/UserScript==
 
-// Select the target node
-const streamContainer = document.querySelector('div#streamContainer');
 
-// Function to set up media session handlers
-function setupMediaSession() {
-  const controlElements = [...streamContainer.querySelectorAll("div[class*='cursor-pointer'] span[class*='material-icons']")];
-  const forwardButton = controlElements.filter(x => x.innerText.includes("forward_10"))[0];
-  const replayButton = controlElements.filter(x => x.innerText.includes("replay_10"))[0];
+(function() {
+    'use strict';
 
-  // Function to trigger click event
-  function triggerClickEvent(element) {
-    if (element) {
-      var clickEvent = new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-        view: window
-      });
-      element.dispatchEvent(clickEvent);
+    // Function to run the code
+    function runCode() {
+        var controlElements = [...document.querySelectorAll("div#streamContainer div[class*='cursor-pointer'] span[class*='material-icons']")];
+        var forwardButton = controlElements.filter(x => x.innerText.includes("forward_10"))[0];
+        var replayButton = controlElements.filter(x => x.innerText.includes("replay_10"))[0];
+
+        // Function to trigger click event
+        function triggerClickEvent(element) {
+            if (element) {
+                var clickEvent = new MouseEvent('click', {
+                    bubbles: true,
+                    cancelable: true,
+                    view: window
+                });
+                element.dispatchEvent(clickEvent);
+            }
+        }
+
+        navigator.mediaSession.setActionHandler('previoustrack', () => triggerClickEvent(replayButton));
+        navigator.mediaSession.setActionHandler('nexttrack', () => triggerClickEvent(forwardButton));
     }
-  }
 
-  if (replayButton) {
-    navigator.mediaSession.setActionHandler('previoustrack', () => triggerClickEvent(replayButton));
-  }
-  if (forwardButton) {
-    navigator.mediaSession.setActionHandler('nexttrack', () => triggerClickEvent(forwardButton));
-  }
-}
+    // Run the code initially
+    runCode();
 
-// Create an observer instance
-const observer = new MutationObserver(mutationsList => {
-  for (let mutation of mutationsList) {
-    if (mutation.type === 'childList' && mutation.target === streamContainer) {
-      // Check if the mutation added or removed elements
-      console.log('A child node has been added or removed.');
-      setupMediaSession();
+    // Set up the MutationObserver
+    // const observer = new MutationObserver(mutations => {
+    //     mutations.forEach(mutation => {
+    //         if (mutation.target && mutation.target.id === "streamContainer") {
+    //             // Run the code again when the div#streamContainer changes
+    //             runCode();
+    //         }
+    //     });
+    // });
 
-    } else if (mutation.type === 'attributes' && mutation.target === streamContainer) {
-      // Check if the mutation changed an attribute of the div#streamContainer element
-        console.log('The ' + mutation.attributeName + ' attribute was modified.');
-      setupMediaSession();
-    }
-  }
-});
-
-// Start observing the target node for changes
-observer.observe(streamContainer, { childList: true, subtree: true, attributes: true });
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.setActionHandler('metadataupdated', function(metadata) {
+          console.log('The metadata has changed!');
+          console.log('The new title is:', metadata.title);
+          runCode();
+        });
+      }
+})();

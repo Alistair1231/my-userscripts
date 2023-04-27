@@ -13,29 +13,25 @@
 
 // mutationobserver for document.title
 
-var titleObserver = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'title' && document.title === "Audiobookshelf") {
-        var controlElements = [...document.querySelectorAll("div#streamContainer div[class*='cursor-pointer'] span[class*='material-icons']")];
-        var forwardButton = controlElements.filter(x => x.innerText.includes("forward_10"))[0];
-        var replayButton = controlElements.filter(x => x.innerText.includes("replay_10"))[0];
+function init() {
+    var controlElements = [...document.querySelectorAll("div#streamContainer div[class*='cursor-pointer'] span[class*='material-icons']")];
+    var forwardButton = controlElements.filter(x => x.innerText.includes("forward_10"))[0];
+    var replayButton = controlElements.filter(x => x.innerText.includes("replay_10"))[0];
   
-        // Function to trigger click event
-        function triggerClickEvent(element) {
-          if (element) {
-            var clickEvent = new MouseEvent('click', {
-              bubbles: true,
-              cancelable: true,
-              view: window
-            });
-            element.dispatchEvent(clickEvent);
-          }
-        }
-  
-        navigator.mediaSession.setActionHandler('previoustrack', () => triggerClickEvent(replayButton));
-        navigator.mediaSession.setActionHandler('nexttrack', () => triggerClickEvent(forwardButton));
+    // Function to trigger click event
+    function triggerClickEvent(element) {
+      if (element) {
+        var clickEvent = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        });
+        element.dispatchEvent(clickEvent);
       }
-    });
-  });
+    }
   
-  titleObserver.observe(document.querySelector('head > title'), { attributes: true });
+    navigator.mediaSession.setActionHandler('previoustrack', () => triggerClickEvent(replayButton));
+    navigator.mediaSession.setActionHandler('nexttrack', () => triggerClickEvent(forwardButton));
+  }
+  
+  document.addEventListener('DOMContentLoaded', init);

@@ -11,27 +11,50 @@
 // @license GPL-3.0
 // ==/UserScript==
 
-// mutationobserver for document.title
+// Select the target node
+const streamContainer = document.querySelector('div#streamContainer');
 
-function init() {
-    var controlElements = [...document.querySelectorAll("div#streamContainer div[class*='cursor-pointer'] span[class*='material-icons']")];
-    var forwardButton = controlElements.filter(x => x.innerText.includes("forward_10"))[0];
-    var replayButton = controlElements.filter(x => x.innerText.includes("replay_10"))[0];
-  
-    // Function to trigger click event
-    function triggerClickEvent(element) {
-      if (element) {
-        var clickEvent = new MouseEvent('click', {
-          bubbles: true,
-          cancelable: true,
-          view: window
-        });
-        element.dispatchEvent(clickEvent);
-      }
+// Function to set up media session handlers
+function setupMediaSession() {
+  const controlElements = [...streamContainer.querySelectorAll("div[class*='cursor-pointer'] span[class*='material-icons']")];
+  const forwardButton = controlElements.filter(x => x.innerText.includes("forward_10"))[0];
+  const replayButton = controlElements.filter(x => x.innerText.includes("replay_10"))[0];
+
+  // Function to trigger click event
+  function triggerClickEvent(element) {
+    if (element) {
+      var clickEvent = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      });
+      element.dispatchEvent(clickEvent);
     }
-  
+  }
+
+  if (replayButton) {
     navigator.mediaSession.setActionHandler('previoustrack', () => triggerClickEvent(replayButton));
+  }
+  if (forwardButton) {
     navigator.mediaSession.setActionHandler('nexttrack', () => triggerClickEvent(forwardButton));
   }
-  
-  document.addEventListener('DOMContentLoaded', init);
+}
+
+// Create an observer instance
+const observer = new MutationObserver(mutationsList => {
+  for (let mutation of mutationsList) {
+    if (mutation.type === 'childList' && mutation.target === streamContainer) {
+      // Check if the mutation added or removed elements
+      console.log('A child node has been added or removed.');
+      setupMediaSession();
+
+    } else if (mutation.type === 'attributes' && mutation.target === streamContainer) {
+      // Check if the mutation changed an attribute of the div#streamContainer element
+        console.log('The ' + mutation.attributeName + ' attribute was modified.');
+      setupMediaSession();
+    }
+  }
+});
+
+// Start observing the target node for changes
+observer.observe(streamContainer, { childList: true, subtree: true, attributes: true });

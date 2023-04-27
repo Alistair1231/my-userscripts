@@ -7,7 +7,10 @@
 // @match        http://*/*
 // @match        https://*/*
 // @icon         https://icons.duckduckgo.com/ip2/audiobookshelf.org.ico
-// @require https://cdnjs.cloudflare.com/ajax/libs/gm_config/1.4.1/gm_config.min.js
+// @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_registerMenuCommand
+// @grant        GM_config
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/audiobookshelf-media-session-controls-tweak.user.js
 // @license GPL-3.0
 // ==/UserScript==

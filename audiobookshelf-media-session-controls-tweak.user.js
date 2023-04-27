@@ -7,46 +7,13 @@
 // @match        http://*/*
 // @match        https://*/*
 // @icon         https://icons.duckduckgo.com/ip2/audiobookshelf.org.ico
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_registerMenuCommand
-// @grant        GM_config
 // @require https://openuserjs.org/src/libs/sizzle/GM_config.min.js
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/audiobookshelf-media-session-controls-tweak.user.js
 // @license GPL-3.0
 // ==/UserScript==
 
-// Define the default value for the list of domains
-var defaultDomains = "example.com\nexample.org";
 
-// Register a menu command to open the options menu
-GM_registerMenuCommand("Set Domains", function () {
-    GM_config.open();
-});
-
-// Define the options for the options menu
-GM_config.init({
-    id: "abs-domain-config",
-    title: "Audiobookshelf Domains",
-    fields: {
-        domains: {
-            label: "List of Domains",
-            type: "textarea",
-            default: GM_getValue("domains", defaultDomains)
-        }
-    },
-    events: {
-        save: function () {
-            GM_setValue("domains", GM_config.get("domains"));
-        }
-    }
-});
-
-// Get the list of domains from the options menu
-var domains = GM_getValue("domains", defaultDomains).split("\n");
-
-// Check if the current domain matches any of the domains in the list
-if (domains.indexOf(window.location.hostname) !== -1) {
+if (document.title === "Audiobookshelf") {
     var controlElements = [...document.querySelectorAll("div#streamContainer div[class*='cursor-pointer'] span[class*='material-icons']")];
     var forwardButton = controlElements.filter(x => x.innerText.includes("forward_10"))[0];
     var replayButton = controlElements.filter(x => x.innerText.includes("replay_10"))[0];

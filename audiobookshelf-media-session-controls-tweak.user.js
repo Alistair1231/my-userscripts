@@ -7,29 +7,35 @@
 // @match        http://*/*
 // @match        https://*/*
 // @icon         https://icons.duckduckgo.com/ip2/audiobookshelf.org.ico
-// @require https://openuserjs.org/src/libs/sizzle/GM_config.min.js
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/audiobookshelf-media-session-controls-tweak.user.js
 // @license GPL-3.0
 // ==/UserScript==
 
+// mutationobserver for document.title
 
-if (document.title === "Audiobookshelf") {
-    var controlElements = [...document.querySelectorAll("div#streamContainer div[class*='cursor-pointer'] span[class*='material-icons']")];
-    var forwardButton = controlElements.filter(x => x.innerText.includes("forward_10"))[0];
-    var replayButton = controlElements.filter(x => x.innerText.includes("replay_10"))[0];
-
-    // Function to trigger click event
-    function triggerClickEvent(element) {
-        if (element) {
+var titleObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'title' && document.title === "Audiobookshelf") {
+        var controlElements = [...document.querySelectorAll("div#streamContainer div[class*='cursor-pointer'] span[class*='material-icons']")];
+        var forwardButton = controlElements.filter(x => x.innerText.includes("forward_10"))[0];
+        var replayButton = controlElements.filter(x => x.innerText.includes("replay_10"))[0];
+  
+        // Function to trigger click event
+        function triggerClickEvent(element) {
+          if (element) {
             var clickEvent = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window
+              bubbles: true,
+              cancelable: true,
+              view: window
             });
             element.dispatchEvent(clickEvent);
+          }
         }
-    }
-
-    navigator.mediaSession.setActionHandler('previoustrack', () => triggerClickEvent(replayButton));
-    navigator.mediaSession.setActionHandler('nexttrack', () => triggerClickEvent(forwardButton));
-}
+  
+        navigator.mediaSession.setActionHandler('previoustrack', () => triggerClickEvent(replayButton));
+        navigator.mediaSession.setActionHandler('nexttrack', () => triggerClickEvent(forwardButton));
+      }
+    });
+  });
+  
+  titleObserver.observe(document.querySelector('head > title'), { attributes: true });

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.4.9
+// @version      0.5
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -30,7 +30,8 @@ const cleanUpString = (val) => {
 };
 
 var bookTitle = cleanUpString(document.getElementsByClassName("TorrentTitle")[0].innerHTML).trim();
-var author = cleanUpString(document.getElementsByClassName("torDetRight torAuthors")[0].textContent).trim();
+
+var author = cleanUpString([...document.querySelectorAll(".torDetRight.torAuthors a")].map(x => x.innerText).join(', ')).trim();
 var series = "";
 var bookOfSeries = "";
 
@@ -42,7 +43,7 @@ const addLeadingZero = (bookOfSeries) => {
     array[0] = array[0].padStart(2, '0')
     return array.join('.')
 }
-
+al.cl([...document.querySelectorAll(".torDetRight.torAuthors a")].map(x => x.innerText).join(', '))
 try {
     series = cleanUpString(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text).trim();
     // extract number of book including subpart like 3.1 or 3.5 and add leading zero if needed
@@ -51,7 +52,7 @@ catch (TypeError) { }
 
 if (series != "") {
     var folderPath = `${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`;
-    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/_temp/${author} - ${series} - Book ${bookOfSeries} - ${bookTitle}`;
+    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/_temp/${author} - ${series}/${series} ${bookOfSeries} - ${bookTitle}`;
     var folderPath3 = `Book ${bookOfSeries} - ${bookTitle}`;
 } else {
     var folderPath = `/_Audiobooks/${author} - Loose Books/${bookTitle}`;

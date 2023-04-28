@@ -12,10 +12,24 @@
 // https://greasyfork.org/en/scripts/439017-jquery-and-common-function-shortcuts-everywhere
 (function () {
   'use strict';
+const helpString = `
+'\
+al: jQuery and Method shortcuts everywhere\\n\
+------------------------------------------\\n\
+al.cl(str) - console.log(str)\\n\
+al.js(obj) - JSON.stringify(obj)\\n\
+al.jsp(obj) - JSON.stringify(obj, null, 2)\\n\
+al.jp(str) - JSON.parse(str)\\n\
+al.qs(selector) - document.querySelector(selector)\\n\
+al.qsa(selector) - document.querySelectorAll(selector)\\n\
+al.gid(id) - document.getElementById(id)\\n\
+------------------------------------------\\n\
+'
+`;
 
   const shortcuts = `
-const bl = {
-  help: () => console.log('al: jQuery and Method shortcuts everywhere\n------------------------------------------\nal.cl(str) - console.log(str)\nal.js(obj) - JSON.stringify(obj)\nal.jsp(obj) - JSON.stringify(obj, null, 2)\nal.jp(str) - JSON.parse(str)\nal.qs(selector) - document.querySelector(selector)\nal.qsa(selector) - document.querySelectorAll(selector)\nal.gid(id) - document.getElementById(id)\n------------------------------------------'),
+const al = {
+  help: () => console.log(${helpString}),
   cl: (str) => console.log(str),
   js: (obj) => JSON.stringify(obj),
   jsp: (obj) => JSON.stringify(obj, null, 2),

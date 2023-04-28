@@ -31,9 +31,9 @@
 
     }
     if (typeof map !== "undefined") {
-        run();
+        adjustIconSize();
         map.on('zoom', function () {
-            run();
+            adjustIconSize();
         });
     }
 })();

@@ -43,7 +43,6 @@ const addLeadingZero = (bookOfSeries) => {
     array[0] = array[0].padStart(2, '0')
     return array.join('.')
 }
-al.cl([...document.querySelectorAll(".torDetRight.torAuthors a")].map(x => x.innerText).join(', '))
 try {
     series = cleanUpString(document.getElementsByClassName("torDetRight torSeries")[0].firstChild.firstChild.text).trim();
     // extract number of book including subpart like 3.1 or 3.5 and add leading zero if needed

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MapGenie - Smaller Icon Size
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.2
+// @version      0.3
 // @description  Makes the icons smaller on the map, so you can see more of the map at once.
 // @author       Alistair1231
 // @match        https://mapgenie.io/*
@@ -12,30 +12,26 @@
 
 (function () {
 
-    function run() {
+    function adjustIconSize() {
         // Get the current zoom level
         var zoom = map.getZoom();
         var maxZoom = map.getMaxZoom();
         var minZoom = map.getMinZoom();
         // Loop through all the symbols on the 'locations' layer
-        
-        function setIconSize(layer, propertiesName){
-            map.queryRenderedFeatures({
-                layers: [layer],
-                filter: ['==', '$type', 'Point']
-            }).forEach(function (feature) {
-                // Set the new icon size based on the current zoom level
-                var newIconSize = Math.max(0.2, Math.min(1, (zoom - 4) / maxZoom)); // Adjust the minimum and maximum size as needed
-                map.setLayoutProperty(layer, 'icon-size', newIconSize, ['==', propertiesName, feature.properties[propertiesName]]);
-            });
-        }
-        
-        setIconSize('locations', 'locationId');
-        setIconSize('notes', 'id');
-        setIconSize('suggestions', 'id');
-        
+
+        var iconSizeAtMaxZoom = .9; // replace with actual value
+        var iconSizeAtMinZoom = .7; // replace with actual value
+
+        var logarithmicScale = Math.max(0, Math.log(iconSizeAtMaxZoom / iconSizeAtMinZoom) / Math.log(maxZoom / minZoom) * Math.log(zoom / minZoom)) * 2.3;
+
+        // var newZoom= Math.max(0.15, Math.min(1, (zoom - 5) / maxZoom));
+        console.log(`zoom detected, adjusting icon size to ${logarithmicScale}`);
+        mapManager.setIconSize(logarithmicScale); // Adjust the minimum and maximum size as needed)
+
+
     }
     if (typeof map !== "undefined") {
+        run();
         map.on('zoom', function () {
             run();
         });

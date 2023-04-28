@@ -16,6 +16,7 @@
   const helpString = `
 al: jQuery and Method shortcuts everywhere
 ------------------------------------------
+al.cl(str) - console.log(str)
 al.js(obj) - JSON.stringify(obj)
 al.jsp(obj) - JSON.stringify(obj, null, 2)
 al.jp(str) - JSON.parse(str)
@@ -27,6 +28,7 @@ al.gid(id) - document.getElementById(id)
   const shortcuts = `
 const al = {
   help: () => console.log('${helpString}'),
+  cl: (str) => console.log(str),
   js: (obj) => JSON.stringify(obj),
   jsp: (obj) => JSON.stringify(obj, null, 2),
   jp: (str) => JSON.parse(str),

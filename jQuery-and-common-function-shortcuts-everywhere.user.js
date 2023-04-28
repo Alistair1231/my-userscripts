@@ -27,7 +27,7 @@ al.gid(id) - document.getElementById(id)
 
   const shortcuts = `
 const al = {
-  help: () => console.log('${helpString}'),
+  help: () => console.log(\`${helpString}\`),
   cl: (str) => console.log(str),
   js: (obj) => JSON.stringify(obj),
   jsp: (obj) => JSON.stringify(obj, null, 2),

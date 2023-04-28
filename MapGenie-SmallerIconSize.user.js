@@ -9,7 +9,7 @@
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/MapGenie-SmallerIconSize.user.js
 // @license GPL-3.0
 // ==/UserScript==
-
+// https://greasyfork.org/en/scripts/464497-mapgenie-smaller-icon-size
 (function () {
 
     function adjustIconSize() {

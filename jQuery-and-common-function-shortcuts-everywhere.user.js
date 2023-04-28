@@ -12,9 +12,7 @@
 // https://greasyfork.org/en/scripts/439017-jquery-and-common-function-shortcuts-everywhere
 (function () {
   'use strict';
-const helpString = `
-'\
-al: jQuery and Method shortcuts everywhere\\n\
+const helpString = 'al: jQuery and Method shortcuts everywhere\\n\
 ------------------------------------------\\n\
 al.cl(str) - console.log(str)\\n\
 al.js(obj) - JSON.stringify(obj)\\n\
@@ -23,9 +21,8 @@ al.jp(str) - JSON.parse(str)\\n\
 al.qs(selector) - document.querySelector(selector)\\n\
 al.qsa(selector) - document.querySelectorAll(selector)\\n\
 al.gid(id) - document.getElementById(id)\\n\
-------------------------------------------\\n\
-'
-`;
+al.print() - Prints the object definition\\n\
+------------------------------------------\\n';
 
   const shortcuts = `
 const al = {
@@ -43,6 +40,8 @@ const al = {
   const e = document.createElement('script');
   e.id = 'injectedScript';
   e.innerText = shortcuts;
+  // append console.log(shortcuts) as al.print() to the script
+  e.innerText += `al.print = () => console.log(${shortcuts})`;
   document.head.appendChild(e);
 
 })();

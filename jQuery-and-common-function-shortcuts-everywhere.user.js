@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jQuery and common function shortcuts everywhere
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.4.7
+// @version      0.4.8
 // @description  injects jquery if not exists and adds some common function shortcuts to the window object. See al.help() for details.
 // @author       Alistair1231
 // @match        *://*/*
@@ -24,6 +24,7 @@ al.qs(selector) - document.querySelector(selector)\\n\
 al.qsa(selector) - document.querySelectorAll(selector)\\n\
 al.gid(id) - document.getElementById(id)\\n\
 al.print() - Prints the object definition\\n\
+al.cc() - navigator.clipboard.writeText(str)\\n\
 ------------------------------------------\\n\
 '
 `;
@@ -38,6 +39,7 @@ const al = {
   qs: (selector) => document.querySelector(selector),
   qsa: (selector) => document.querySelectorAll(selector),
   gid: (id) => document.getElementById(id),
+  cc: (str) => navigator.clipboard.writeText(str),
   print: () => {
     const { help, ...rest } = al;
     console.log(rest);
@@ -48,10 +50,7 @@ const al = {
   const e = document.createElement('script');
   e.id = 'injectedScript';
   e.innerText = shortcuts;
-  
 
-
-  
   document.head.appendChild(e);
 
 })();

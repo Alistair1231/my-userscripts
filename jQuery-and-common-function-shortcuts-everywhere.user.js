@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jQuery and common function shortcuts everywhere
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.4.8
+// @version      0.4.9
 // @description  injects jquery if not exists and adds some common function shortcuts to the window object. See al.help() for details.
 // @author       Alistair1231
 // @match        *://*/*
@@ -39,7 +39,18 @@ const al = {
   qs: (selector) => document.querySelector(selector),
   qsa: (selector) => document.querySelectorAll(selector),
   gid: (id) => document.getElementById(id),
-  cc: (str) => navigator.clipboard.writeText(str),
+  cc: (str) => {
+    if (typeof str !== 'string') {
+      throw new TypeError('Argument to al.cc() must be a string');
+    }
+    const tempInput = document.createElement('input');
+    tempInput.setAttribute('type', 'text');
+    tempInput.setAttribute('value', str);
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+  },
   print: () => {
     const { help, ...rest } = al;
     console.log(rest);

@@ -10,6 +10,7 @@
 // @match        https://www.bing.com/*
 // @license GPL-3.0
 // ==/UserScript==
+// https://greasyfork.org/en/scripts/464094-bing-url-decoder
 
 (function () {
     'use strict';

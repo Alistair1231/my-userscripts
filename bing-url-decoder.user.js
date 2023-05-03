@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bing URL Decoder
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.2
+// @version      0.2
 // @description  Decode the Bing URLs to get the direct result page URL
 // @author       Alistair1231
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/bing-url-decoder.user.js
@@ -14,6 +14,12 @@
 
 (function () {
     'use strict';
+    // https://stackoverflow.com/a/70429872
+    function unicodeBase64Decode(text){
+        text = text.replace(/\s+/g, '').replace(/\-/g, '+').replace(/\_/g, '/');
+        return decodeURIComponent(Array.prototype.map.call(window.atob(text),function(c){return'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2);}).join(''));
+    }
+    
 
     function decodeBingUrl(url) {
         const remove_alink = (x) => {
@@ -28,10 +34,14 @@
             return x.substring(urlStartIndex, urlEndIndex);
         };
 
-        // Remove the leading "a1" characters from the value of the "u" parameter
-        const uParamValue = url.searchParams.get('u').substring(2);
+        // check if has leading "a1" characters, then Remove the leading "a1" characters from the value of the "u" parameter
+        var uParamValue;
+        url.searchParams.get('u').startsWith('a1') ? uParamValue = url.searchParams.get('u').substring(2) : uParamValue = url.searchParams.get('u')
+
         // Decode the URL-safe Base64-encoded value
-        var base64DecodedValue = atob(uParamValue.replace(/_/g, '/').replace(/-/g, '+'))
+        console.log(url.searchParams.get('u'));
+        console.log(unicodeBase64Decode(uParamValue));
+        var base64DecodedValue = unicodeBase64Decode(uParamValue.replace(/_/g, '/').replace(/-/g, '+'));
 
         try {
             const decodedValue = decodeURIComponent(base64DecodedValue);
@@ -41,6 +51,7 @@
                 return remove_alink(base64DecodedValue);
             }
         }
+
     }
 
     function decodeBingUrls(links) {

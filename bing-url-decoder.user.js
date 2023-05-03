@@ -8,7 +8,7 @@
 // @icon         https://icons.duckduckgo.com/ip2/bing.com.ico
 // @grant        none
 // @match        https://www.bing.com/*
-// @require      https://github.com/Alistair1231/my-userscripts/raw/887a767d853bb7e33b31bbe532f3b5f334c8815f/jQuery-and-common-function-shortcuts-everywhere.user.js
+// @require      https://github.com/Alistair1231/my-userscripts/raw/1cbd0a125f3423216bd548057442ab066963ad9d/jQuery-and-common-function-shortcuts-everywhere.user.js
 // @license GPL-3.0
 // ==/UserScript==
 
@@ -27,7 +27,7 @@
             }
             return x.substring(urlStartIndex, urlEndIndex);
         };
-        
+
         // Remove the leading "a1" characters from the value of the "u" parameter
         const uParamValue = url.searchParams.get('u').substring(2);
         // Decode the URL-safe Base64-encoded value

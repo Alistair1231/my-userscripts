@@ -12,7 +12,7 @@
 // https://greasyfork.org/en/scripts/439017-jquery-and-common-function-shortcuts-everywhere
 (function () {
   'use strict';
-const helpString = `
+  const helpString = `
 '\
 al: jQuery and Method shortcuts everywhere\\n\
 ------------------------------------------\\n\
@@ -30,7 +30,7 @@ al.durl(str) - document.decodeURIComponent(str)\\n\
 '
 `;
 
-const shortcuts = `
+  const shortcuts = `
 const al = {
   help: () => console.log(${helpString}),
   cl: (str) => console.log(str),
@@ -52,10 +52,24 @@ const al = {
   const e = document.createElement('script');
   e.id = 'injectedScript';
   e.innerText = shortcuts;
-  
 
-
-  
   document.head.appendChild(e);
+
+  if (typeof $ != 'function') {
+    window.$ = function (selector, target) {
+      if (typeof target == 'undefined') {
+        target = document;
+      }
+      return target.querySelector(selector);
+    }
+  }
+  if (typeof $$ != 'function') {
+    window.$$ = function (selector, target) {
+      if (typeof target == 'undefined') {
+        target = document;
+      }
+      return Array.from(target.querySelectorAll(selector));
+    }
+  }
 
 })();

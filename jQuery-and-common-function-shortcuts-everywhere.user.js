@@ -12,7 +12,7 @@
 // https://greasyfork.org/en/scripts/439017-jquery-and-common-function-shortcuts-everywhere
 (function () {
   'use strict';
-var helpString = `
+const helpString = `
 '\
 al: jQuery and Method shortcuts everywhere\\n\
 ------------------------------------------\\n\
@@ -23,14 +23,15 @@ al.jp(str) - JSON.parse(str)\\n\
 al.qs(selector) - document.querySelector(selector)\\n\
 al.qsa(selector) - document.querySelectorAll(selector)\\n\
 al.gid(id) - document.getElementById(id)\\n\
+al.print() - Prints the object definition\\n\
 al.eurl(str) - document.encodeURIComponent(str)\\n\
 al.durl(str) - document.decodeURIComponent(str)\\n\
 ------------------------------------------\\n\
 '
 `;
 
-var shortcuts = `
-var al = {
+const shortcuts = `
+const al = {
   help: () => console.log(${helpString}),
   cl: (str) => console.log(str),
   js: (obj) => JSON.stringify(obj),
@@ -39,14 +40,22 @@ var al = {
   qs: (selector) => document.querySelector(selector),
   qsa: (selector) => document.querySelectorAll(selector),
   gid: (id) => document.getElementById(id),
+  print: () => {
+    const { help, ...rest } = al;
+    console.log(rest);
+  }
   eurl: (str) => document.encodeURIComponent(str),
-  durl: (str) => document.decodeURIComponent(str)
+  durl: (str) => document.decodeURIComponent(str),
 };
 `;
 
-  var e = document.createElement('script');
+  const e = document.createElement('script');
   e.id = 'injectedScript';
   e.innerText = shortcuts;
   
+
+
+  
   document.head.appendChild(e);
+
 })();

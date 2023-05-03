@@ -8,7 +8,6 @@
 // @icon         https://icons.duckduckgo.com/ip2/bing.com.ico
 // @grant        none
 // @match        https://www.bing.com/*
-// @require      https://github.com/Alistair1231/my-userscripts/raw/1cbd0a125f3423216bd548057442ab066963ad9d/jQuery-and-common-function-shortcuts-everywhere.user.js
 // @license GPL-3.0
 // ==/UserScript==
 

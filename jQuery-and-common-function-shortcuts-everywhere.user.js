@@ -43,9 +43,9 @@ const al = {
   print: () => {
     const { help, ...rest } = al;
     console.log(rest);
-  }
+  },
   eurl: (str) => document.encodeURIComponent(str),
-  durl: (str) => document.decodeURIComponent(str),
+  durl: (str) => document.decodeURIComponent(str)
 };
 `;
 

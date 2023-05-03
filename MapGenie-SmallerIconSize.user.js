@@ -22,7 +22,7 @@
         var iconSizeAtMaxZoom = .9; // replace with actual value
         var iconSizeAtMinZoom = .7; // replace with actual value
 
-        var logarithmicScale = Math.max(0, Math.log(iconSizeAtMaxZoom / iconSizeAtMinZoom) / Math.log(maxZoom / minZoom) * Math.log(zoom / minZoom)) * 2;
+        var logarithmicScale = Math.max(0, Math.log(iconSizeAtMaxZoom / iconSizeAtMinZoom) / Math.log(maxZoom / minZoom) * Math.log(zoom / minZoom)) * 2.5;
 
         // var newZoom= Math.max(0.15, Math.min(1, (zoom - 5) / maxZoom));
         console.log(`zoom detected, adjusting icon size to ${logarithmicScale}`);

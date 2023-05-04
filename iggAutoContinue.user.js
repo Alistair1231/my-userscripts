@@ -9,7 +9,7 @@
 // @grant        none
 // @license GPL-3.0
 // ==/UserScript==
-
+// https://greasyfork.org/en/scripts/425739-igg-games-bluemediafiles-auto-continue-after-wait
 
 (function () {
     'use strict';

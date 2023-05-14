@@ -15,9 +15,6 @@
 
     // Add your custom CSS
     const css = `
-        #b_context {
-            width: 300px !important;
-        }
         
         @media (min-width: 1200px) {
             #b_results {

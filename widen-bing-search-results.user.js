@@ -13,7 +13,6 @@
 (function() {
     'use strict';
 
-    // Add your custom CSS
     const css = `
         @media (min-width: 1200px) {
             #b_results {

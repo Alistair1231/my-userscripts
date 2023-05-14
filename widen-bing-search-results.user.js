@@ -6,7 +6,7 @@
 // @author       Alistair1231
 // @match        https://www.bing.com/search*
 // @grant        GM_addStyle
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/Anilist-links-on-MAL.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/widen-bing-search-results.user.js
 // @license      MIT
 // ==/UserScript==
 

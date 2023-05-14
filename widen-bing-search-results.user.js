@@ -16,25 +16,25 @@
     // Add your custom CSS
     const css = `
         #b_context {
-            width: 300px !important; // Adjust the width of the sidebar
+            width: 300px !important;
         }
         
         @media (min-width: 1200px) {
             #b_results {
-                width: calc(80% - 300px) !important; // Subtract the width of the sidebar from the width of the search results
-                max-width: 1200px !important; // Set a max width for the search results
+                width: calc(80% - 300px) !important; 
+                max-width: 1200px !important; 
             }
         }
 
         @media (max-width: 1199px) and (min-width: 768px) {
             #b_results {
-                width: calc(90% - 300px) !important; // Subtract the width of the sidebar from the width of the search results
+                width: calc(90% - 300px) !important; 
             }
         }
 
         @media (max-width: 767px) {
             #b_results {
-                width: 100% !important; // Use full width for small screens
+                width: 100% !important; 
             }
         }
     `;

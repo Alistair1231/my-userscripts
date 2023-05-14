@@ -15,7 +15,6 @@
 
     // Add your custom CSS
     const css = `
-        
         @media (min-width: 1200px) {
             #b_results {
                 width: calc(80% - 300px) !important; 

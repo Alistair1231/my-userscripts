@@ -19,9 +19,14 @@
             width: 300px !important; // Adjust the width of the sidebar
         }
         
-        @media (min-width: 1200px) {
+        @media (min-width: 1400px) {
             #b_results {
                 width: 1200px !important; // Subtract the width of the sidebar from the width of the search results
+            }
+        }
+        @media (max-width: 1399px) and (min-width: 1200px) {
+            #b_results {
+                width: 900px !important; // Subtract the width of the sidebar from the width of the search results
             }
         }
 

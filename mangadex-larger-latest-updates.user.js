@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mangadex larger latest updates pictures
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1
+// @version      0.1.1
 // @description  adds anilist links to mal
 // @author       Alistair1231
 // @match        https://mangadex.org/

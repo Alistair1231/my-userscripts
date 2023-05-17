@@ -41,6 +41,6 @@
         largerImages();
     };
 
-    window.onload = setTimeout(run,2000);
+    window.onload = setTimeout(run,3000);
 
 })();

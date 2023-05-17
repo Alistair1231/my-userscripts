@@ -20,16 +20,11 @@
 `);
 
     const largerImages = () => {
-        console.log("in largerImages()");
-        
         // wider total container
         document.querySelectorAll("div.header")[1].parentElement.style.maxWidth="1920px";
         
-        
         const coverImages = document.querySelectorAll("div.header")[1].querySelectorAll('img[alt="Cover image"]');
-        console.log(coverImages);
         [...coverImages].map(x => x.closest("div")).forEach(y => {
-            console.log(y);
             y.style['height'] = "160px";
             y.style['min-width'] = "112px";
             y.style['max-width'] = "";

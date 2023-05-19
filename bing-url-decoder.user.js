@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bing URL Decoder
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2
+// @version      0.2.1
 // @description  Decode the Bing URLs to get the direct result page URL
 // @author       Alistair1231
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/bing-url-decoder.user.js
@@ -56,6 +56,11 @@
 
     function decodeBingUrls(links) {
         links.forEach(link => {
+            // test link.href is not undefined
+            if (link.href === undefined) {
+                return;
+            }
+
             const decodedUrl = decodeBingUrl(new URL(link.href));
             link.href = decodedUrl;
         });

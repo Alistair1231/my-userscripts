@@ -36,6 +36,11 @@
 
         // check if has leading "a1" characters, then Remove the leading "a1" characters from the value of the "u" parameter
         var uParamValue;
+        // check if url.searchParams.get('u') is null and skip
+        if (url.searchParams.get('u') === null) {
+            return;
+        }
+
         url.searchParams.get('u').startsWith('a1') ? uParamValue = url.searchParams.get('u').substring(2) : uParamValue = url.searchParams.get('u')
 
         // Decode the URL-safe Base64-encoded value

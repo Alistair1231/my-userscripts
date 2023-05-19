@@ -85,8 +85,14 @@
         });
     });
 
-    // Observe changes in the main content area of the page
-    const mainContent = document.querySelector('#b_results');
+    const mainContent; 
+    // if mainContent is null, wait for 1 second and try again
+    const loadResults = () => {
+        mainContent = document.getElementById('b_content');
+        if (mainContent === null) {
+            setTimeout(loadResults, 1000);
+        }
+    }
     observer.observe(mainContent, { childList: true, subtree: true });
 
 })();

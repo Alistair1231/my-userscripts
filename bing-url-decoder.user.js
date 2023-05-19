@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bing URL Decoder
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.2
+// @version      0.2.3
 // @description  Decode the Bing URLs to get the direct result page URL
 // @author       Alistair1231
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/bing-url-decoder.user.js
@@ -86,7 +86,7 @@
     });
 
     // Observe changes in the main content area of the page
-    const mainContent = document.querySelector('main');
+    const mainContent = document.querySelector('#b_results');
     observer.observe(mainContent, { childList: true, subtree: true });
 
 })();

@@ -13,7 +13,6 @@
 // https://greasyfork.org/en/scripts/464094-bing-url-decoder
 
 (function () {
-    'use strict';
     // https://stackoverflow.com/a/70429872
     function unicodeBase64Decode(text){
         text = text.replace(/\s+/g, '').replace(/\-/g, '+').replace(/\_/g, '/');
@@ -85,7 +84,7 @@
         });
     });
 
-    var mainContent = null; 
+    
     // if mainContent is null, wait for 1 second and try again
     const loadResults = () => {
         mainContent = document.getElementById('b_content');

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bing URL Decoder
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.7
+// @version      0.2.6
 // @description  Decode the Bing URLs to get the direct result page URL
 // @author       Alistair1231
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/bing-url-decoder.user.js
@@ -13,6 +13,7 @@
 // https://greasyfork.org/en/scripts/464094-bing-url-decoder
 
 (function () {
+    'use strict';
     // https://stackoverflow.com/a/70429872
     function unicodeBase64Decode(text){
         text = text.replace(/\s+/g, '').replace(/\-/g, '+').replace(/\_/g, '/');
@@ -84,7 +85,7 @@
         });
     });
 
-    
+    var mainContent = null; 
     // if mainContent is null, wait for 1 second and try again
     const loadResults = () => {
         mainContent = document.getElementById('b_content');

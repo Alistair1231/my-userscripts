@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bing URL Decoder
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.7
+// @version      0.2.8
 // @description  Decode the Bing URLs to get the direct result page URL
 // @author       Alistair1231
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/bing-url-decoder.user.js
@@ -44,8 +44,8 @@
         url.searchParams.get('u').startsWith('a1') ? uParamValue = url.searchParams.get('u').substring(2) : uParamValue = url.searchParams.get('u')
 
         // Decode the URL-safe Base64-encoded value
-        console.log(url.searchParams.get('u'));
-        console.log(unicodeBase64Decode(uParamValue));
+        // console.log(url.searchParams.get('u'));
+        // console.log(unicodeBase64Decode(uParamValue));
         var base64DecodedValue = unicodeBase64Decode(uParamValue.replace(/_/g, '/').replace(/-/g, '+'));
 
         try {

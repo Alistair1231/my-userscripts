@@ -85,7 +85,7 @@
         });
     });
 
-    const mainContent = null; 
+    var mainContent = null; 
     // if mainContent is null, wait for 1 second and try again
     const loadResults = () => {
         mainContent = document.getElementById('b_content');

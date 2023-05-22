@@ -39,6 +39,7 @@
             setTimeout(runAtStart, 500);
         }
         else{
+            alert("ready");
             wrapCommentsInDetails();
         }
     }

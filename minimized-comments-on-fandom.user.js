@@ -8,35 +8,38 @@
 // @license MIT
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
     // Function to wrap the #articleComments element inside a <details> tag
     function wrapCommentsInDetails() {
         var articleComments = document.getElementById('articleComments');
-
-        if (articleComments) {
+        console.log(articleComments);
+        console.log(articleComments.parentElement.tagName);
+        if (articleComments && articleComments.parentElement.tagName !== 'DETAILS') {
             articleComments.innerHTML = '<details><summary>Comments</summary>' + articleComments.innerHTML + '</details>';
         }
     }
-
-    // Create a new instance of MutationObserver
-    var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            // Check if the #articleComments element has been added or changed
-            if (mutation.addedNodes.length > 0 || mutation.type === 'characterData') {
+    // mutationobserver that waits for the #articleComments element to be added to the DOM
+    var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.addedNodes.length) {
                 wrapCommentsInDetails();
             }
         });
-    });
+    }
+    );
+    // observer.observe(document.body, {
+    //     childList: true,
+    //     subtree: true
+    // });
 
-    // Start observing changes to the document body and its descendants
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        characterData: true
-    });
-
-    // Wrap the initial #articleComments element if it exists
-    wrapCommentsInDetails();
+    function runAtStart() {
+        if (document.querySelector('#articleComments') === null) {
+            setTimeout(runAtStart, 500);
+        }
+        else{
+            wrapCommentsInDetails();
+        }
+    }
 })();

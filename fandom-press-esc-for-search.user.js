@@ -5,7 +5,6 @@
 // @description  when you press esc on a fandom wiki it will now open and select the search bar, also makes the page wider
 // @author       Alistair1231
 // @match        *://*.fandom.com/wiki/*
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/fandom-press-esc-for-search.user.js
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/454358-fandom-press-esc-for-search-widescreen

@@ -8,8 +8,6 @@
 // @match        https://www.goodreads.com/series/*
 // @require https://code.jquery.com/jquery-3.6.0.min.js
 // @icon         https://icons.duckduckgo.com/ip2/goodreads.com.ico
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/goodreads-search-on-fantastic-fiction.user.js
-// @grant        none
 // @license      MIT
 // ==/UserScript==
 

@@ -6,9 +6,7 @@
 // @author       Alistair1231
 // @match        https://real-debrid.com/torrents*
 // @icon         https://icons.duckduckgo.com/ip2/real-debrid.com.ico
-// @grant        none
 // @require     https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/real-debrid-torrents-textbox-with-all-links.user.js
 // @license      MIT
 // ==/UserScript==
 

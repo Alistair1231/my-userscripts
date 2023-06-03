@@ -5,8 +5,6 @@
 // @description  scrolls half a page when pressing page up / down
 // @author       Alistair1231
 // @match        *://*/*
-// @grant        none
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/half-page-scroll.user.js
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/444151-half-page-up-down-scroll/

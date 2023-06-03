@@ -6,8 +6,6 @@
 // @author       Alistair1231
 // @match        https://www.imdb.com/chart*
 // @icon         https://www.google.com/s2/favicons?domain=imdb.com
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/imdbBigCharts.user.js
-// @grant        none
 // @license      MIT
 // ==/UserScript==
 function makeMods(x, late) {

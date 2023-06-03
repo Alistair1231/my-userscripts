@@ -7,8 +7,6 @@
 // @include      https://pastebin.com/edit/*
 // @include      https://pastebin.com/clone/*
 // @include      https://pastebin.com/
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/pastebinUnlisted.user.js
-// @grant        none
 // @license      MIT
 // ==/UserScript==
 

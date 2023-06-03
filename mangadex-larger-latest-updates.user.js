@@ -6,7 +6,6 @@
 // @author       Alistair1231
 // @match        https://mangadex.org/
 // @icon         https://icons.duckduckgo.com/ip2/myanimelist.net.ico
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/mangadex-larger-latest-updates.user.js
 // @grant        GM_addStyle
 // @license      MIT
 // ==/UserScript==

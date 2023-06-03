@@ -3,14 +3,12 @@
 // @namespace    https://github.com/Alistair1231/my-userscripts/
 // @version      0.2.1
 // @description  adds button do ccopy id of an audiobook in the series view
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/audible-series-copy-ids.user.js
 // @author       Alistair1231
 // @match        https://www.audible.com/series/*-Audiobooks/*
 // @match        https://www.audible.de/series/*-Audiobooks/*
 // @match        https://www.audible.nl/series/*-Audiobooks/*
 // @match        https://www.audible.co.uk/series/*-Audiobooks/*
 // @icon         https://icons.duckduckgo.com/ip2/audible.com.ico
-// @grant        none
 // @license      MIT
 // ==/UserScript==
 

@@ -5,9 +5,7 @@
 // @description  always use fuzzy search, waits for active input bar and puts ~ (tilde) at the front
 // @author       Alistair1231
 // @match        https://www.pathofexile.com/trade*
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/poeSearch.user.js
 // @icon         https://www.google.com/s2/favicons?domain=pathofexile.com
-// @grant        none
 // @license      MIT
 // ==/UserScript==
 (function () {

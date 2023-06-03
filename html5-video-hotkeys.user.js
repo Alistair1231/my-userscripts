@@ -10,7 +10,6 @@
 // @run-at       document-start
 // @require https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js
 // @namespace https://github.com/Alistair1231/my-userscripts/
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/html5-video-hotkeys.user.js
 // @grant   GM_getValue
 // @grant   GM_setValue
 // @grant   unsafeWindow

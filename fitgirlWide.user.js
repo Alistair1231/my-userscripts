@@ -6,8 +6,6 @@
 // @author       Alistair1231
 // @match        https://fitgirl-repacks.site/*
 // @icon         https://icons.duckduckgo.com/ip2/fitgirl-repacks.site.ico
-// @grant        none
-// @downloadURL https://github.com/Alistair1231/my-userscripts/raw/main/fitgirlWide.user.js
 // @license      MIT
 // ==/UserScript==
 

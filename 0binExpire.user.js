@@ -5,8 +5,6 @@
 // @description  auto selects never expire when making a paste
 // @author       Alistair1231
 // @match        https://0bin.net/
-// @grant        none
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/0binExpire.user.js
 // @license      MIT
 // ==/UserScript==
 

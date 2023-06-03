@@ -5,8 +5,6 @@
 // @description  waits for cooldown and clicks continue
 // @author       Alistair1231
 // @match        http*://*/url-generator.php?url=*
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/iggAutoContinue.user.js
-// @grant        none
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/425739-igg-games-bluemediafiles-auto-continue-after-wait

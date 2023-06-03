@@ -5,9 +5,7 @@
 // @description  Makes it so spacebar toggles pause/play instead of scrolling down the page.
 // @author       Alistair1231
 // @match        https://www.radio.net/s/*
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/radionetSpacePause.user.js
 // @icon         https://icons.duckduckgo.com/ip2/radio.net.ico
-// @grant        none
 // @license      MIT
 // ==/UserScript==
 

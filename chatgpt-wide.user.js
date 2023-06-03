@@ -6,8 +6,6 @@
 // @author       Alistair1231
 // @match        https://chat.openai.com/*
 // @icon         https://icons.duckduckgo.com/ip2/openai.com.ico
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/chatgpt-wide.user.js
-// @grant        none
 // @license      MIT
 // ==/UserScript==
 

@@ -6,7 +6,6 @@
 // @author       Alistair1231
 // @match        https://mapgenie.io/*
 // @icon         https://icons.duckduckgo.com/ip2/mapgenie.io.ico
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/MapGenie-SmallerIconSize.user.js
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/464497-mapgenie-smaller-icon-size

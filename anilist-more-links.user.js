@@ -6,7 +6,6 @@
 // @author       Alistair1231
 // @match        https://anilist.co/*
 // @icon         https://icons.duckduckgo.com/ip2/anilist.co.ico
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/anilist-more-links.user.js
 // @license      MIT
 // ==/UserScript==
 

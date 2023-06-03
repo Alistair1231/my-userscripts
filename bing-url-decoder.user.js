@@ -4,9 +4,7 @@
 // @version      0.2.8
 // @description  Decode the Bing URLs to get the direct result page URL
 // @author       Alistair1231
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/bing-url-decoder.user.js
 // @icon         https://icons.duckduckgo.com/ip2/bing.com.ico
-// @grant        none
 // @match        https://www.bing.com/*
 // @license      MIT
 // ==/UserScript==

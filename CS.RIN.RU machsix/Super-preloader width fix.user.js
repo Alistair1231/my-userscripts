@@ -6,9 +6,7 @@
 // @author       Alistair1231
 // @match        https://cs.rin.ru/forum/viewtopic.php*
 // @icon         https://icons.duckduckgo.com/ip2/cs.rin.ru.ico
-// @grant        none
 // @require https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL https://github.com/Alistair1231/my-userscripts/raw/main/CS.RIN.RU%20machsix%2FSuper-preloader%20width%20fix.user.js
 // @license      MIT
 // ==/UserScript==
 

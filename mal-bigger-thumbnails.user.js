@@ -6,8 +6,6 @@
 // @author       Alistair1231
 // @match        https://myanimelist.net/*
 // @icon         https://icons.duckduckgo.com/ip2/myanimelist.net.ico
-// @grant        none
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/mal-bigger-thumbnails.user.js
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @license      MIT
 // ==/UserScript==

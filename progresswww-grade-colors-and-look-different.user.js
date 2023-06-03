@@ -6,9 +6,7 @@
 // @author       Alistair1231
 // @match        https://progresswww.nl/fontys/resultaten/overzicht.asp*
 // @icon         https://icons.duckduckgo.com/ip2/progresswww.nl.ico
-// @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/progresswww-grade-colors-and-look-different.user.js
 // @license      MIT
 // ==/UserScript==
 

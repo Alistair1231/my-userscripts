@@ -6,9 +6,7 @@
 // @author       Alistair1231
 // @match        https://anidb.net/anime/?*
 // @icon         https://icons.duckduckgo.com/ip2/anidb.net.ico
-// @grant       none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/anidb-big-thumbnails-search.user.js
 // @license      MIT
 // ==/UserScript==
 

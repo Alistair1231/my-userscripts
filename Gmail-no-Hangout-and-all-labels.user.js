@@ -6,9 +6,7 @@
 // @author       Alistair1231
 // @match        https://mail.google.com/mail/u/0/*
 // @icon         https://icons.duckduckgo.com/ip2/google.com.ico
-// @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/Gmail-no-Hangout-and-all-labels.user.js
 // @license      MIT
 // ==/UserScript==
 

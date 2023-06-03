@@ -5,8 +5,6 @@
 // @description  Adds a button to add a song to a playlist on the yt-music website
 // @author       Alistair1231
 // @match        https://music.youtube.com/watch?v=*
-// @grant        none
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/yt-music-add-to-playlist.user.js
 // @license      MIT
 // ==/UserScript==
 

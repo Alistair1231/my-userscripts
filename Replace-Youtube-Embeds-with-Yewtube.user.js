@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Replace Youtube Embeds with Yewtube (invidious) and allow fullscreen
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.1.3
+// @version      0.1.4
 // @description  Replaces youtube embeds with yewtube (invidious) embeds
 // @author       Alistair1231
 // @match        http*://*/*
@@ -18,7 +18,7 @@ const replaceIframe = (iframe) => {
     iframe.setAttribute("msallowfullscreen", "msallowfullscreen");
     iframe.setAttribute("oallowfullscreen", "oallowfullscreen");
     iframe.setAttribute("webkitallowfullscreen", "webkitallowfullscreen");
-
+    iframe.setAttribute("autoplay", "0");
 }
 
 (function () {

@@ -9,7 +9,7 @@
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/half-page-scroll.user.js
 // @license      GPL-3.0
 // ==/UserScript==
-
+// https://greasyfork.org/en/scripts/444151-half-page-up-down-scroll/
 (function () {
     'use strict';
 

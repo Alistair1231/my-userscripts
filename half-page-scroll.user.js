@@ -6,6 +6,7 @@
 // @author       Alistair1231
 // @match        *://*/*
 // @grant        none
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/half-page-scroll.user.js
 // @license      GPL-3.0
 // ==/UserScript==
 

@@ -8,7 +8,7 @@
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/425739-igg-games-bluemediafiles-auto-continue-after-wait
-
+// https://openuserjs.org/scripts/Alistair1231/igg-gamesbluemediafiles_auto_continue_after_wait/
 (function () {
     'use strict';
     if (window.location.href.includes("bluemediafile")) {

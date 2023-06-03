@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MapGenie - Smaller Icon Size
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
-// @version      0.3.2
+// @version      0.3.3
 // @description  Makes the icons smaller on the map, so you can see more of the map at once.
 // @author       Alistair1231
 // @match        https://mapgenie.io/*
@@ -9,6 +9,7 @@
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/464497-mapgenie-smaller-icon-size
+// https://openuserjs.org/scripts/Alistair1231/MapGenie_-_Smaller_Icon_Size
 (function () {
 
     function adjustIconSize() {

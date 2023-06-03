@@ -8,6 +8,7 @@
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/444151-half-page-up-down-scroll/
+// https://openuserjs.org/scripts/Alistair1231/Half_page_(updown)_scroll
 (function () {
     'use strict';
 

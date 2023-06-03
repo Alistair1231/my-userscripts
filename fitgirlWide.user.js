@@ -8,7 +8,7 @@
 // @icon         https://icons.duckduckgo.com/ip2/fitgirl-repacks.site.ico
 // @license      MIT
 // ==/UserScript==
-
+// https://openuserjs.org/scripts/Alistair1231/Fitgirl_repacks_bigger_imagescenter-alignment_and_widescreen_optimization
 
 // https://draeton.github.io/javascript/library/2011/09/11/check-if-image-exists-javascript.html
 {

@@ -9,6 +9,8 @@
 // @require     https://code.jquery.com/jquery-3.6.0.min.js
 // @license      MIT
 // ==/UserScript==
+// https://openuserjs.org/scripts/Alistair1231/real-debrid_torrents_textbox_with_all_links
+// https://greasyfork.org/en/scripts/439014-real-debrid-torrents-textbox-with-all-links
 
 (function () {
 

@@ -1,33 +1,30 @@
 // ==UserScript==
 // @name         Half page (up/down) scroll
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.3
+// @version      0.2.0
 // @description  scrolls half a page when pressing page up / down
 // @author       Alistair1231
 // @match        *://*/*
-// @grant        unsafeWindow
-// @require      https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/half-page-scroll.user.js
-// @license GPL-3.0
+// @grant        none
+// @license      GPL-3.0
 // ==/UserScript==
 
 (function () {
     'use strict';
 
-    jQuery(unsafeWindow).on('keydown', function (e) {
+    document.addEventListener('keydown', function (e) {
         // page down
-        if (e.keyCode === 34) {
+        if (e.key === "PageDown") {
             e.preventDefault();
-            unsafeWindow.scrollBy(0, unsafeWindow.innerHeight / 2)
-            console.log("page down")
+            window.scrollBy(0, window.innerHeight*.45);
+            console.log("page down");
         }
         // page up
-        else if (e.keyCode === 33) {
+        else if (e.key === "PageUp") {
             e.preventDefault();
-            unsafeWindow.scrollBy(0, -unsafeWindow.innerHeight / 2)
-            console.log("page up")
+            window.scrollBy(0, -window.innerHeight*.45);
+            console.log("page up");
         }
-
     });
 
 })();

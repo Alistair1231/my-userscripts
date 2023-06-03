@@ -8,7 +8,7 @@
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/radionetSpacePause.user.js
 // @icon         https://icons.duckduckgo.com/ip2/radio.net.ico
 // @grant        none
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 (function() {

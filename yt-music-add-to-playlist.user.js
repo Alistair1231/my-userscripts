@@ -7,7 +7,7 @@
 // @match        https://music.youtube.com/watch?v=*
 // @grant        none
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/yt-music-add-to-playlist.user.js
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 (function() {

@@ -8,7 +8,7 @@
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/poeSearch.user.js
 // @icon         https://www.google.com/s2/favicons?domain=pathofexile.com
 // @grant        none
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 (function () {
     'use strict';

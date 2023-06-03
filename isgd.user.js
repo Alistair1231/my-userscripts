@@ -12,7 +12,7 @@
 // @match        https://v.gd/index.php
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/isgd.user.js
 // @grant        none
-// @license GPL-3.0
+// @license      MIT
 // @copyright 2020, Alistair1231 (https://openuserjs.org/users/Alistair1231)
 // ==/UserScript==
 

@@ -7,7 +7,7 @@
 // @match        *://*/*
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/jQuery-and-common-function-shortcuts-everywhere.user.js
 // @grant        GM_xmlhttpRequest
-// @license      GPL-3.0
+// @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/439017-jquery-and-common-function-shortcuts-everywhere
 (function () {

@@ -9,7 +9,7 @@
 // @include      https://pastebin.com/
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/pastebinUnlisted.user.js
 // @grant        none
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 (function() {

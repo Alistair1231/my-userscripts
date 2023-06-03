@@ -9,7 +9,7 @@
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/oldRedditHideSidebar.user.js
 // @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 

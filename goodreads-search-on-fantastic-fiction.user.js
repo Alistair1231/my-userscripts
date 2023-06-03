@@ -10,7 +10,7 @@
 // @icon         https://icons.duckduckgo.com/ip2/goodreads.com.ico
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/goodreads-search-on-fantastic-fiction.user.js
 // @grant        none
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 // Inspired by Slengpung (https://greasyfork.org/en/users/78880) "Goodreads Plus" script

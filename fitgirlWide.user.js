@@ -8,7 +8,7 @@
 // @icon         https://icons.duckduckgo.com/ip2/fitgirl-repacks.site.ico
 // @grant        none
 // @downloadURL https://github.com/Alistair1231/my-userscripts/raw/main/fitgirlWide.user.js
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 

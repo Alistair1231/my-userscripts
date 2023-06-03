@@ -1,16 +1,17 @@
 // ==UserScript==
-// @name         Gmail no Hangout and all labels
-// @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.3
-// @description  hides hangouts from sidebar and makes all labels visible
+// @name         faloop.app copy map locations
+// @namespace    https://github.com/Auncaughbove17/my-userscripts/
+// @version      0.1.4
+// @description  copy map location when clicked
 // @author       Alistair1231
-// @match        https://mail.google.com/mail/u/0/*
-// @icon         https://icons.duckduckgo.com/ip2/google.com.ico
+// @match        https://faloop.app/*
+// @icon         https://icons.duckduckgo.com/ip2/faloop.app.ico
 // @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/Gmail-no-Hangout-and-all-labels.user.js
+// @downloadURL  https://github.com/Auncaughbove17/my-userscripts/raw/main/faloop-app-copy-map-locations.user.js
 // @license      MIT
 // ==/UserScript==
+
 
 {/*!
  * Shim for MutationObserver interface
@@ -464,25 +465,30 @@
 }
 ////////////////
 
+
+
 (function (window, undefined) {
     'use strict';
-    const jQ = jQuery;
-    jQ(document).ready(function () {
-        new MutationObserver(() => {
-            // sperator
-            jQ(jQ('div[aria-label="Hangouts"]').siblings()[1]).remove();
-            // hangouts and meet stuff
-            jQ('div[aria-label="Hangouts"]').remove();
-            // make the important stuff take all the space
-            jQ('div[role="navigation"]').css("height", "");
-            // click on more
-            jQ('div[role="navigation"] span:contains("More"):not([role="button"])').click();
 
-            //make sidebar thinner
-            jQuery(".aeN").each(function () { this.style.setProperty('min-width', '180px', 'important') })
-            // make numbers appear on sidebar again
-            jQuery(".bsU").css("padding-right", "55px");
+    new MutationObserver(() => {
+        // blue dots
+        jQuery("div[class^=ZoneMap_poi] div span[class*=blue]").each(function () {
+            // add click event
+            jQuery(this).click(function () {
+                // copy value to clipboard
+                navigator.clipboard.writeText($(this).attr("data-pr-tooltip"))
+            });
+        });
+        // aetherytes
+        jQuery("div[class^=ZoneMap_poi] span[class*=aether]").each(function () {
+            // add click event
+            jQuery(this).click(function () {
+                // copy value to clipboard
+                navigator.clipboard.writeText($(this).attr("data-pr-tooltip"))
+            });
+        });
+    }).observe(document, { subtree: true, childList: true });
 
-        }).observe(document, { subtree: true, childList: true });
-    });
+
+    
 })(window);

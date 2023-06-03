@@ -8,7 +8,7 @@
 // @icon         https://www.google.com/s2/favicons?domain=trakt.tv
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/traktAddons.user.js
 // @grant        none
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 function waitForSiteToLoad() {

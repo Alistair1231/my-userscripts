@@ -9,7 +9,7 @@
 // @grant       none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/anidb-big-thumbnails-search.user.js
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 function addStyleAttribute($element, styleAttribute) {

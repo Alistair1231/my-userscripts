@@ -7,7 +7,7 @@
 // @match        https://myanimelist.net/anime/*
 // @icon         https://icons.duckduckgo.com/ip2/myanimelist.net.ico
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/Anilist-links-on-MAL.user.js
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 function createButton(href, icon, textContent) {

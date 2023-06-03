@@ -9,7 +9,7 @@
 // @icon         https://icons.duckduckgo.com/ip2/sabre.io.ico
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/dav-simple-file-list.user.js
 // @grant        none
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 (function () {

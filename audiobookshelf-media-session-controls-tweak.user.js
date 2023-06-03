@@ -8,7 +8,7 @@
 // @match        https://*/*
 // @icon         https://icons.duckduckgo.com/ip2/audiobookshelf.org.ico
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/audiobookshelf-media-session-controls-tweak.user.js
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 

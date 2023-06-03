@@ -11,7 +11,7 @@
 // @match        https://www.audible.co.uk/series/*-Audiobooks/*
 // @icon         https://icons.duckduckgo.com/ip2/audible.com.ico
 // @grant        none
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 const getIds = (entries) => {

@@ -7,7 +7,7 @@
 // @match        https://www.marktplaats.nl/q/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=marktplaats.nl
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/marktplaats.user.js
-// @license GPLv3
+// @license      MIT
 // @grant        none
 // ==/UserScript==
 function removeStuff(){

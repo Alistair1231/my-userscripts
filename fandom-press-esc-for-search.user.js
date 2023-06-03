@@ -6,7 +6,7 @@
 // @author       Alistair1231
 // @match        *://*.fandom.com/wiki/*
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/fandom-press-esc-for-search.user.js
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/454358-fandom-press-esc-for-search-widescreen
 

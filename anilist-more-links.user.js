@@ -7,7 +7,7 @@
 // @match        https://anilist.co/*
 // @icon         https://icons.duckduckgo.com/ip2/anilist.co.ico
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/anilist-more-links.user.js
-// @license GPL-3.0
+// @license      MIT
 // ==/UserScript==
 
 function createButton(linkcolor="#5B0BB5e0", link, text, iconDomain) {

@@ -8,7 +8,7 @@
 // @icon         https://icons.duckduckgo.com/ip2/bing.com.ico
 // @grant        none
 // @match        https://www.bing.com/*
-// @license MIT
+// @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/464094-bing-url-decoder
 

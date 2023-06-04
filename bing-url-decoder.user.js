@@ -10,7 +10,7 @@
 // @license MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/464094-bing-url-decoder
-
+// https://openuserjs.org/scripts/Alistair1231/Bing_URL_Decoder
 (function () {
     'use strict';
     // https://stackoverflow.com/a/70429872

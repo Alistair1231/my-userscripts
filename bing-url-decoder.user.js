@@ -8,7 +8,7 @@
 // @grant        none
 // @match        https://www.bing.com/*
 // @license MIT
-// ==/UserScript==
+// ==/UserScript== 
 // https://greasyfork.org/en/scripts/464094-bing-url-decoder
 // https://openuserjs.org/scripts/Alistair1231/Bing_URL_Decoder
 (function () {

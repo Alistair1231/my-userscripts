@@ -8,6 +8,8 @@
 // @icon         https://www.google.com/s2/favicons?domain=trakt.tv
 // @license      MIT
 // ==/UserScript==
+// https://openuserjs.org/scripts/Alistair1231/TRAKT.TV_YouTube_trailer_search_and_RARBGTorrentleech_link
+// https://greasyfork.org/en/scripts/427513-trakt-tv-youtube-trailer-search-and-rarbg-torrentleech-link
 
 function waitForSiteToLoad() {
     let value = document.querySelectorAll(".sidebar.affixable .external a");

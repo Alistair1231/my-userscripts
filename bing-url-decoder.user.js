@@ -1,15 +1,16 @@
 // ==UserScript==
 // @name         Bing URL Decoder
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.8
+// @version      0.3.0
 // @description  Decode the Bing URLs to get the direct result page URL
 // @author       Alistair1231
 // @icon         https://icons.duckduckgo.com/ip2/bing.com.ico
+// @grant        none
 // @match        https://www.bing.com/*
-// @license      MIT
+// @license MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/464094-bing-url-decoder
-// https://openuserjs.org/scripts/Alistair1231/Bing_URL_Decoder
+
 (function () {
     'use strict';
     // https://stackoverflow.com/a/70429872
@@ -90,7 +91,10 @@
         if (mainContent === null) {
             setTimeout(loadResults, 1000);
         }
+        else{
+            return mainContent;
+        }
     }
-    observer.observe(mainContent, { childList: true, subtree: true });
+    observer.observe(loadResults(), { childList: true, subtree: true });
 
 })();

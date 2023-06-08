@@ -9,6 +9,8 @@
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/425739-igg-games-bluemediafiles-auto-continue-after-wait
 // https://openuserjs.org/scripts/Alistair1231/igg-gamesbluemediafiles_auto_continue_after_wait/
+// https://github.com/Alistair1231/my-userscripts/raw/master/iggAutoContinue.user.js
+
 (function () {
     'use strict';
     if (window.location.href.match((/.*bluemedia.*url-generator-?\d+?.php/)).length>0) {

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         IGG-Games show last edit date
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.0.2
+// @version      0.0.3
 // @description  Show the last edit date of the game on IGG-Games
 // @author       Alistair1231
 // @icon         https://icons.duckduckgo.com/ip2/igg-games.com.ico
@@ -12,13 +12,16 @@
 
 (async function() {
 
-function tryGetDate(){
-    preDate=document.querySelector("article meta[property*='date']")
-    if(preDate===null){
+function tryGetDate() {
+    return new Promise((resolve, reject) => {
+      const preDate = document.querySelector("article meta[property*='date']");
+      if (preDate === null) {
         setTimeout(tryGetDate, 500);
-    }
-return preDate
-}
+      } else {
+        resolve(preDate);
+      }
+    });
+  }
 
 preDate= await tryGetDate()
 

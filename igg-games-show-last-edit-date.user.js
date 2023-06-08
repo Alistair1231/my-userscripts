@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         IGG-Games show last edit date
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.0.3
+// @version      0.0.4
 // @description  Show the last edit date of the game on IGG-Games
 // @author       Alistair1231
 // @icon         https://icons.duckduckgo.com/ip2/igg-games.com.ico
@@ -9,6 +9,8 @@
 // @match        https://igg-games.com/*
 // @license MIT
 // ==/UserScript==
+// https://openuserjs.org/scripts/Alistair1231/IGG-Games_show_last_edit_date
+// https://greasyfork.org/en/scripts/468235-igg-games-show-last-edit-date
 
 (async function() {
 

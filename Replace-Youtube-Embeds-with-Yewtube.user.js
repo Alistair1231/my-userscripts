@@ -7,7 +7,7 @@
 // @match        http*://*/*
 // @grant        none
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/Replace-Youtube-Embeds-with-Yewtube.user.js
-// @license      GPL-3.0
+// @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/464638-replace-youtube-embeds-with-yewtube-invidious-embeds
 // https://openuserjs.org/scripts/Alistair1231/Replace_Youtube_Embeds_with_Yewtube_(invidious)_and_allow_fullscreen

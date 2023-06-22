@@ -6,7 +6,7 @@
 // @author       Alistair1231
 // @match        http*://*/*
 // @grant        none
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/Replace-Youtube-Embeds-with-Yewtube.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/Replace-Youtube-Embeds-with-Yewtube.user.js
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/464638-replace-youtube-embeds-with-yewtube-invidious-embeds

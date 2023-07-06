@@ -5,7 +5,7 @@
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/MAM-folder-path.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/MAM-folder-path.user.js
 // @grant        none
 // ==/UserScript==
 

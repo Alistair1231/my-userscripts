@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.5.2
+// @version      0.5.1
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
@@ -54,11 +54,12 @@ if (series != "") {
     var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/_temp/${author} - ${series}/${series} ${bookOfSeries} - ${bookTitle}`;
     var folderPath3 = `Book ${bookOfSeries} - ${bookTitle}`;
 } else {
-    var folderPath = `/_Audiobooks/${author} - Loose Books/${bookTitle}`;
-    var folderPath2 = `/_Audiobooks1/${author} - Loose Books/${bookTitle}`;
+    var folderPath = `${author} - Loose Books/${bookTitle}`;
+    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/_sorted/${author} - Loose Books/${bookTitle}`;
     var folderPath3 = `${bookTitle}`;
 }
 
+var seriesDiv = (x => x===null ? null : x.parentElement)(document.getElementById("Series"));
 var folderText = document.createElement("div");
 
 

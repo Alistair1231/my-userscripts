@@ -59,7 +59,6 @@ if (series != "") {
     var folderPath3 = `${bookTitle}`;
 }
 
-var seriesDiv = (x => x===null ? null : x.parentElement)(document.getElementById("Series"));
 var folderText = document.createElement("div");
 
 

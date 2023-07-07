@@ -51,7 +51,7 @@ catch (TypeError) { }
 
 if (series != "") {
     var folderPath = `${author}/${series} Series/Book ${bookOfSeries} - ${bookTitle}`;
-    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/_temp/${author}/${series} Series/${series} ${bookOfSeries} - ${bookTitle}`;
+    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/_sorted/${author}/${series} Series/${series} ${bookOfSeries} - ${bookTitle}`;
     var folderPath3 = `Book ${bookOfSeries} - ${bookTitle}`;
 } else {
     var folderPath = `${author}/${bookTitle}`;

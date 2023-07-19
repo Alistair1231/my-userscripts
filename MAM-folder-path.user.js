@@ -1,10 +1,12 @@
 // ==UserScript==
 // @name         MAM folder path
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.5.1
+// @version      0.5.5
 // @description  Add Audiobook folder path to torrent info
 // @author       Alistair1231
 // @include      https://www.myanonamouse.net/t/*
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/MAM-folder-path.user.js
+// @grant        none
 // ==/UserScript==
 
 
@@ -48,16 +50,15 @@ try {
 catch (TypeError) { }
 
 if (series != "") {
-    var folderPath = `${author} - ${series}/Book ${bookOfSeries} - ${bookTitle}`;
-    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/_temp/${author} - ${series}/${series} ${bookOfSeries} - ${bookTitle}`;
+    var folderPath = `${author}/${series} Series/Book ${bookOfSeries} - ${bookTitle}`;
+    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/_sorted/${author}/${series} Series/${series} ${bookOfSeries} - ${bookTitle}`;
     var folderPath3 = `Book ${bookOfSeries} - ${bookTitle}`;
 } else {
-    var folderPath = `/_Audiobooks/${author} - Loose Books/${bookTitle}`;
-    var folderPath2 = `/_Audiobooks1/${author} - Loose Books/${bookTitle}`;
+    var folderPath = `${author}/${bookTitle}`;
+    var folderPath2 = `/home/himmuch/torrents/qbittorrent/_Audiobooks/_sorted/${author}/${bookTitle}`;
     var folderPath3 = `${bookTitle}`;
 }
 
-var seriesDiv = document.getElementById("Series").parentElement;
 var folderText = document.createElement("div");
 
 
@@ -79,7 +80,8 @@ folderText.innerHTML = `
     ${createFolderText("folderPath3", "textCopied3", folderPath3)}
 </div>
 `
-seriesDiv.after(folderText);
+
+document.querySelector("#submitInfo").parentElement.after(folderText);
 
 /////////////////////////
 // make click to copy

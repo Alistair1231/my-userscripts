@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         igg-games/bluemediafiles auto continue after wait
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.6
+// @version      0.6.1
 // @description  waits for cooldown and clicks continue
 // @author       Alistair1231
 // @match        http*://*/*
@@ -13,7 +13,7 @@
 
 (function () {
     'use strict';
-    if (window.location.href.match((/.*bluemedia.*url-generator-?\d+?.php/)).length>0) {
+    if (window.location.href.match(/.*bluemedia.*url-generator-?\d+?.php/) && window.location.href.match((/.*bluemedia.*url-generator-?\d+?.php/)).length>0) {
         // waiting for countown
         var clickButton;
         var count = 0;

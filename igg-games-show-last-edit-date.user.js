@@ -9,7 +9,8 @@
 // @match        https://igg-games.com/*
 // @license MIT
 // ==/UserScript==
-
+// https://openuserjs.org/scripts/Alistair1231/IGG-Games_show_last_edit_date
+// https://greasyfork.org/en/scripts/468235-igg-games-show-last-edit-date
 (async function() {
 
   function tryGetDate() {

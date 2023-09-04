@@ -3292,6 +3292,7 @@
                             return TERMINATE;
                             break;
                         // 空格鍵：暫停/播放
+                        case 'KeyK':
                         case 'Space':
                             $hs.switchPlayStatus();
                             return TERMINATE;
@@ -3427,7 +3428,7 @@
                                     let diff = player.currentTime - aCurrentTime
                                     diff = Math.round(diff * 5) / 5;
                                     if (Math.abs(diff) < 0.8) {
-                                        $hs.tuneCurrentTime(+$hs.skipStep*2);
+                                        $hs.tuneCurrentTime(-$hs.skipStep*2);
                                     } else {
                                         $hs.tuneCurrentTimeTips(diff, true)
                                     }
@@ -3443,7 +3444,7 @@
                                     let diff = player.currentTime - aCurrentTime
                                     diff = Math.round(diff * 5) / 5;
                                     if (Math.abs(diff) < 0.8) {
-                                        $hs.tuneCurrentTime(-$hs.skipStep*2);
+                                        $hs.tuneCurrentTime(+$hs.skipStep*2);
                                     } else {
                                         $hs.tuneCurrentTimeTips(diff, true)
                                     }

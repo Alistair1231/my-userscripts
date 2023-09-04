@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         HTML5 Video Player Enhance
-// @version      2.9.6.1.1
+// @version      2.9.6.1.2
 // @description  To enhance the functionality of HTML5 Video Player (h5player) supporting all websites using shortcut keys similar to PotPlayer.
 // @author       CY Fung (mods by Alistair1231)
 // @icon https://image.flaticon.com/icons/png/128/3291/3291444.png
@@ -3338,7 +3338,8 @@
                             if (window.location.hostname === 'www.netflix.com') return /* netflix 的F鍵是FULLSCREEN的意思 */
                             $hs.tips(false);
                             if (!player.paused) player.pause()
-                            player.currentTime += +(1 / playerConf.fps)
+                            // player.currentTime += +(1 / playerConf.fps)
+                            player.currentTime += +(1 / 30)
                             $hs.tips('Jump to: Next frame')
                             return TERMINATE
                             break;
@@ -3346,7 +3347,8 @@
                         case 'keyComma':
                             $hs.tips(false);
                             if (!player.paused) player.pause()
-                            player.currentTime -= +(1 / playerConf.fps)
+                            // player.currentTime -= +(1 / playerConf.fps)
+                            player.currentTime -= +(1 / 30)
                             $hs.tips('Jump to: Previous frame')
                             return TERMINATE
                             break;
@@ -3487,8 +3489,9 @@
                             return TERMINATE
                             break;
                         // 按鍵迴車，進入FULLSCREEN
+                        case 'KeyF':
                         case 'Enter':
-                            //t.callFullScreenBtn();
+                            t.callFullScreenBtn();
                             break;
                         case 'KeyN':
                             $hs.pictureInPicture(player);

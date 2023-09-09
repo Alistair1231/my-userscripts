@@ -11,6 +11,7 @@
 // @updateURL 
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/474887-alternativeto-net-searchengine-links
+// https://openuserjs.org/scripts/Alistair1231/Alternativeto.net_searchengine_links/
 (function () {
     "use strict";
     let parents = document.querySelectorAll("div[data-testid='app-header'] h2");

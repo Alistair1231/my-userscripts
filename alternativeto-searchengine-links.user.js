@@ -8,7 +8,7 @@
 // @grant        none
 // @match        https://alternativeto.net/*
 // @license MIT
-// @updateURL https://openuserjs.org/meta/Alistair1231/alternativeto-searchengine-links
+// @updateURL https://openuserjs.org/meta/Alistair1231/alternativeto-searchengine-links.user.js
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/474887-alternativeto-net-searchengine-links
 (function () {

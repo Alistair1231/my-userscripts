@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Alternativeto.net searchengine links
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.0
+// @version      0.1.1
 // @description  Adds links to search engines on Alternativeto search results page to make it easier to find download links for software
 // @author       Alistair1231
 // @icon         https://icons.duckduckgo.com/ip2/alternativeto.net.ico

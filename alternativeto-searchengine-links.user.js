@@ -8,11 +8,11 @@
 // @grant        none
 // @match        https://alternativeto.net/*
 // @license MIT
-// @updateURL 
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/474887-alternativeto-net-searchengine-links
 // https://openuserjs.org/scripts/Alistair1231/Alternativeto.net_searchengine_links/
 // https://github.com/Alistair1231/my-userscripts/raw/master/alternativeto-searchengine-links.user.js
+/*jshint esversion: 6 */
 (function () {
     "use strict";
     let parents = document.querySelectorAll("div[data-testid='app-header'] h2");

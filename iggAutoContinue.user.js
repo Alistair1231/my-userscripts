@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         igg-games/bluemediafiles auto continue after wait
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.6.2
+// @version      0.7.0
 // @description  waits for cooldown and clicks continue
 // @author       Alistair1231
 // @match        http*://*/*

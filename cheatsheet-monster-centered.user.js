@@ -9,7 +9,7 @@
 // @match        https://cheatsheet.monster/*
 // @license MIT
 // ==/UserScript==
-
+// https://github.com/Alistair1231/my-userscripts/raw/master/cheatsheet-monster-centered.user.js
 // body { margin: auto; }
 
 (function () {

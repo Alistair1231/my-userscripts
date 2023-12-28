@@ -8,6 +8,7 @@
 // @icon         https://icons.duckduckgo.com/ip2/fantasticfiction.com.ico
 // @license      MIT
 // ==/UserScript==
+// https://github.com/Alistair1231/my-userscripts/raw/master/fantastic-fiction-high-res-images.user.js
 
 // From:    https://m.media-amazon.com/images/I/516s5YwK2HL.SX316.SY480._SL500_.jpg
 // To:      https://m.media-amazon.com/images/I/516s5YwK2HL.jpg

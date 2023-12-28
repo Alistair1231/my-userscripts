@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         High res images on fantasticfiction.com
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2
+// @version      0.2.1
 // @description  replaces low res images on hideoutshowcase with high res ones
 // @author       Alistair1231
 // @match        https://www.fantasticfiction.com/*
@@ -14,7 +14,7 @@
   // From:    https://m.media-amazon.com/images/I/516s5YwK2HL.SX316.SY480._SL500_.jpg
   // To:      https://m.media-amazon.com/images/I/516s5YwK2HL.jpg
   const replaceAllImages = () => {
-    [...document.querySelectorAll("a img[alt='thumb']")].map(
+    [...document.querySelectorAll("img")].map(
       (x) => (x.src = x.src.replace(/\.SX\d+\.SY\d+.*?(?=\.jpg)/gm, ""))
     );
   };

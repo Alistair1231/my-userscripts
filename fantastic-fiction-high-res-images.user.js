@@ -13,9 +13,10 @@
 (function () {
   // From:    https://m.media-amazon.com/images/I/516s5YwK2HL.SX316.SY480._SL500_.jpg
   // To:      https://m.media-amazon.com/images/I/516s5YwK2HL.jpg
+  // https://regex101.com/r/yoj8UD/1
   const replaceAllImages = () => {
     [...document.querySelectorAll("img")].map(
-      (x) => (x.src = x.src.replace(/\.SX\d+\.SY\d+.*?(?=\.jpg)/gm, ""))
+      (x) => (x.src = x.src.replace(/(?:[\._]+?S[XLY]\d+_?){3}(?=\.jpg)/gm, ""))
     );
   };
 

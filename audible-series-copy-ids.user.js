@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Audible series copy ids
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.3.1
+// @version      0.3.2
 // @description  adds button do ccopy id of an audiobook in the series view
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/audible-series-copy-ids.user.js
 // @author       Alistair1231
@@ -20,7 +20,6 @@ const getIds = (entries) => {
 
     // get all ids
     var ids = links.map(x => x?.href.replace(/.*\/([\w\d]+)\?.*/g, "$1"))
-    if
     return ids;
 }
 

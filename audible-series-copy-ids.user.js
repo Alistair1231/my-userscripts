@@ -1,15 +1,17 @@
 // ==UserScript==
 // @name         Audible series copy ids
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.1
+// @version      0.3.0
 // @description  adds button do ccopy id of an audiobook in the series view
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/main/audible-series-copy-ids.user.js
 // @author       Alistair1231
-// @match        https://www.audible.com/series/*-Audiobooks/*
-// @match        https://www.audible.de/series/*-Audiobooks/*
-// @match        https://www.audible.nl/series/*-Audiobooks/*
-// @match        https://www.audible.co.uk/series/*-Audiobooks/*
+// @match        https://www.audible.com/series/*
+// @match        https://www.audible.de/series/*
+// @match        https://www.audible.nl/series/*
+// @match        https://www.audible.co.uk/series/*
 // @icon         https://icons.duckduckgo.com/ip2/audible.com.ico
-// @license      MIT
+// @grant        none
+// @license GPL-3.0
 // ==/UserScript==
 
 const getIds = (entries) => {
@@ -17,7 +19,8 @@ const getIds = (entries) => {
     var links = entries.map(x => x.querySelector("a.bc-link[href]:not([href*='search?searchAuthor'])"))
 
     // get all ids
-    var ids = links.map(x => x?.href.replace(/.*Audiobook\/([\w\d]+)\?.*/g, "$1"))
+    var ids = links.map(x => x?.href.replace(/.*\/([\w\d]+)\?.*/g, "$1"))
+    if
     return ids;
 }
 
@@ -86,14 +89,13 @@ const createButton = ($text, $id, $addWhere) => {
 
     // buyBoxArea
     var addWhere = document.querySelectorAll("div[data-widget='productList'] li.bc-list-item .adblBuyBoxArea")
-    
+
     // log all ids
     var ids = getIds(entries);
     ids.forEach(x => console.log(x));
 
 
     document.querySelectorAll("div[data-widget='productList'] li.bc-list-item .adblBuyBoxArea").forEach(x => {
-        // console.log(`"Copy ID", ${$ids.shift()}, ${x.id}`);
         var id= ids.shift();
         if(id){
             x.appendChild(createButton("Copy ID", id, x.id));

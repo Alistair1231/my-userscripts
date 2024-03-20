@@ -81,8 +81,7 @@ function makeRequest(url, payload, secrets) {
     // Define the URL for the PATCH request
     const url = `https://api.github.com/gists/${secrets.gistId}`;
 
-    // run once at the start and then every 10 minutes
-    makeRequest(url, payload, secrets);
-    setInterval(makeRequest(url, payload, secrets), 600000);
+    // run every 30 minutes
+    setInterval(makeRequest(url, payload, secrets), 1000 * 60 * 30);
   });
 })();

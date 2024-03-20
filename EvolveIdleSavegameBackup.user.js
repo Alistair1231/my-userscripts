@@ -88,14 +88,14 @@ function makeRequest(url, payload, secrets) {
       'X-GitHub-Api-Version': '2022-11-28'
     },
     onload: function (response) {
-      console.log('PATCH request successful:', response.responseText);
+      console.log(`${new Date().toLocaleString()}: PATCH request successful: ${response.responseText}`);
       // if "message": "Bad credentials", then ask for secrets again
       if (response.responseText.includes('Bad credentials')) {
         askForSecrets();
       }
     },
     onerror: function (error) {
-      console.error('Error making PATCH request:', error);
+      console.error(`${new Date().toLocaleString()}: Error making PATCH request: ${error}`);
     }
   });
 }

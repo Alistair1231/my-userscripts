@@ -3,10 +3,10 @@
 // @namespace    https://github.com/Alistair1231/my-userscripts/
 // @version      0.1.0
 // @description  Automatically upload your evolve save to a gist
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/audible-series-copy-ids.user.js
+// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author       Alistair1231
 // @match        https://pmotschmann.github.io/Evolve/
-// @icon         https://icons.duckduckgo.com/ip2/pmotschmann.github.io.ico
+// @icon         https://icons.duckduckgo.com/ip2/github.io.ico
 // @grant        GM.xmlhttpRequest
 // @grant        GM.setValue
 // @grant        GM.getValue

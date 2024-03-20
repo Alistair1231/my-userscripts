@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Automatic Evolve Save Upload to Gist
+// @name         Evolve Idle Cloud Save
 // @namespace    https://github.com/Alistair1231/my-userscripts/
 // @version      0.1.2
 // @description  Automatically upload your evolve save to a gist

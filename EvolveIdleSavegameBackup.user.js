@@ -71,6 +71,7 @@ const askForSecrets = async () => {
    you only need the gist scope.
   
   If you make a mistake you should be asked again, alternatively you can manually set these values in the Userscript storage.`);
+  
   const gistId = prompt('Enter your Gist ID');
   const token = prompt('Enter your GitHub Personal Access Token');
   await GM.setValue('gistId', gistId);

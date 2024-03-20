@@ -67,6 +67,7 @@ async function askForSecrets() {
   await GM.setValue('token', token);
   return await getSecrets();
 }
+
 async function tryGetSecrets() {
   const secrets = await getSecrets();
   if (!secrets.gistId || !secrets.token) {

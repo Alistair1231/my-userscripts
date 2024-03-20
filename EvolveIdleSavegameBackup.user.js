@@ -23,7 +23,7 @@ async function getSecrets() {
 
 async function askForSecrets() {
   // Explain to the user what's happening
-  alert('You will need a GistID and a Personal Access Token to use this. They will be saved as cleartext in the Userscipt storage!\n\nCreate a gist, the description does not matter, in it make a file called "save.txt" and add some random content so github doesn\'t complain, you can do that here:\nhttps://gist.github.com\nthen you can find the GistID in the URL: \nhttps://gist.github.com/{{Username}}/{{GistID}}\n\nThe Personal Access Token you have to create here: \nhttps://github.com/settings/tokens\n you only need the gist scope.');
+  alert('You will need a GistID and a Personal Access Token to use this. They will be saved as cleartext in the Userscipt storage!\n\nCreate a gist, the description does not matter, in it make a file called "save.txt" and add some random content so github doesn\'t complain, you can do that here:\nhttps://gist.github.com\nthen you can find the GistID in the URL: \nhttps://gist.github.com/{{Username}}/{{GistID}}\n\nThe Personal Access Token you have to create here: \nhttps://github.com/settings/tokens\n you only need the gist scope.\n\nIf you make a mistake you should be asked again, alternatively you can manually set these values in the Userscript storage.');
   const gistId = prompt('Enter your Gist ID');
   const token = prompt('Enter your GitHub Personal Access Token');
   await GM.setValue('gistId', gistId);

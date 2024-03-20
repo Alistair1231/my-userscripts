@@ -102,20 +102,10 @@ function makeRequest(url, payload, secrets) {
 
 (async function () {
   'use strict';
-  const saveString = unsafeWindow.exportGame();
-
-  // Define the payload for the PATCH request
-  const payload = JSON.stringify({
-    files: {
-      'save.txt': {
-        content: saveString
-      }
-    }
-  });
-
   tryGetSecrets().then((secrets) => {
-    // Define the URL for the PATCH request
     const url = `https://api.github.com/gists/${secrets.gistId}`;
+    const saveString = unsafeWindow.exportGame();
+    const payload = JSON.stringify({ files: { 'save.txt': { content: saveString } } });
 
     // run every 30 minutes
     setInterval(makeRequest(url, payload, secrets), 1000 * 60 * 30);

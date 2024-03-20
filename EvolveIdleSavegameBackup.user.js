@@ -76,7 +76,6 @@ async function tryGetSecrets() {
 }
 
 function makeRequest(url, payload, secrets) {
-
   GM.xmlhttpRequest({
     method: 'PATCH',
     url: url,
@@ -102,7 +101,6 @@ function makeRequest(url, payload, secrets) {
 
 (async function () {
   'use strict';
-
   const saveString = unsafeWindow.exportGame();
 
   // Define the payload for the PATCH request

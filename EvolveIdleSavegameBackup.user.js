@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Automatic Evolve Save Upload to Gist
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.0
+// @version      0.1.1
 // @description  Automatically upload your evolve save to a gist
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author       Alistair1231
@@ -12,6 +12,7 @@
 // @grant        GM.getValue
 // @license GPL-3.0
 // ==/UserScript==
+// https://greasyfork.org/en/scripts/490376-automatic-evolve-save-upload-to-gist
 
 /*
 ## Why This?
@@ -50,7 +51,7 @@ I hope I can prevent some people from loosing their save games, and allow for mo
 */
 
 async function getSecrets() {
-  var secrets = {
+  const secrets = {
     gistId: await GM.getValue('gistId', ''),
     token: await GM.getValue('token', '')
   };
@@ -102,12 +103,12 @@ function makeRequest(url, payload, secrets) {
 (async function () {
   'use strict';
 
-  var saveString = unsafeWindow.exportGame();
+  const saveString = unsafeWindow.exportGame();
 
   // Define the payload for the PATCH request
   const payload = JSON.stringify({
     files: {
-      'save.md': {
+      'save.txt': {
         content: saveString
       }
     }

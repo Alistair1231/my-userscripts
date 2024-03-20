@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Evolve Idle Cloud Save
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.3
+// @version      0.1.4
 // @description  Automatically upload your evolve save to a gist
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author       Alistair1231
@@ -50,15 +50,14 @@ The script makes use of `GM.xmlhttpRequest` for the request and `GM.setValue`/`G
 I hope I can prevent some people from loosing their save games, and allow for more easy switching between devices. 😊
 */
 
-async function getSecrets() {
-  const secrets = {
+const getSecrets = async () => {
+  return {
     gistId: await GM.getValue('gistId', ''),
     token: await GM.getValue('token', '')
   };
-  return secrets;
 }
 
-async function askForSecrets() {
+const askForSecrets = async () => {
   // Explain to the user what's happening
   alert('You will need a GistID and a Personal Access Token to use this. They will be saved as cleartext in the Userscipt storage!\n\nCreate a gist, the description does not matter, in it make a file called "save.txt" and add some random content so github doesn\'t complain, you can do that here:\nhttps://gist.github.com\nthen you can find the GistID in the URL: \nhttps://gist.github.com/{{Username}}/{{GistID}}\n\nThe Personal Access Token you have to create here: \nhttps://github.com/settings/tokens\n you only need the gist scope.\n\nIf you make a mistake you should be asked again, alternatively you can manually set these values in the Userscript storage.');
   const gistId = prompt('Enter your Gist ID');
@@ -68,7 +67,7 @@ async function askForSecrets() {
   return await getSecrets();
 }
 
-async function tryGetSecrets() {
+const tryGetSecrets = async () => {
   const secrets = await getSecrets();
   if (!secrets.gistId || !secrets.token) {
     return askForSecrets();
@@ -76,38 +75,38 @@ async function tryGetSecrets() {
   return secrets;
 }
 
-function makeRequest(url, payload, secrets) {
-  GM.xmlhttpRequest({
-    method: 'PATCH',
-    url: url,
-    data: payload,
-    headers: {
-      'Authorization': `token ${secrets.token}`,
-      'Content-Type': 'application/json',
-      'Accept': 'application/vnd.github.v3+json',
-      'X-GitHub-Api-Version': '2022-11-28'
-    },
-    onload: function (response) {
-      console.log(`${new Date().toLocaleString()}: PATCH request successful: ${response.responseText}`);
-      // if "message": "Bad credentials", then ask for secrets again
-      if (response.responseText.includes('Bad credentials')) {
-        askForSecrets();
-      }
-    },
-    onerror: function (error) {
-      console.error(`${new Date().toLocaleString()}: Error making PATCH request: ${error}`);
-    }
-  });
-}
-
-(async function () {
-  'use strict';
+const makeBackup = () => {
   tryGetSecrets().then((secrets) => {
     const url = `https://api.github.com/gists/${secrets.gistId}`;
     const saveString = unsafeWindow.exportGame();
     const payload = JSON.stringify({ files: { 'save.txt': { content: saveString } } });
 
-    // run every 30 minutes
-    setInterval(makeRequest(url, payload, secrets), 1000 * 60 * 30);
+    GM.xmlhttpRequest({
+      method: 'PATCH',
+      url: url,
+      data: payload,
+      headers: {
+        'Authorization': `token ${secrets.token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      },
+      onload: function (response) {
+        console.log(`${new Date().toLocaleString()}: PATCH request successful: ${response.responseText}`);
+        // if "message": "Bad credentials", then ask for secrets again
+        if (response.responseText.includes('Bad credentials')) {
+          askForSecrets();
+        }
+      },
+      onerror: function (error) {
+        console.error(`${new Date().toLocaleString()}: Error making PATCH request: ${error}`);
+      }
+    });
   });
+}
+
+(function () {
+  'use strict';
+  // run every 30 minutes
+  setInterval(makeBackup, 1000 * 60 * 30);
 })();

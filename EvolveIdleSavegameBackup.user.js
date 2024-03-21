@@ -101,7 +101,6 @@ const makeBackup = () => {
     const payload = JSON.stringify({
       files: { [secrets.fileName]: { content: saveString } },
     });
-    console.log(payload);
 
     GM.xmlhttpRequest({
       method: "PATCH",

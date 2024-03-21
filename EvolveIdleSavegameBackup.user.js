@@ -19,7 +19,7 @@
 ## Why This?
 I lost my save game 😞. To prevent this from happening again, I implemented a quick and dirty cloud backup using a GitHub Gist. 
 
-Only export is implemented and that will most likely stay so, importing is fast and pretty rare.  
+Only export is implemented currently, but I might add an import feature later. Don't hold your breath though. 🤷
 
 ## What does it do?
 It makes a backup on each page load and then every 30 minutes (adjustable at the bottom of the script). The save game will be written to a gist, that is defined by the user. By using a gist, you also get the benefit of versioning. So you can roll back to earlier saves. 😉 

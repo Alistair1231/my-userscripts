@@ -22,6 +22,7 @@ Only export is implemented and that will most likely stay so, importing is fast 
 
 ## What does it do?
 It makes a backup on each page load and then every 30 minutes (adjustable at the bottom of the script). The save game will be written to a gist, that is defined by the user. By using a gist, you also get the benefit of versioning. So you can roll back to earlier saves. 😉 
+Currently, it dumbly overwrites the file with the same name, so be careful with that. I recommend using a separate file for each PC, otherwise your savegame might get overwritten by another PC, which has the tab open in the background. Also, only have one tab open at a time, otherwise the save might get overwritten by the other tab. This is easily recoverable, using the revision history of the gist, but it is worth mentioning. 😅
 
 ## Security Concerns
 **The API token is saved as plaintext**, so be sure to only give it the gist scope and use a token for this purpose alone so you can revoke it if necessary. Better safe than sorry. If you are really paranoid, make a GitHub account only for this purpose. I don't want to implement encryption, that sounds like a hassle, and then you have the new issue of loosing that password as well as having to always enter it as saving the password next to the encrypted content pretty much defeats the purpose. 😁
@@ -33,11 +34,10 @@ Also, this is only tested on [Violenmonkey](https://violentmonkey.github.io/get-
 
 
 ## Setup instructions 
-_(I updated the instruction last on v0.1.0)_
 
 You will need a GistID and a Personal Access Token to use this.
 
-Create a gist, the description does not matter, in it make a file called "save.txt" and add some random content so GitHub doesn't complain, you can do that here: https://gist.github.com
+Create a gist, the description does not matter, in it make a file e.g. called "save.txt" and add some random content so GitHub doesn't complain, you can do that here: https://gist.github.com
 Afterwards, you can find the GistID in the URL: https://gist.github.com/{{Username}}/{{GistID}}
 
 The Personal Access Token you have to create here: https://github.com/settings/tokens you only need the gist scope.
@@ -75,10 +75,13 @@ If you make a mistake you should be asked again, alternatively you can manually 
 
   const gistId = prompt("Enter your Gist ID");
   const token = prompt("Enter your GitHub Personal Access Token");
-  const fileName = prompt("Enter the filename that should be used for the save game, or leave empty for 'save.txt'");
+  const fileName = prompt(`Enter the filename that should be used for the save game, or leave empty for 'save.txt'
+I recommend using a separate file for each PC, otherwise your savegame might get overwritten by another PC, which has the tab open in the background.`
+  );
   await GM.setValue("gistId", gistId);
   await GM.setValue("token", token);
-  await GM.setValue("filename", fileName);
+  // if the user left the filename empty, use the default
+  await GM.setValue("filename", fileName || "save.txt");
   return await getSecrets();
 };
 
@@ -95,10 +98,9 @@ const makeBackup = () => {
     const url = `https://api.github.com/gists/${secrets.gistId}`;
     const saveString = unsafeWindow.exportGame();
     const payload = JSON.stringify({
-      files: {
-        [secrets.fileName]: { content: saveString },
-      },
+      files: { [secrets.fileName]: { content: saveString } },
     });
+    console.log(payload);
 
     GM.xmlhttpRequest({
       method: "PATCH",
@@ -122,7 +124,7 @@ const makeBackup = () => {
         }
       },
       onerror: function (error) {
-        console.error( 
+        console.error(
           `${new Date().toLocaleString()}: Error making PATCH request: ${error}`
         );
       },
@@ -137,4 +139,7 @@ const makeBackup = () => {
 
   // run every 30 minutes
   setInterval(makeBackup, 1000 * 60 * 30);
+
+  // export makeBackup for manual use
+  unsafeWindow.makeBackup = makeBackup;
 })();

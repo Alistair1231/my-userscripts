@@ -13,6 +13,7 @@
 // @license GPL-3.0
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/490376-automatic-evolve-save-upload-to-gist
+https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 
 /*
 ## Why This?

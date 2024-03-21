@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Evolve Idle Cloud Save
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.4
+// @version      0.1.5/*  */
 // @description  Automatically upload your evolve save to a gist
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author       Alistair1231
@@ -119,6 +119,9 @@ const makeBackup = () => {
 
 (function () {
   'use strict';
+  // ensure on page load, that the secrets are set.
+  tryGetSecrets();
+  
   // run every 30 minutes
   setInterval(makeBackup, 1000 * 60 * 30);
 })();

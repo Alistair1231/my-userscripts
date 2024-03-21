@@ -22,7 +22,7 @@ I lost my save game 😞. To prevent this from happening again, I implemented a 
 Only export is implemented currently, but I might add an import feature later. Don't hold your breath though. 🤷
 
 ## What does it do?
-It makes a backup on each page load and then every 30 minutes (adjustable at the bottom of the script). The save game will be written to a gist, that is defined by the user. By using a gist, you also get the benefit of versioning. So you can roll back to earlier saves. 😉 
+It makes a backup every 30 minutes (adjustable at the bottom of the script). The save game will be written to a gist, that is defined by the user. By using a gist, you also get the benefit of versioning. So you can roll back to earlier saves. 😉 
 Currently, it dumbly overwrites the file with the same name, so be careful with that. I recommend using a separate file for each PC, otherwise your savegame might get overwritten by another PC, which has the tab open in the background. Also, only have one tab open at a time, otherwise the save might get overwritten by the other tab. This is easily recoverable, using the revision history of the gist, but it is worth mentioning. 😅
 
 ## Security Concerns

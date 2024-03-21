@@ -52,16 +52,17 @@ I hope I can prevent some people from loosing their save games, and allow for mo
 
 const getSecrets = async () => {
   return {
-    gistId: await GM.getValue('gistId', ''),
-    token: await GM.getValue('token', '')
+    gistId: await GM.getValue("gistId", ""),
+    token: await GM.getValue("token", ""),
+    fileName: await GM.getValue("filename", "save.txt"),
   };
-}
+};
 
 const askForSecrets = async () => {
   // Explain to the user what's happening
   alert(`You will need a GistID and a Personal Access Token to use this. They will be saved as cleartext in the Userscipt storage!
 
-Create a gist, the description does not matter, in it make a file called "save.txt" and add some random content so github doesn't complain, you can do that here:
+Create a gist, the description does not matter, in it make a file and make note of the filename e.g. "save.txt" and add some random content so github doesn't complain, you can do that here:
 https://gist.github.com
 then you can find the GistID in the URL: 
 https://gist.github.com/{{Username}}/{{GistID}}
@@ -72,12 +73,14 @@ you only need the gist scope.
 
 If you make a mistake you should be asked again, alternatively you can manually set these values in the Userscript storage.`);
 
-  const gistId = prompt('Enter your Gist ID');
-  const token = prompt('Enter your GitHub Personal Access Token');
-  await GM.setValue('gistId', gistId);
-  await GM.setValue('token', token);
+  const gistId = prompt("Enter your Gist ID");
+  const token = prompt("Enter your GitHub Personal Access Token");
+  const fileName = prompt("Enter the filename that should be used for the save game, or leave empty for 'save.txt'");
+  await GM.setValue("gistId", gistId);
+  await GM.setValue("token", token);
+  await GM.setValue("filename", fileName);
   return await getSecrets();
-}
+};
 
 const tryGetSecrets = async () => {
   const secrets = await getSecrets();
@@ -85,43 +88,53 @@ const tryGetSecrets = async () => {
     return askForSecrets();
   }
   return secrets;
-}
+};
 
 const makeBackup = () => {
   tryGetSecrets().then((secrets) => {
     const url = `https://api.github.com/gists/${secrets.gistId}`;
     const saveString = unsafeWindow.exportGame();
-    const payload = JSON.stringify({ files: { 'save.txt': { content: saveString } } });
+    const payload = JSON.stringify({
+      files: {
+        [secrets.fileName]: { content: saveString },
+      },
+    });
 
     GM.xmlhttpRequest({
-      method: 'PATCH',
+      method: "PATCH",
       url: url,
       data: payload,
       headers: {
-        'Authorization': `token ${secrets.token}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/vnd.github.v3+json',
-        'X-GitHub-Api-Version': '2022-11-28'
+        Authorization: `token ${secrets.token}`,
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github.v3+json",
+        "X-GitHub-Api-Version": "2022-11-28",
       },
       onload: function (response) {
-        console.log(`${new Date().toLocaleString()}: PATCH request successful: ${response.responseText}`);
+        console.log(
+          `${new Date().toLocaleString()}: PATCH request successful: ${
+            response.responseText
+          }`
+        );
         // if "message": "Bad credentials", then ask for secrets again
-        if (response.responseText.includes('Bad credentials')) {
+        if (response.responseText.includes("Bad credentials")) {
           askForSecrets();
         }
       },
       onerror: function (error) {
-        console.error(`${new Date().toLocaleString()}: Error making PATCH request: ${error}`);
-      }
+        console.error( 
+          `${new Date().toLocaleString()}: Error making PATCH request: ${error}`
+        );
+      },
     });
   });
-}
+};
 
 (function () {
-  'use strict';
+  "use strict";
   // ensure on page load, that the secrets are set.
   tryGetSecrets();
-  
+
   // run every 30 minutes
   setInterval(makeBackup, 1000 * 60 * 30);
 })();

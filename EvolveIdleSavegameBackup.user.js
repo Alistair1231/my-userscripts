@@ -32,7 +32,7 @@ Currently, it dumbly overwrites the file with the same name, so be careful with 
 On first setup you will need to manually create a GitHub API key and a Gist. That is described in an alert box when you first use the script, but since I think I remember Google having plans to remove those, I will put the description here as well.  
 Be aware, I usually forget to update these descriptions, so if in doubt look at the code.  
 Also, this is only tested on [Violenmonkey](https://violentmonkey.github.io/get-it/) and Firefox. The Browser should not matter, but some other Userscript managers might handle the GM functions differently. If something does not work, try to use Violentmonkey, or message me, if I have time I might try to help.
-
+Also, I export the `makeBackup` function to the global scope, so you can manually trigger a backup by typing `makeBackup()` in the console. This is useful if you want to make a backup before you close the tab, but don't want to wait for the next interval. In the future I might add a button to the UI. Maybe together with a button to import a save game. 🤔
 
 ## Setup instructions 
 
@@ -46,7 +46,7 @@ The Personal Access Token you have to create here: https://github.com/settings/t
 If you make a mistake you should be asked again, alternatively you can manually set these values in the Userscript storage.
 
 ## How does it work? (technical)
-The script makes use of `GM.xmlhttpRequest` for the request and `GM.setValue`/`GM.getValue` for storing/retrieving the secrets. The timing is done with `setInterval`.
+The script makes use of `GM.xmlhttpRequest` for the request and `GM.setValue`/`GM.getValue` for storing/retrieving the secrets. The timing is done with `setInterval`. For saving the Data the GitHub API is used. The save game is exported using the `exportGame` function, which is exposed by the game. The save game is then sent to the GitHub API using a PATCH request. 
 
 I hope I can prevent some people from loosing their save games, and allow for more easy switching between devices. 😊
 */

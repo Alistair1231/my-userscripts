@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Evolve Idle Cloud Save
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.7
+// @version      0.2.0
 // @description  Automatically upload your evolve save to a gist
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author       Alistair1231
@@ -51,6 +51,51 @@ The script makes use of `GM.xmlhttpRequest` for the request and `GM.setValue`/`G
 I hope I can prevent some people from loosing their save games, and allow for more easy switching between devices. 😊
 */
 
+// To help the linter out
+// const GM = {
+//   setValue: async function GM_setValue(key, value) {
+//     return new Promise((resolve) => {
+//     });
+//   },
+//   getValue: async function GM_getValue(key, defaultValue) {
+//     return new Promise((resolve) => {
+//     });
+//   },
+//   xmlhttpRequest: function GM_xmlhttpRequest(details) {
+//     return new Promise((resolve) => {
+//     });
+//   }
+// };
+// const unsafeWindow = {
+//   exportGame: function () {
+//     return "";
+//   },
+//   importGame: function (a, i) {
+//   }
+// };
+
+const makeRequest = async (method, url, data, token, onload, onerror) => {
+  let headerVal;
+  if (token === null) {
+    headerVal = {};
+  } else {
+    headerVal = {
+      Authorization: `token ${token}`,
+      "Content-Type": "application/json",
+      Accept: "application/vnd.github.v3+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    };
+  }
+  return GM.xmlhttpRequest({
+    method: method,
+    url: url,
+    data: data,
+    headers: headerVal,
+    onload: onload,
+    onerror: onerror,
+  });
+};
+
 const getSecrets = async () => {
   return {
     gistId: await GM.getValue("gistId", ""),
@@ -59,7 +104,7 @@ const getSecrets = async () => {
   };
 };
 
-const askForSecrets = async () => {
+const askForSecrets = () => {
   // Explain to the user what's happening
   alert(`You will need a GistID and a Personal Access Token to use this. They will be saved as cleartext in the Userscipt storage!
 
@@ -79,17 +124,17 @@ If you make a mistake you should be asked again, alternatively you can manually 
   const fileName = prompt(`Enter the filename that should be used for the save game, or leave empty for 'save.txt'
 I recommend using a separate file for each PC, otherwise your savegame might get overwritten by another PC, which has the tab open in the background.`
   );
-  await GM.setValue("gistId", gistId);
-  await GM.setValue("token", token);
+  GM.setValue("gistId", gistId);
+  GM.setValue("token", token);
   // if the user left the filename empty, use the default
-  await GM.setValue("filename", fileName || "save.txt");
-  return await getSecrets();
+  GM.setValue("filename", fileName || "save.txt");
 };
 
 const tryGetSecrets = async () => {
   const secrets = await getSecrets();
   if (!secrets.gistId || !secrets.token) {
-    return askForSecrets();
+    askForSecrets();
+    return await getSecrets();
   }
   return secrets;
 };
@@ -99,38 +144,62 @@ const makeBackup = () => {
     const url = `https://api.github.com/gists/${secrets.gistId}`;
     const saveString = unsafeWindow.exportGame();
     const payload = JSON.stringify({
-      files: { [secrets.fileName]: { content: saveString } },
+      files: {[secrets.fileName]: {content: saveString}},
     });
+    const requestSuccess = (response) => {
+      console.log("Update request successful" + response.responseText);
+      if (response.responseText.includes("Bad credentials"))
+        askForSecrets();
+    };
+    const requestError = (error) => console.error("Error updating gist: " + error);
 
-    GM.xmlhttpRequest({
-      method: "PATCH",
-      url: url,
-      data: payload,
-      headers: {
-        Authorization: `token ${secrets.token}`,
-        "Content-Type": "application/json",
-        Accept: "application/vnd.github.v3+json",
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-      onload: function (response) {
-        console.log(
-          `${new Date().toLocaleString()}: PATCH request successful: ${
-            response.responseText
-          }`
-        );
-        // if "message": "Bad credentials", then ask for secrets again
-        if (response.responseText.includes("Bad credentials")) {
-          askForSecrets();
-        }
-      },
-      onerror: function (error) {
-        console.error(
-          `${new Date().toLocaleString()}: Error making PATCH request: ${error}`
-        );
-      },
-    });
+    makeRequest("PATCH", url, payload, secrets.token, requestSuccess, requestError);
   });
 };
+
+const getBackup = () => {
+  const requestSuccess = (response) => {
+    console.log("GetBackup request successful" + response.responseText);
+    if (response.responseText.includes("Bad credentials"))
+      askForSecrets();
+
+    document.querySelector("textarea#importExport").value = response.responseText;
+  };
+  const requestError = (error) => console.error("Error making GET request: " + error);
+
+  tryGetSecrets().then((secrets) => {
+    const url = `https://gist.githubusercontent.com/Alistair1231/d702d33809dcafc8598f196073674047/raw/${secrets.fileName}`;
+    makeRequest("GET", url, null, null, requestSuccess, requestError);
+  });
+}
+
+const addButtons = () => {
+  const addButton = (name, id, onclick) => {
+    const button = document.createElement("button");
+    button.id = id;
+    button.classList.add("button");
+    button.textContent = name;
+    button.onclick = onclick;
+    button.style.marginTop = ".75rem";
+    return button;
+  }
+  const div = document.querySelectorAll("div.importExport")[1];
+  div.appendChild(document.createElement("br"));
+
+  let importButton = addButton("Import Gist", "importGistButton", () => {
+    getBackup();
+  })
+  div.appendChild(importButton);
+  importButton.after(document.createTextNode(" "));
+
+  let exportButton = addButton("Save in Gist", "exportGistButton", () => {
+    makeBackup();
+    document.querySelector("textarea#importExport").value = "";
+  })
+  div.appendChild(exportButton);
+  exportButton.before(document.createTextNode(" "));
+
+}
 
 (function () {
   "use strict";
@@ -142,4 +211,8 @@ const makeBackup = () => {
 
   // export makeBackup for manual use
   unsafeWindow.makeBackup = makeBackup;
+  unsafeWindow.getBackup = getBackup;
+  unsafeWindow.addButtons = addButtons;
+  // add buttons to the UI
+  addButtons();
 })();

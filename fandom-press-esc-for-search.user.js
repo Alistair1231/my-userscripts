@@ -1,10 +1,11 @@
 // ==UserScript==
-// @name         Fandom press ESC for search + widescreen
+// @name         Fandom press ESC for search + tweaks
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.4
-// @description  when you press esc on a fandom wiki it will now open and select the search bar, also makes the page wider
+// @version      0.2.5
+// @description  when you press esc on a fandom wiki it will now open and select the search bar, also makes the page wider and disables highlight actions
 // @author       Alistair1231
 // @match        *://*.fandom.com/wiki/*
+// @grant      GM.addStyle
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/454358-fandom-press-esc-for-search-widescreen
@@ -12,6 +13,12 @@
 
 (function () {
     'use strict';
+
+    GM.addStyle(`
+    #highlight__main-container {
+        display: none;
+    }
+    `);
 
     const qS = (x) => document.querySelector(x);
     // const qSA = (x) => document.querySelectorAll(x);
@@ -72,6 +79,8 @@
             }
         }
     });
+
+
 
 
 })();

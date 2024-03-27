@@ -10,6 +10,7 @@
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/454358-fandom-press-esc-for-search-widescreen
 // https://openuserjs.org/scripts/Alistair1231/Fandom_press_ESC_for_search_+_widescreen
+// https://github.com/Alistair1231/my-userscripts/raw/master/fandom-press-esc-for-search.user.js
 
 (function () {
     'use strict';

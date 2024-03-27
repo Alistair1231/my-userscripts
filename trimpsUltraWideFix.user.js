@@ -8,7 +8,7 @@
 // @match        https://trimps.github.io/
 // @icon         https://icons.duckduckgo.com/ip2/github.io.ico
 // @grant        GM.addStyle
-// @license GPL-3.0
+// @license MIT
 // ==/UserScript==
 // https://github.com/Alistair1231/my-userscripts/raw/master/trimpsUltraWideFix.user.js
 // https://greasyfork.org/en/scripts/491030-trimps-ultra-wide-fix

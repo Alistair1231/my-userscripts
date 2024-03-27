@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trimps Ultra Wide Fix
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.0
+// @version      0.1.1
 // @description  loads Trimps in an iframe with 16:10 aspect ratio
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/trimpsUltraWideFix.user.js
 // @author       Alistair1231
@@ -15,8 +15,8 @@
 
 (() => {
   'use strict';
-  //only run if width > 1920px
-  if (window.innerWidth <= 1920) {
+  //only run if aspect ratio is wider than 16:9
+  if ((window.innerWidth / window.innerHeight) > (16 / 9)) {
     return;
   }
   // do not run in iframes

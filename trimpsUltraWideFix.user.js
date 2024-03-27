@@ -11,6 +11,7 @@
 // @license GPL-3.0
 // ==/UserScript==
 // https://github.com/Alistair1231/my-userscripts/raw/master/trimpsUltraWideFix.user.js
+// https://greasyfork.org/en/scripts/491030-trimps-ultra-wide-fix
 
 (() => {
   'use strict';

@@ -36,6 +36,7 @@ const addSaveLabel = () => {
 }
 (async () => {
   'use strict';
+  // copy save to clipboard when pressing F8
   document.addEventListener('keydown', (e) => {
     if (e.key === 'F8') {
       e.preventDefault();
@@ -43,6 +44,7 @@ const addSaveLabel = () => {
     }
   });
 
+  // add (F8) to the export button
   addSaveLabel();
 
   // when pressing F5, first autoSave() then reload the page

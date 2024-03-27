@@ -13,7 +13,6 @@
 
 (() => {
   'use strict';
-  // F5 to call save and copy save to clipboard
   document.addEventListener('keydown', (e) => {
     if (e.key === 'F8') {
       e.preventDefault();
@@ -23,5 +22,13 @@
   // Add label to save button
   [...document.querySelectorAll("#settingsTable div")].filter(x => x.innerHTML === "Export")[0].innerHTML+=" (F8)"
 
+  // when pressing F5, first autoSave() then reload the page
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'F5') {
+      e.preventDefault();
+      window.autoSave();
+      window.location.reload();
+    }
+  });
 
 })();

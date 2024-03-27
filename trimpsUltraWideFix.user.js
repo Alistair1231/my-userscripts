@@ -2,7 +2,7 @@
 // @name         Trimps Ultra Wide Fix
 // @namespace    https://github.com/Alistair1231/my-userscripts/
 // @version      0.1.0
-// @description  CSS fix for Trimps on ultra-wide screens
+// @description  loads Trimps in an iframe with 16:10 aspect ratio
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/trimpsUltraWideFix.user.js
 // @author       Alistair1231
 // @match        https://trimps.github.io/
@@ -14,20 +14,27 @@
 
 (() => {
   'use strict';
-  GM.addStyle(`
-    #wrapper {
-      max-width: 1920px;
-      margin: auto;
-   }
-     
-    .psText {
-      font-size: 1vw !important;
-    }
-    #miscColumn span {
-      font-size: 1vw !important;
-    }
-    #empHide, #unempHide {
-      font-size: 1vw !important;
-    }
-  `);
+  //only run if width > 1920px
+  if (window.innerWidth <= 1920) {
+    return;
+  }
+  // do not run in iframes
+  if (window.self !== window.top) {
+    return;
+  }
+  // clear page
+  document.body.innerHTML = '';
+
+  // load current page in iframe with dimensions 16:10
+  const iframe = document.createElement('iframe');
+  iframe.src = location.href;
+  // calculate 16:10 dimensions that fill the viewport vertically
+  iframe.width = Math.ceil(window.innerHeight * 16 / 10);
+  iframe.height = window.innerHeight;
+  // center iframe horizontally
+  iframe.style.position = 'absolute';
+  iframe.style.left = '50%';
+  iframe.style.transform = 'translateX(-50%)';
+
+  document.body.appendChild(iframe);
 })();

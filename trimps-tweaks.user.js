@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trimps Tweaks
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.0
+// @version      0.2.1
 // @description  various tweaks for Trimps
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/trimps-tweaks.user.js
 // @author       Alistair1231
@@ -23,7 +23,33 @@ const addHotkey = (key, action) => {
   });
 }
 
-const addLabel = (selector,filter,value) => {
+// show a toast bubble on the bottom right of the screen, green with white text on success, red with white text on failure
+const showToast = (message, success = true) => {
+  const toast = document.createElement('div');
+  toast.style.cssText = `position: fixed;
+    bottom: 7vh;
+    right: 1vw;
+    background-color: ${success ? '#0a3' : '#a30'};
+    color: #e7e7e7;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px black;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s;`;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => {
+      toast.remove()
+    }, 1000);
+  }, 2000);
+}
+
+
+const addLabel = (selector, filter, value) => {
   const run = () => {
     const exportDiv = [...document.querySelectorAll(selector)].find(x => x.innerHTML === filter);
     if (exportDiv) {
@@ -54,6 +80,7 @@ const addLabel = (selector,filter,value) => {
   addHotkey('F8', (e) => {
     e.preventDefault();
     copy(getSave());
+    showToast('Exported save to clipboard');
   });
 
   addHotkey('F9', async (e) => {
@@ -63,7 +90,7 @@ const addLabel = (selector,filter,value) => {
   });
 
   // add (F8) to the export button
-  addLabel("#settingsTable div","Export"," (F8)");
-  addLabel("#settingsTable div","Import"," (F9)");
+  addLabel("#settingsTable div", "Export", " (F8)");
+  addLabel("#settingsTable div", "Import", " (F9)");
 
 })();

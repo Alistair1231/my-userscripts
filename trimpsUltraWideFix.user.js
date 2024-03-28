@@ -8,7 +8,6 @@
 // @match        https://trimps.github.io/
 // @icon         https://icons.duckduckgo.com/ip2/github.io.ico
 // @grant        GM.addStyle
-// @grant        unsafeWindow
 // @license MIT
 // ==/UserScript==
 // https://github.com/Alistair1231/my-userscripts/raw/master/trimpsUltraWideFix.user.js
@@ -16,14 +15,19 @@
 
 (() => {
   'use strict';
-
-
-  //only run if aspect ratio is wider than 16:9
-  if ((window.innerWidth / window.innerHeight) > (16 / 9)) {
-    return;
-  }
-  // do not run in iframes
+  // only run CSS stuff in iframe
   if (window.self !== window.top) {
+    GM.addStyle(
+      `
+    #noQueue {
+      font-size: 1.5vw;
+    }
+    #foremenCount, #buildSpeed {
+      font-size: 1.5vw;
+    }
+    `
+    );
+
     return;
   }
   // clear page
@@ -33,15 +37,18 @@
   const iframe = document.createElement('iframe');
   iframe.src = location.href;
 
-  // set iframe size, hieght = window.innerHeight, width 100% unless it is wider than 16:10
+  // set iframe size, to be no wider than 16:9 and no taller than 4:3
   iframe.style.height = '100vh';
-  iframe.style.width = '100%';
-  iframe.style.maxWidth = '160vh'; // 16:10 aspect ratio (160vh = 16/10 * 100vh)
+  iframe.style.width = '100vw';
+  iframe.style.maxWidth = '177.78vh'; // max width is 16:9 aspect ratio, i.e. 178% of height (177.78vh = 16/9 * 100vh)
+  iframe.style.maxHeight = '75vw'; // max height is 4:3 aspect, i.e. 75% of width (75vw = 3/4 * 100vw)
 
-  // center iframe horizontally
+  // center iframe horizontally and vertically
   iframe.style.position = 'absolute';
+  iframe.style.top = '50%';
   iframe.style.left = '50%';
-  iframe.style.transform = 'translateX(-50%)';
+  iframe.style.transform = 'translate(-50%, -50%)';
 
   document.body.appendChild(iframe);
+
 })();

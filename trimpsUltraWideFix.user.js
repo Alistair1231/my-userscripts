@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trimps Ultra Wide Fix
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.2
+// @version      0.1.3
 // @description  loads Trimps in an iframe with 16:10 aspect ratio
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/trimpsUltraWideFix.user.js
 // @author       Alistair1231

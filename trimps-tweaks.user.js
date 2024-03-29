@@ -10,6 +10,7 @@
 // @license MIT
 // ==/UserScript==
 // https://github.com/Alistair1231/my-userscripts/raw/master/trimps-tweaks.user.js
+// https://greasyfork.org/en/scripts/491186-trimps-tweaks/
 
 const getSave = () => window.save(true);
 const setSave = (save) => window.load(save);

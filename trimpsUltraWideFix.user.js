@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Trimps Ultra Wide Fix
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.3
-// @description  loads Trimps in an iframe with 16:10 aspect ratio
+// @version      0.1.4
+// @description  loads Trimps in an iframe that stays within 4:3 to 16:9 aspect ratio to keep the game playable on all screen/browser sizes
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/trimpsUltraWideFix.user.js
 // @author       Alistair1231
 // @match        https://trimps.github.io/

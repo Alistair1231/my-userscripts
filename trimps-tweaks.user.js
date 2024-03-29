@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Trimps Tweaks
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.1
-// @description  various tweaks for Trimps
+// @version      0.2.2
+// @description  various tweaks like Quicksave/Quickload for Trimps
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/trimps-tweaks.user.js
 // @author       Alistair1231
 // @match        https://trimps.github.io/
@@ -76,20 +76,21 @@ const addLabel = (selector, filter, value) => {
 
 (async () => {
   'use strict';
-  // copy save to clipboard when pressing F8
+  // export save to clipboard when pressing F8
   addHotkey('F8', (e) => {
     e.preventDefault();
     copy(getSave());
     showToast('Exported save to clipboard');
   });
 
+  // import save from clipboard when pressing F9
   addHotkey('F9', async (e) => {
     e.preventDefault();
     console.log('Backup save:', getSave());
     setSave(paste());
   });
 
-  // add (F8) to the export button
+  // add (F8)/(F9) to the export/import buttons
   addLabel("#settingsTable div", "Export", " (F8)");
   addLabel("#settingsTable div", "Import", " (F9)");
 

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trimps Tweaks
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.2
+// @version      0.2.3
 // @description  various tweaks like Quicksave/Quickload for Trimps
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/trimps-tweaks.user.js
 // @author       Alistair1231
@@ -16,7 +16,6 @@ const getSave = () => window.save(true);
 const setSave = (save) => window.load(save);
 
 const copy = async (text) => await window.navigator.clipboard.writeText(text);
-const paste = () => prompt('Paste save here');
 
 const addHotkey = (key, action) => {
   document.addEventListener('keydown', (e) => {
@@ -80,6 +79,7 @@ const addLabel = (selector, filter, value) => {
   // export save to clipboard when pressing F8
   addHotkey('F8', (e) => {
     e.preventDefault();
+    // get the save string and copy it to the clipboard
     copy(getSave());
     showToast('Exported save to clipboard');
   });
@@ -87,8 +87,16 @@ const addLabel = (selector, filter, value) => {
   // import save from clipboard when pressing F9
   addHotkey('F9', async (e) => {
     e.preventDefault();
+    // show the current save in the console in case the import is a mistake
     console.log('Backup save:', getSave());
-    setSave(paste());
+    // ask user for a save string
+    const save = prompt('Paste save here');
+    // if the user pasted a save, import it, else do nothing
+    if(save) {
+      // import the save
+      setSave(save);
+      showToast(`Imported save from clipboard, the last save was printed to the console`);
+    }
   });
 
   // add (F8)/(F9) to the export/import buttons

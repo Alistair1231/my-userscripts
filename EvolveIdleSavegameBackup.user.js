@@ -17,19 +17,19 @@
 
 /*
 ## Why This?
-I lost my save game 😞. To prevent this from happening again, I implemented a quick and dirty cloud 
-backup using a GitHub Gist. 
-
+I lost my save game 😞. To prevent this from happening again, I implemented a quick backup, that 
+uses GitHub Gist to store the save data. 
+ 
 ## What does it do?
 It makes a backup every 30 minutes (adjustable at the bottom of the script). The save game will 
 be written to a gist, that is defined by the user. By using a gist, you also get the benefit of 
 versioning. So you can roll back to earlier saves. 😉 
-
+ 
 I recommend using a separate file for each PC, otherwise your savegame might get overwritten by 
 another PC, which has the tab open in the background. Also, only have one tab open at a time, 
 otherwise the save might get overwritten by the other tab. This is easily recoverable, using the 
 revision history of the gist, but it is worth mentioning. 😅
-
+ 
 ## How to use?
 On first setup you will need to manually create a GitHub API key and a Gist and then input them 
 for the script to use.
@@ -38,19 +38,19 @@ Userscript managers might handle the GM functions differently. If something does
 try to use Violentmonkey. 😊
 Also, I export the `makeBackup` function to the global scope, so you can manually trigger a 
 backup by typing `makeBackup()` in the dev console of your browser (`Ctrl/CMD + Shift + J` to open).
-
+ 
 ## Setup instructions 
-
+ 
 You will need a GistID and a Personal Access Token with `Gist` scope to use this.
-
+ 
 Create a gist, the description does not matter, in this Gist, create a file e.g. called "save.txt", 
 add some random content and save. You can do that here (You will need a GitHub account): 
 https://gist.github.com
 Afterwards, you can find the GistID in the URL: https://gist.github.com/{Username}/{GistID}
-
+ 
 The Personal Access Token you have to create here: https://github.com/settings/tokens you only 
 need the gist scope.
-
+ 
 If you make a mistake you should be asked again, alternatively you can manually set these values 
 in the Userscript storage. In Violentmonkey you can access this by clicking on the extension icon,
 then right-clicking on the script and selecting `Values`. There we want values like this (these are 
@@ -62,11 +62,15 @@ gistId: "856ce06ecda1234e095c156da8fd44d7",
 token: "ghp_k928znRUu7ZI0tySv9gP2A2x9VdvVLrmrXCD"
 }
 ```
-
+ 
 ## How does it work? (technical)
-The script makes use of `GM.xmlhttpRequest` for the request and `GM.setValue`/`GM.getValue` for storing/retrieving the secrets. The timing is done with `setInterval`. For saving the Data the GitHub API is used. The save game is exported using the `exportGame` function, which is exposed by the game. The save game is then sent to the GitHub API using a PATCH request. 
-
-I hope I can prevent some people from loosing their save games, and allow for more easy switching between devices. 😊
+The script makes use of `GM.xmlhttpRequest` for the request and `GM.setValue`/`GM.getValue` 
+for storing/retrieving the secrets. The timing is done with `setInterval`. For saving the Data 
+the GitHub API is used. The save game is exported using the `exportGame` function, which is exposed 
+by the game. The save game is then sent to the GitHub API using a PATCH request. 
+ 
+I hope I can prevent some people from loosing their save games, and allow for more easy 
+switching between devices. 😊
 */
 
 // To help the linter out

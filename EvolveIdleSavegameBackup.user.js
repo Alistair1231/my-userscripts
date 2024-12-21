@@ -16,7 +16,7 @@
 // https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 
 /*
-## Why This?
+# Evolve Idle Cloud Save
 I lost my save game 😞. To prevent this from happening again, I implemented a quick backup, that 
 uses GitHub Gist to store the save data. 
  
@@ -39,7 +39,7 @@ try to use Violentmonkey. 😊
 Also, I export the `makeBackup` function to the global scope, so you can manually trigger a 
 backup by typing `makeBackup()` in the dev console of your browser (`Ctrl/CMD + Shift + J` to open).
  
-## Setup instructions 
+### Setup instructions 
  
 You will need a GistID and a Personal Access Token with `Gist` scope to use this.
  
@@ -62,7 +62,14 @@ gistId: "856ce06ecda1234e095c156da8fd44d7",
 token: "ghp_k928znRUu7ZI0tySv9gP2A2x9VdvVLrmrXCD"
 }
 ```
- 
+
+### I installed, what now?
+Now, every 30 minutes your save game will be saved to the gist. You can also manually trigger a
+backup by clicking the "Save in Gist" button in the game UI. You can also import the save 
+game from the gist by clicking the "Import Gist" button in the game UI. After "Import Gist", 
+you still have to click the "Import Game" button for the save to be loaded. "Import Gist" only 
+fills the textarea.
+
 ## How does it work? (technical)
 The script makes use of `GM.xmlhttpRequest` for the request and `GM.setValue`/`GM.getValue` 
 for storing/retrieving the secrets. The timing is done with `setInterval`. For saving the Data 

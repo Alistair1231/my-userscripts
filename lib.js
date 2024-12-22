@@ -1,4 +1,5 @@
-// Version: 1.0.0
+// @version 1.0.2
+// @license GPL-3.0
 // Framework for common userscript tasks
 // @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_id}/lib.js
 

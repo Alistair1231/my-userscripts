@@ -1,93 +1,8 @@
 // Version: 1.0
 // Framework for common userscript tasks
-// @require https://cdn.jsdelivr.net/gh/Alistair/my-userscripts@{commit}/lib.js
-// @grant GM_getValue
-// @grant GM_setValue
-// @grant GM_deleteValue
-// @grant GM_listValues
-// @grant GM_xmlhttpRequest
-const lib = (() => {
-    /**
-     * Storage Management
-     * Provides methods to interact with userscript storage.
-     * 
-     * Examples:
-     * lib.settings.key = 'value';
-     * const value = lib.settings.key;
-     */
-    const settings = new Proxy({}, {
-        get: (target, key) => {
-            const value = GM_getValue(key, null);
-            try {
-                return JSON.parse(value);
-            } catch {
-                return value;
-            }
-        },
-        set: (target, key, value) => {
-            const toStore = typeof value === 'object' ? JSON.stringify(value) : value;
-            GM_setValue(key, toStore);
-            return true;
-        },
-        deleteProperty: (target, key) => {
-            GM_deleteValue(key);
-            return true;
-        },
-        ownKeys: () => GM_listValues(),
-        has: (target, key) => GM_listValues().includes(key),
-    });
+// @require https://cdn.jsdelivr.net/gh/Alistair/my-userscripts@${commit_id}/lib.js
 
-    /**
-     * Request Management
-     * Provides an object-oriented approach to making requests.
-     * 
-     * Examples:
-     * const api = new lib.Request('https://api.example.com', { 'Authorization': 'Bearer token' });
-     * api.get('/endpoint').then(response => console.log(response));
-     */
-    class Request {
-        constructor(baseURL = "", defaultHeaders = {}) {
-            this.baseURL = baseURL;
-            this.defaultHeaders = defaultHeaders;
-        }
-
-        async request(endpoint, options = {}) {
-            const url = this.baseURL + endpoint;
-            const headers = { ...this.defaultHeaders, ...options.headers };
-
-            return new Promise((resolve, reject) => {
-                GM_xmlhttpRequest({
-                    url,
-                    method: options.method || 'GET',
-                    headers,
-                    data: options.body || null,
-                    onload: (response) => resolve(response),
-                    onerror: (error) => reject(error),
-                });
-            });
-        }
-
-        get(endpoint, options = {}) {
-            return this.request(endpoint, { ...options, method: 'GET' });
-        }
-
-        post(endpoint, body, options = {}) {
-            return this.request(endpoint, { ...options, method: 'POST', body });
-        }
-
-        put(endpoint, body, options = {}) {
-            return this.request(endpoint, { ...options, method: 'PUT', body });
-        }
-
-        patch(endpoint, body, options = {}) {
-            return this.request(endpoint, { ...options, method: 'PATCH', body });
-        }
-
-        delete(endpoint, options = {}) {
-            return this.request(endpoint, { ...options, method: 'DELETE' });
-        }
-    }
-
+const libDefault = (() => {
     /**
      * DOM Utilities
      * Provides methods to create and manipulate DOM elements, including adding event listeners.
@@ -206,18 +121,3 @@ const lib = (() => {
         logger,
     };
 })();
-
-/**
- * Initializing and Using the Framework
- * To use this framework, import the desired parts by destructuring it from `lib`.
- * 
- * Examples:
- * const { settings, Request, dom, waitFor, intercept, logger } = lib;
- * 
- * Example: Add a button to the page
- * const button = lib.dom.createElement('button', { id: 'myButton', class: 'btn' }, ['Click me']);
- * lib.dom.appendTo('body', button);
- * 
- * Example: Log a message
- * lib.logger.info('Userscript framework initialized.');
- */

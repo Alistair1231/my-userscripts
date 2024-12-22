@@ -1,6 +1,6 @@
 // Version: 1.0
 // Framework for common userscript tasks
-// @require https://cdn.jsdelivr.net/gh/Alistair/my-userscripts@${commit_id}/lib.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_id}/libValues.js
 // @grant GM_getValue
 // @grant GM_setValue
 // @grant GM_deleteValue

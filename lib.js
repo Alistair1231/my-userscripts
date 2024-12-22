@@ -1,6 +1,7 @@
 // Version: 1.0
 // Framework for common userscript tasks
-// @require https://cdn.jsdelivr.net/gh/Alistair/my-userscripts@${commit_id}/lib.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_id}/lib.js
+
 
 const libDefault = (() => {
     /**
@@ -113,8 +114,6 @@ const libDefault = (() => {
     };
 
     return {
-        settings,
-        Request,
         dom,
         waitFor,
         intercept,

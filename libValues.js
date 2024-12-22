@@ -1,4 +1,4 @@
-// @version v1.0.3
+// @version v1.0.4
 // @license GPL-3.0
 // @author Alistair1231
 
@@ -7,7 +7,7 @@
 // @grant GM_setValue
 // @grant GM_deleteValue
 // @grant GM_listValues
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.3/libValues.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.4/libValues.js
 //! then in your script: `const lib = { ...libValues };`
 
 const libValues = (() => {
@@ -51,7 +51,7 @@ const libValues = (() => {
             return undefined;
         },
     });
-    
+
 
 
     return {

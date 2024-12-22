@@ -1,25 +1,40 @@
-name: Create release
+name: Create Release
 
-# When a tag is pushed, create a release
+# Trigger on tag push
 on:
   push:
     tags:
-      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+      - "v*" # Matches tags like v1.0, v20.15.10
 
 jobs:
   build:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout the repository code
       - name: Checkout code
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Fetch all tags
 
-      - name: Create Release for Tag
-        id: release_tag
-        uses: Akryum/release-tag@v4.0.3
+      # Step 2: Create a GitHub release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+
+      # Step 3: Upload .js and .user.js files to the release
+      - name: Upload JS Files to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./*.js
+          asset_content_type: text/javascript

@@ -1,4 +1,4 @@
-// @version v1.0.2-hotfix1
+// @version v1.0.3
 // @license GPL-3.0
 // @author Alistair1231
 
@@ -7,7 +7,7 @@
 // @grant GM_setValue
 // @grant GM_deleteValue
 // @grant GM_listValues
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.2-hotfix1/libValues.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.3/libValues.js
 //! then in your script: `const lib = { ...libValues };`
 
 const libValues = (() => {
@@ -39,7 +39,19 @@ const libValues = (() => {
         },
         ownKeys: () => GM_listValues(),
         has: (target, key) => GM_listValues().includes(key),
+        getOwnPropertyDescriptor: (target, key) => {
+            if (GM_listValues().includes(key)) {
+                return {
+                    configurable: true,
+                    enumerable: true,
+                    value: GM_getValue(key, null),
+                    writable: true,
+                };
+            }
+            return undefined;
+        },
     });
+    
 
 
     return {

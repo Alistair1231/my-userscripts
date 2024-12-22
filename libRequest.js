@@ -1,8 +1,11 @@
-// @version 1.0.2
+// @version v1.0.2-hotfix1
 // @license GPL-3.0
-// Framework for common userscript tasks
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_id}/libRequest.js
+// @author Alistair1231
+
+//? Use like this:
 // @grant GM_xmlhttpRequest
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.2-hotfix1/libRequest.js
+//! then in your script: `const lib = { ...libRequest };`
 
 
 const libRequest = (() => {

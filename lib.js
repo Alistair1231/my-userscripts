@@ -1,38 +1,22 @@
-// @version 1.0.2
+// @version v1.0.2-hotfix1
 // @license GPL-3.0
-// Framework for common userscript tasks
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_id}/lib.js
+// @author Alistair1231
 
-/**
- * This Lib has three parts:
- * - libDefault: DOM Utilities, Logger, waitFor, intercept
- * - libRequest: Request Management
- *   - needs `grant` for GM_xmlhttpRequest
- * - libValues: Storage Management
- *   - needs `grant` for GM_getValue, GM_setValue, GM_deleteValue, GM_listValues
- * you can import one or more parts like this: `const lib = { ...libDefault, ...libRequest, ...libValues };`
- * after "require" and "grant" in your userscript.
- * For Example
- * ```javascript
- * ==UserScript==
- * @name        Example
- * @namespace   Violentmonkey Scripts
- * @match       https://google.com/*
- * @grant       none
- * @version     1.0
- * @author      -
- * @description 22/12/2024, 13:27:37
- * @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.0/lib.js
- *  @grant GM_getValue
- * @grant GM_setValue
- * @grant GM_deleteValue
- * @grant GM_listValues
- * @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.0/libValues.js
- * @grant GM_xmlhttpRequest
- * @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.0/libRequest.js
- * ==/UserScript==
- * 
- */ 
+//? Use like this:
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.2-hotfix1/lib.js
+//! then in your script: `const lib = { ...libDefault };`
+
+//? optionally, you can import libRequest and libValues as well, like so:
+// @grant GM_getValue
+// @grant GM_setValue
+// @grant GM_deleteValue
+// @grant GM_listValues
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.2-hotfix1/libValues.js
+// @grant GM_xmlhttpRequest
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.2-hotfix1/libRequest.js
+//! then in your script: `const lib = { ...libDefault, ...libRequest, ...libValues };`
+
+
 
 const libDefault = (() => {
     /**

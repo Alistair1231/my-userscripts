@@ -1,12 +1,14 @@
-// @version 1.0.2
+// @version v1.0.2-hotfix1
 // @license GPL-3.0
-// Framework for common userscript tasks
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_id}/libValues.js
+// @author Alistair1231
+
+//? Use like this:
 // @grant GM_getValue
 // @grant GM_setValue
 // @grant GM_deleteValue
 // @grant GM_listValues
-
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.2-hotfix1/libValues.js
+//! then in your script: `const lib = { ...libValues };`
 
 const libValues = (() => {
     /**

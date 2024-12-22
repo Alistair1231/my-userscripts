@@ -29,12 +29,12 @@ jobs:
           draft: false
           prerelease: false
 
-      # Step 3: Upload .js and .user.js files to the release
+      # Step 3: Find and upload each .js file individually
       - name: Upload JS Files to Release
-        uses: actions/upload-release-asset@v1
+        run: |
+          for file in $(find . -name "*.js"); do
+            echo "Uploading $file"
+            gh release upload "${{ github.ref_name }}" "$file" --clobber
+          done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./*.js
-          asset_content_type: text/javascript

@@ -1,9 +1,9 @@
-// @version v1.0.5
+// @version v1.0.5Hotfix1
 // @license GPL-3.0
 // @author Alistair1231
 
 //? Use like this:
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.5/lib.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.5Hotfix1/lib.js
 //! then in your script: `const lib = { ...libDefault };`
 
 //? optionally, you can import libRequest and libValues as well, like so:
@@ -11,9 +11,9 @@
 // @grant GM_setValue
 // @grant GM_deleteValue
 // @grant GM_listValues
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.5/libValues.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.5Hotfix1/libValues.js
 // @grant GM_xmlhttpRequest
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.5/libRequest.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.5Hotfix1/libRequest.js
 //! then in your script: `const lib = { ...libDefault, ...libRequest, ...libValues };`
 
 const libDefault = (() => {
@@ -75,7 +75,6 @@ const libDefault = (() => {
   };
 
   return {
-    dom,
     waitFor,
     intercept,
     logger,

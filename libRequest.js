@@ -1,4 +1,4 @@
-// Version: 1.0
+// Version: 1.0.1
 // Framework for common userscript tasks
 // @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_id}/libRequest.js
 // @grant GM_xmlhttpRequest

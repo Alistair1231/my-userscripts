@@ -8,7 +8,7 @@
 // @match        https://pmotschmann.github.io/Evolve/
 // @icon         https://icons.duckduckgo.com/ip2/github.io.ico
 // @license GPL-3.0
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@232b1d6f0a0a6eb47fcccb94e6346d8230562154/lib.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@9a6efa163d9f31ffbb581c0d5bdd982b8a600aaf/lib.js
 
 // @grant GM_getValue
 // @grant GM_setValue

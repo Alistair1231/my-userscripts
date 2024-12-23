@@ -11,83 +11,30 @@
 // @grant        GM.setValue
 // @grant        GM.getValue
 // @license GPL-3.0
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.6/lib.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@232b1d6f0a0a6eb47fcccb94e6346d8230562154/lib.js
 
 // @grant GM_getValue
 // @grant GM_setValue
 // @grant GM_deleteValue
 // @grant GM_listValues
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.6/libValues.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@232b1d6f0a0a6eb47fcccb94e6346d8230562154/libValues.js
 
 // @grant GM_xmlhttpRequest
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.6/libRequest.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@232b1d6f0a0a6eb47fcccb94e6346d8230562154/libRequest.js
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/490376-automatic-evolve-save-upload-to-gist
 // https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 
 /*
 # Evolve Idle Cloud Save
-I lost my save game 😞. To prevent this from happening again, I implemented a quick backup, that 
-uses GitHub Gist to store the save data. 
- 
-## What does it do?
-It makes a backup every 30 minutes (adjustable at the bottom of the script). The save game will 
-be written to a gist, that is defined by the user. By using a gist, you also get the benefit of 
-versioning. So you can roll back to earlier saves. 😉 
- 
-I recommend using a separate file for each PC, otherwise your savegame might get overwritten by 
-another PC, which has the tab open in the background. Also, only have one tab open at a time, 
-otherwise the save might get overwritten by the other tab. This is easily recoverable, using the 
-revision history of the gist, but it is worth mentioning. 😅
- 
-## How to use?
-On first setup you will need to manually create a GitHub API key and a Gist and then input them 
-for the script to use.
-This is only tested on [Violentmonkey](https://violentmonkey.github.io/get-it/). Some other 
-Userscript managers might handle the GM functions differently. If something does not work, 
-try to use Violentmonkey. 😊
-Also, I export the `makeBackup` function to the global scope, so you can manually trigger a 
-backup by typing `makeBackup()` in the dev console of your browser (`Ctrl/CMD + Shift + J` to open).
- 
-### Setup instructions 
- 
-You will need a GistID and a Personal Access Token with `Gist` scope to use this.
- 
-Create a gist, the description does not matter, in this Gist, create a file e.g. called "save.txt", 
-add some random content and save. You can do that here (You will need a GitHub account): 
-https://gist.github.com
-Afterwards, you can find the GistID in the URL: https://gist.github.com/{Username}/{GistID}
- 
-The Personal Access Token you have to create here: https://github.com/settings/tokens you only 
-need the gist scope.
- 
-If you make a mistake you should be asked again, alternatively you can manually set these values 
-in the Userscript storage. In Violentmonkey you can access this by clicking on the extension icon,
-then right-clicking on the script and selecting `Values`. There we want values like this (these are 
-random examples I didn't leak my credentials 😉):
-```
-{
-filename: "save.txt",
-gistId: "856ce06ecda1234e095c156da8fd44d7",
-token: "ghp_k928znRUu7ZI0tySv9gP2A2x9VdvVLrmrXCD"
-}
-```
-
-### I installed, what now?
-Now, every 30 minutes your save game will be saved to the gist. You can also manually trigger a
-backup by clicking the "Save in Gist" button in the game UI. You can also import the save 
-game from the gist by clicking the "Import Gist" button in the game UI. After "Import Gist", 
-you still have to click the "Import Game" button for the save to be loaded. "Import Gist" only 
-fills the textarea.
-
-## How does it work? (technical)
-The script makes use of `GM.xmlhttpRequest` for the request and `GM.setValue`/`GM.getValue` 
-for storing/retrieving the lib.settings. The timing is done with `setInterval`. For saving the Data 
-the GitHub API is used. The save game is exported using the `exportGame` function, which is exposed 
-by the game. The save game is then sent to the GitHub API using a PATCH request. 
- 
-I hope I can prevent some people from loosing their save games, and allow for more easy 
-switching between devices. 😊
+Automatically upload your evolve save to a gist, on first run you will be prompted to enter your 
+Gist ID and Personal Access Token. These will be saved as cleartext in the Userscript storage. 
+The token should have the `gist` scope.  
+The Gist, has to be created manually, and the ID should be entered in the settings.  
+Exporting is always done to the filename specified in the settings.  
+Import can be done from any file in the Gist. (e.g. after changing PCs).  
+Automatic backup is done every 15 minutes. Manual backup can be done by clicking the "Save to" button.  
+The script also exposes the `evolveCloudSave` object to the window for manual use.
 */
 
 (async function () {
@@ -199,9 +146,7 @@ switching between devices. 😊
     addButtons: async (request) => {
       const buttons = document.createElement("div");
       let files = await evolveCloudSave.getFiles(request);
-      console.log(files); // files is undefined?
       const filenames = Object.keys(files);
-      console.log(filenames);
 
       buttons.innerHTML = `
     <div class='importExport' style='display: flex; justify-content: center; margin-top: 1rem'>
@@ -261,8 +206,8 @@ switching between devices. 😊
     } else {
       evolveCloudSave.init();
 
-      // run every 30 minutes
-      setInterval(evolveCloudSave.makeBackup, 1000 * 60 * 30);
+      // run every 15 minutes
+      setInterval(evolveCloudSave.makeBackup, 1000 * 60 * 15);
 
       // export for manual use
       unsafeWindow.evolveCloudSave = evolveCloudSave;

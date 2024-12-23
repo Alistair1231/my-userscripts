@@ -27,14 +27,22 @@
 
 /*
 # Evolve Idle Cloud Save
-Automatically upload your evolve save to a gist, on first run you will be prompted to enter your 
-Gist ID and Personal Access Token. These will be saved as cleartext in the Userscript storage. 
-The token should have the `gist` scope.  
-The Gist, has to be created manually, and the ID should be entered in the settings.  
-Exporting is always done to the filename specified in the settings.  
-Import can be done from any file in the Gist. (e.g. after changing PCs).  
-Automatic backup is done every 15 minutes. Manual backup can be done by clicking the "Save to" button.  
-The script also exposes the `evolveCloudSave` object to the window for manual use.
+
+I lost my save game 😞, so I created a quick backup solution using GitHub Gist to store save data. 
+
+### Key Features:
+- **Automatic Upload:** On first use, you'll be prompted to enter your Gist ID and Personal Access Token. These credentials are stored as plain text in the Userscript storage. The token must have the `gist` scope.
+- **Manual Setup:** You need to manually create the Gist and enter its ID in the settings. 
+- **Export Settings:** Saves are exported to the filename specified in the settings.
+- **Import Flexibility:** Import your save from any file in the Gist, making it easy to restore data after switching devices or PCs.
+- **Backup Options:**
+  - Automatic backups are performed every 15 minutes.
+  - Manual backups can be triggered by clicking the "Save to" button.
+- **Advanced Use:** The `evolveCloudSave` object is exposed to the window, allowing for manual interaction.
+
+With this setup, your progress is secure, and you can easily transfer your saves between devices.
+
+![UI changes](https://i.imgur.com/2rxSxb3.png)
 */
 
 (async function () {

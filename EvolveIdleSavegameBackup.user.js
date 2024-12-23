@@ -1,23 +1,20 @@
 // ==UserScript==
-// @name         Evolve Idle Cloud Save
-// @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      1.1.1
-// @description  Automatically upload your evolve save to a gist
-// @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
-// @author       Alistair1231
-// @match        https://pmotschmann.github.io/Evolve/
-// @icon         https://icons.duckduckgo.com/ip2/github.io.ico
-// @license GPL-3.0
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@9a6efa163d9f31ffbb581c0d5bdd982b8a600aaf/lib.js
-
-// @grant GM_getValue
-// @grant GM_setValue
-// @grant GM_deleteValue
-// @grant GM_listValues
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@232b1d6f0a0a6eb47fcccb94e6346d8230562154/libValues.js
-
-// @grant       GM.xmlHttpRequest
-// @require     https://cdn.jsdelivr.net/npm/@trim21/gm-fetch@0.2.1
+// @name          Evolve Idle Cloud Save
+// @namespace     https://github.com/Alistair1231/my-userscripts/
+// @version       1.1.2
+// @description   Automatically upload your evolve save to a gist
+// @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
+// @author        Alistair1231
+// @match         https://pmotschmann.github.io/Evolve/
+// @icon          https://icons.duckduckgo.com/ip2/github.io.ico
+// @license       GPL-3.0
+// @grant         GM.getValue
+// @grant         GM.setValue
+// @grant         GM.deleteValue
+// @grant         GM.listValues
+// @grant         GM.xmlHttpRequest
+// @require       https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@5b9e5e7ee0169de3181ceab0332b390dab39c4d8/lib.js
+// @require       https://cdn.jsdelivr.net/npm/@trim21/gm-fetch@0.2.1
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/490376-automatic-evolve-save-upload-to-gist
 // https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
@@ -52,7 +49,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
       const saveSettings = () => {
         const gistId = document.getElementById('gist_id').value.trim()
         const token = document.getElementById('gist_token').value.trim()
-        const fileName =
+        const filename =
           document.getElementById('file_name').value.trim() || 'save.txt'
         if (!gistId || !token) {
           alert('Gist ID and Token are required!')
@@ -60,7 +57,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
         }
         lib.settings.gistId = gistId
         lib.settings.token = token
-        lib.settings.fileName = fileName
+        lib.settings.filename = filename
         document.body.removeChild(overlay)
       }
 
@@ -68,7 +65,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
         document.getElementById('gist_id').value = lib.settings.gistId || ''
         document.getElementById('gist_token').value = lib.settings.token || ''
         document.getElementById('file_name').value =
-          lib.settings.fileName || 'save.txt'
+          lib.settings.filename || 'save.txt'
       }
 
       let overlay = document.createElement('div')
@@ -113,6 +110,8 @@ With this setup, your progress is secure, and you can easily transfer your saves
       document.getElementById('save_button').addEventListener('click', (e) => {
         e.preventDefault()
         saveSettings()
+        // force refresh
+        location.reload()
       })
 
       fillCurrentSettings()
@@ -221,7 +220,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
   }
 
   lib.waitFor('div#main', () => {
-    if (lib.settings.gistId === undefined || lib.settings.token === undefined) {
+    if (lib.settings.gistId === null || lib.settings.token === null) {
       evolveCloudSave.openSettings()
       return
     } else {

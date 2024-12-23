@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Evolve Idle Cloud Save
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.3.0
+// @version      1.0.0
 // @description  Automatically upload your evolve save to a gist
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author       Alistair1231
@@ -11,6 +11,16 @@
 // @grant        GM.setValue
 // @grant        GM.getValue
 // @license GPL-3.0
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.6/lib.js
+
+// @grant GM_getValue
+// @grant GM_setValue
+// @grant GM_deleteValue
+// @grant GM_listValues
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.6/libValues.js
+
+// @grant GM_xmlhttpRequest
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.6/libRequest.js
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/490376-automatic-evolve-save-upload-to-gist
 // https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
@@ -72,7 +82,7 @@ fills the textarea.
 
 ## How does it work? (technical)
 The script makes use of `GM.xmlhttpRequest` for the request and `GM.setValue`/`GM.getValue` 
-for storing/retrieving the secrets. The timing is done with `setInterval`. For saving the Data 
+for storing/retrieving the lib.settings. The timing is done with `setInterval`. For saving the Data 
 the GitHub API is used. The save game is exported using the `exportGame` function, which is exposed 
 by the game. The save game is then sent to the GitHub API using a PATCH request. 
  
@@ -80,238 +90,183 @@ I hope I can prevent some people from loosing their save games, and allow for mo
 switching between devices. 😊
 */
 
-// To help the linter out
-// const GM = {
-//   setValue: async function GM_setValue(key, value) {
-//     return new Promise((resolve) => {
-//     });
-//   },
-//   getValue: async function GM_getValue(key, defaultValue) {
-//     return new Promise((resolve) => {
-//     });
-//   },
-//   xmlhttpRequest: function GM_xmlhttpRequest(details) {
-//     return new Promise((resolve) => {
-//     });
-//   }
-// };
-// const unsafeWindow = {
-//   exportGame: function () {
-//     return "";
-//   },
-//   importGame: function (a, i) {
-//   }
-// };
-
-const makeRequest = async (method, url, data, token, onload, onerror) => {
-  let headerVal;
-  if (token === null) {
-    headerVal = {};
-  } else {
-    headerVal = {
-      Authorization: `token ${token}`,
-      "Content-Type": "application/json",
-      Accept: "application/vnd.github.v3+json",
-      "X-GitHub-Api-Version": "2022-11-28",
-    };
-  }
-  return GM.xmlhttpRequest({
-    method: method,
-    url: url,
-    data: data,
-    headers: headerVal,
-    onload: onload,
-    onerror: onerror,
-  });
-};
-
-const getSecrets = async () => {
-  return {
-    gistId: await GM.getValue("gistId", ""),
-    token: await GM.getValue("token", ""),
-    fileName: await GM.getValue("filename", "save.txt"),
-  };
-};
-
-// Create an overlay to collect secrets from the user
-const createSecretsOverlay = () => {
-  const overlay = document.createElement('div');
-  overlay.style.position = 'fixed';
-  overlay.style.top = '0';
-  overlay.style.left = '0';
-  overlay.style.width = '100%';
-  overlay.style.height = '100%';
-  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-  overlay.style.display = 'flex';
-  overlay.style.alignItems = 'center';
-  overlay.style.justifyContent = 'center';
-  overlay.style.zIndex = '1000';
-
-  const modal = document.createElement('div');
-  modal.style.backgroundColor = 'white';
-  modal.style.padding = '20px';
-  modal.style.borderRadius = '8px';
-  modal.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
-  modal.style.width = '400px';
-
-  const guideText = document.createElement('p');
-  guideText.textContent = `You will need a GistID and a Personal Access Token to use 
-  this cloud-save script. They will be saved as cleartext in the Userscript storage!
-  \n\n
-  Create a gist at https://gist.github.com and make note of the GistID in the URL (e.g., 
-  https://gist.github.com/{{Username}}/{{GistID}}). The script doesn't handle creating files,
-  so create a file in the gist with the filename you wish to use and add some random content.
-  \n\n
-  Create a Personal Access Token at 
-  https://github.com/settings/tokens with the "gist" scope.`;
-  guideText.style.fontSize = '14px';
-  guideText.style.marginBottom = '10px';
-
-  const form = document.createElement('form');
-  form.style.display = 'flex';
-  form.style.flexDirection = 'column';
-
-  const createInput = (labelText, placeholderText) => {
-    const label = document.createElement('label');
-    label.textContent = labelText;
-    label.style.marginTop = '10px';
-    label.style.fontSize = '14px';
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = placeholderText;
-    input.style.marginTop = '5px';
-    input.style.padding = '8px';
-    input.style.fontSize = '14px';
-
-    form.appendChild(label);
-    form.appendChild(input);
-    return input;
-  };
-
-  const gistIdInput = createInput('Gist ID', 'Enter your Gist ID');
-  const tokenInput = createInput('GitHub Personal Access Token', 'Enter your Token');
-  const fileNameInput = createInput('Filename', 'Enter filename (default: save.txt)');
-
-  const button = document.createElement('button');
-  button.textContent = 'Save';
-  button.style.marginTop = '15px';
-  button.style.padding = '10px';
-  button.style.fontSize = '14px';
-  button.style.cursor = 'pointer';
-
-  button.addEventListener('click', (e) => {
-    e.preventDefault();
-    const gistId = gistIdInput.value.trim();
-    const token = tokenInput.value.trim();
-    const fileName = fileNameInput.value.trim() || 'save.txt';
-
-    if (!gistId || !token) {
-      alert('Gist ID and Token are required!');
-      return;
-    }
-
-    GM.setValue('gistId', gistId);
-    GM.setValue('token', token);
-    GM.setValue('filename', fileName);
-
-    document.body.removeChild(overlay);
-  });
-
-  form.appendChild(button);
-  modal.appendChild(guideText);
-  modal.appendChild(form);
-  overlay.appendChild(modal);
-  document.body.appendChild(overlay);
-};
-
-const askForSecrets = () => {
-  createSecretsOverlay();
-};
-
-const tryGetSecrets = async () => {
-  const secrets = await getSecrets();
-  if (!secrets.gistId || !secrets.token) {
-    askForSecrets();
-    return await getSecrets();
-  }
-  return secrets;
-};
-
-const makeBackup = () => {
-  tryGetSecrets().then((secrets) => {
-    const url = `https://api.github.com/gists/${secrets.gistId}`;
-    const saveString = unsafeWindow.exportGame();
-    const payload = JSON.stringify({
-      files: {[secrets.fileName]: {content: saveString}},
-    });
-    const requestSuccess = (response) => {
-      console.log("Update request successful" + response.responseText);
-      if (response.responseText.includes("Bad credentials"))
-        askForSecrets();
-    };
-    const requestError = (error) => console.error("Error updating gist: " + error);
-
-    makeRequest("PATCH", url, payload, secrets.token, requestSuccess, requestError);
-  });
-};
-
-const getBackup = () => {
-  const requestSuccess = (response) => {
-    console.log("GetBackup request successful" + response.responseText);
-    if (response.responseText.includes("Bad credentials"))
-      askForSecrets();
-
-    document.querySelector("textarea#importExport").value = response.responseText;
-  };
-  const requestError = (error) => console.error("Error making GET request: " + error);
-
-  tryGetSecrets().then((secrets) => {
-    const url = `https://gist.githubusercontent.com/Alistair1231/d702d33809dcafc8598f196073674047/raw/${secrets.fileName}`;
-    makeRequest("GET", url, null, null, requestSuccess, requestError);
-  });
-}
-
-const addButtons = () => {
-  const addButton = (name, id, onclick) => {
-    const button = document.createElement("button");
-    button.id = id;
-    button.classList.add("button");
-    button.textContent = name;
-    button.onclick = onclick;
-    button.style.marginTop = ".75rem";
-    return button;
-  }
-  const div = document.querySelectorAll("div.importExport")[1];
-  div.appendChild(document.createElement("br"));
-
-  let importButton = addButton("Import Gist", "importGistButton", () => {
-    getBackup();
-  })
-  div.appendChild(importButton);
-  importButton.after(document.createTextNode(" "));
-
-  let exportButton = addButton("Save in Gist", "exportGistButton", () => {
-    makeBackup();
-    document.querySelector("textarea#importExport").value = "";
-  })
-  div.appendChild(exportButton);
-  exportButton.before(document.createTextNode(" "));
-
-}
-
-(function () {
+(async function () {
   "use strict";
-  // ensure on page load, that the secrets are set.
-  tryGetSecrets();
+  const lib = { ...libDefault, ...libRequest, ...libValues };
 
-  // run every 30 minutes
-  setInterval(makeBackup, 1000 * 60 * 30);
+  const evolveCloudSave = {
+    // Create an overlay to collect secrets from the user
+    openSettings: () => {
+      const saveSettings = () => {
+        const gistId = document.getElementById("gist_id").value.trim();
+        const token = document.getElementById("gist_token").value.trim();
+        const fileName =
+          document.getElementById("file_name").value.trim() || "save.txt";
+        if (!gistId || !token) {
+          alert("Gist ID and Token are required!");
+          return;
+        }
+        lib.settings.gistId = gistId;
+        lib.settings.token = token;
+        lib.settings.fileName = fileName;
+        document.body.removeChild(overlay);
+      };
 
-  // export makeBackup for manual use
-  unsafeWindow.makeBackup = makeBackup;
-  unsafeWindow.getBackup = getBackup;
-  unsafeWindow.addButtons = addButtons;
-  // add buttons to the UI
-  addButtons();
+      const fillCurrentSettings = () => {
+        document.getElementById("gist_id").value = lib.settings.gistId || "";
+        document.getElementById("gist_token").value = lib.settings.token || "";
+        document.getElementById("file_name").value =
+          lib.settings.fileName || "save.txt";
+      };
+
+      let overlay = document.createElement("div");
+      overlay.innerHTML = `
+    <div id='settings_overlay'
+        style='position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000'>
+        <div id='settings_modal'
+            style='background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 400px'>
+            <span style='font-size: 14px; margin-bottom: 10px'>
+                You will need a GistID and a Personal Access Token to use this cloud-save script. They will be saved as
+                cleartext in the Userscript storage!
+            </span>
+            <form id='settings_form'>
+                <input id='gist_id' type='text' placeholder='Enter your Gist ID'
+                    style='margin-top: 5px; padding: 8px; font-size: 14px'>
+                <input id='gist_token' type='text' placeholder='Enter your Token'
+                    style='margin-top: 5px; padding: 8px; font-size: 14px'>
+                <input id='file_name' type='text' placeholder='Enter your Filename'
+                    style='margin-top: 5px; padding: 8px; font-size: 14px'>
+                <button id='save_button'
+                    style='margin-top: 15px; padding: 10px; font-size: 14px; cursor: pointer'>Save</button>
+            </form>
+        </div>
+    </div>
+    `;
+
+      document.body.appendChild(overlay);
+      //   clicking on overlay and esc handling
+      overlay.addEventListener("click", (e) => {
+        if (e.target.id === "settings_overlay") {
+          document.body.removeChild(overlay);
+        }
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (document.getElementById("settings_overlay")) {
+            document.body.removeChild(overlay);
+          }
+        }
+      });
+
+      document.getElementById("save_button").addEventListener("click", (e) => {
+        e.preventDefault();
+        saveSettings();
+      });
+
+      fillCurrentSettings();
+    },
+
+    getFiles: async (request) => {
+      const files = await request.get("");
+      return JSON.parse(files).files;
+    },
+    createOrUpdateFile: async (request, filename, content) => {
+      const files = await evolveCloudSave.getFiles(request);
+      if (files[filename] === undefined) {
+        return request.post("", { files: { [filename]: { content } } });
+      } else {
+        return request.patch("", { files: { [filename]: { content } } });
+      }
+    },
+
+    makeBackup: async (request) => {
+      const saveString = unsafeWindow.exportGame();
+      const response = await evolveCloudSave.createOrUpdateFile(
+        request,
+        lib.settings.filename,
+        saveString,
+      );
+      return response;
+    },
+
+    getBackup: async (request) => {
+      const files = await evolveCloudSave.getFiles(request);
+      const filename = document.getElementById("cloudsave_fileSelect").value;
+      const content = files[filename].content;
+      document.querySelector("textarea#importExport").value = content;
+    },
+
+    addButtons: async (request) => {
+      const buttons = document.createElement("div");
+      let files = await evolveCloudSave.getFiles(request);
+      console.log(files); // files is undefined?
+      const filenames = Object.keys(files);
+      console.log(filenames);
+
+      buttons.innerHTML = `
+    <div class='importExport' style='display: flex; justify-content: center; margin-top: 1rem'>
+      <select id='cloudsave_fileSelect' style='margin-top: .75rem'>
+        ${filenames.map((file) => `<option value='${file}'>${file}</option>`)}
+      </select>
+      <button id='cloudsave_importGistButton' class='button' style='margin-top: .75rem'>Import selected</button>
+      <button id='cloudsave_exportGistButton' class='button' style='margin-top: .75rem'>Save to "${lib.settings.filename}"</button>
+      <button id='cloudsave_settingsButton' class='button' style='margin-top: .75rem'>Settings</button>
+    </div>
+    <div id='success_message' style='display: none; position: fixed; top: 20px; right: 20px; background-color: green; color: white; padding: 10px; border-radius: 5px;'>Backup successful!</div>
+    `;
+      const div = document.querySelectorAll("div.importExport")[1];
+      div.appendChild(buttons);
+      document
+        .getElementById("cloudsave_importGistButton")
+        .addEventListener("click", () => {
+          evolveCloudSave.getBackup(request);
+        });
+      document
+        .getElementById("cloudsave_exportGistButton")
+        .addEventListener("click", async () => {
+          await evolveCloudSave.makeBackup(request);
+          const successMessage = document.getElementById("success_message");
+          successMessage.style.display = "block";
+          setTimeout(() => {
+            successMessage.style.transition = "opacity 1s";
+            successMessage.style.opacity = "0";
+            setTimeout(() => {
+              successMessage.style.display = "none";
+              successMessage.style.opacity = "1";
+            }, 1000);
+          }, 2000);
+        });
+      document
+        .getElementById("cloudsave_settingsButton")
+        .addEventListener("click", () => {
+          evolveCloudSave.openSettings(request);
+        });
+    },
+
+    init: async () => {
+      const request = new lib.Request(
+        `https://api.github.com/gists/${lib.settings.gistId}`,
+        {
+          Authorization: `token ${lib.settings.token}`,
+        },
+      );
+      evolveCloudSave.addButtons(request);
+    },
+  };
+
+  lib.waitFor("div#main", () => {
+    if (lib.settings.gistId === undefined || lib.settings.token === undefined) {
+      evolveCloudSave.openSettings();
+      return;
+    } else {
+      evolveCloudSave.init();
+
+      // run every 30 minutes
+      setInterval(evolveCloudSave.makeBackup, 1000 * 60 * 30);
+
+      // export for manual use
+      unsafeWindow.evolveCloudSave = evolveCloudSave;
+      unsafeWindow.evolveCloudSave.settings = lib.settings;
+    }
+  });
 })();

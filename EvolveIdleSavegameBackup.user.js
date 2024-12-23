@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Evolve Idle Cloud Save
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      1.0.0
+// @version      1.0.2
 // @description  Automatically upload your evolve save to a gist
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author       Alistair1231
@@ -149,14 +149,15 @@ The script also exposes the `evolveCloudSave` object to the window for manual us
       const filenames = Object.keys(files);
 
       buttons.innerHTML = `
-    <div class='importExport' style='display: flex; justify-content: center; margin-top: 1rem'>
+    <div class='importExport' style='display: flex; margin-top: 1rem'>
+      <button id='cloudsave_importGistButton' class='button' style='margin-top: .75rem;marging-right=1em'>Import selected</button>
       <select id='cloudsave_fileSelect' style='margin-top: .75rem'>
         ${filenames.map((file) => `<option value='${file}'>${file}</option>`)}
       </select>
-      <button id='cloudsave_importGistButton' class='button' style='margin-top: .75rem'>Import selected</button>
+      </div>
       <button id='cloudsave_exportGistButton' class='button' style='margin-top: .75rem'>Save to "${lib.settings.filename}"</button>
+      <br>
       <button id='cloudsave_settingsButton' class='button' style='margin-top: .75rem'>Settings</button>
-    </div>
     <div id='success_message' style='display: none; position: fixed; top: 20px; right: 20px; background-color: green; color: white; padding: 10px; border-radius: 5px;'>Backup successful!</div>
     `;
       const div = document.querySelectorAll("div.importExport")[1];

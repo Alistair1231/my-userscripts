@@ -1,15 +1,12 @@
 // ==UserScript==
 // @name         Evolve Idle Cloud Save
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      1.0.2
+// @version      1.1.0
 // @description  Automatically upload your evolve save to a gist
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author       Alistair1231
 // @match        https://pmotschmann.github.io/Evolve/
 // @icon         https://icons.duckduckgo.com/ip2/github.io.ico
-// @grant        GM.xmlhttpRequest
-// @grant        GM.setValue
-// @grant        GM.getValue
 // @license GPL-3.0
 // @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@232b1d6f0a0a6eb47fcccb94e6346d8230562154/lib.js
 
@@ -19,8 +16,8 @@
 // @grant GM_listValues
 // @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@232b1d6f0a0a6eb47fcccb94e6346d8230562154/libValues.js
 
-// @grant GM_xmlhttpRequest
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@232b1d6f0a0a6eb47fcccb94e6346d8230562154/libRequest.js
+// @grant       GM.xmlHttpRequest
+// @require     https://cdn.jsdelivr.net/npm/@trim21/gm-fetch
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/490376-automatic-evolve-save-upload-to-gist
 // https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
@@ -45,36 +42,36 @@ With this setup, your progress is secure, and you can easily transfer your saves
 ![UI changes](https://i.imgur.com/2rxSxb3.png)
 */
 
-(async function () {
-  "use strict";
-  const lib = { ...libDefault, ...libRequest, ...libValues };
+;(async function () {
+  'use strict'
+  const lib = { ...libDefault, ...libValues }
 
   const evolveCloudSave = {
     // Create an overlay to collect secrets from the user
     openSettings: () => {
       const saveSettings = () => {
-        const gistId = document.getElementById("gist_id").value.trim();
-        const token = document.getElementById("gist_token").value.trim();
+        const gistId = document.getElementById('gist_id').value.trim()
+        const token = document.getElementById('gist_token').value.trim()
         const fileName =
-          document.getElementById("file_name").value.trim() || "save.txt";
+          document.getElementById('file_name').value.trim() || 'save.txt'
         if (!gistId || !token) {
-          alert("Gist ID and Token are required!");
-          return;
+          alert('Gist ID and Token are required!')
+          return
         }
-        lib.settings.gistId = gistId;
-        lib.settings.token = token;
-        lib.settings.fileName = fileName;
-        document.body.removeChild(overlay);
-      };
+        lib.settings.gistId = gistId
+        lib.settings.token = token
+        lib.settings.fileName = fileName
+        document.body.removeChild(overlay)
+      }
 
       const fillCurrentSettings = () => {
-        document.getElementById("gist_id").value = lib.settings.gistId || "";
-        document.getElementById("gist_token").value = lib.settings.token || "";
-        document.getElementById("file_name").value =
-          lib.settings.fileName || "save.txt";
-      };
+        document.getElementById('gist_id').value = lib.settings.gistId || ''
+        document.getElementById('gist_token').value = lib.settings.token || ''
+        document.getElementById('file_name').value =
+          lib.settings.fileName || 'save.txt'
+      }
 
-      let overlay = document.createElement("div");
+      let overlay = document.createElement('div')
       overlay.innerHTML = `
     <div id='settings_overlay'
         style='position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000'>
@@ -96,65 +93,87 @@ With this setup, your progress is secure, and you can easily transfer your saves
             </form>
         </div>
     </div>
-    `;
+    `
 
-      document.body.appendChild(overlay);
+      document.body.appendChild(overlay)
       //   clicking on overlay and esc handling
-      overlay.addEventListener("click", (e) => {
-        if (e.target.id === "settings_overlay") {
-          document.body.removeChild(overlay);
+      overlay.addEventListener('click', (e) => {
+        if (e.target.id === 'settings_overlay') {
+          document.body.removeChild(overlay)
         }
-      });
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          if (document.getElementById("settings_overlay")) {
-            document.body.removeChild(overlay);
+      })
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (document.getElementById('settings_overlay')) {
+            document.body.removeChild(overlay)
           }
         }
-      });
+      })
 
-      document.getElementById("save_button").addEventListener("click", (e) => {
-        e.preventDefault();
-        saveSettings();
-      });
+      document.getElementById('save_button').addEventListener('click', (e) => {
+        e.preventDefault()
+        saveSettings()
+      })
 
-      fillCurrentSettings();
+      fillCurrentSettings()
     },
 
-    getFiles: async (request) => {
-      const files = await request.get("");
-      return JSON.parse(files).files;
+    getFiles: async () => {
+      let files = await GM_fetch(
+        `https://api.github.com/gists/${lib.settings.gistId}`,
+        {
+          method: 'GET',
+          headers: { Authorization: `token ${lib.settings.token}` },
+        }
+      )
+      files = await files.json()
+      return files.files
     },
-    createOrUpdateFile: async (request, filename, content) => {
-      const files = await evolveCloudSave.getFiles(request);
+    createOrUpdateFile: async (filename, content) => {
+      const files = await evolveCloudSave.getFiles()
       if (files[filename] === undefined) {
-        return request.post("", { files: { [filename]: { content } } });
+        let response = await GM_fetch(
+          `https://api.github.com/gists/${lib.settings.gistId}`,
+          {
+            method: 'POST',
+            headers: { Authorization: `token ${lib.settings.token}` },
+            body: `{ "files": { "${filename}": { "content": "${content}" } } }`,
+          }
+        )
+        return await response
       } else {
-        return request.patch("", { files: { [filename]: { content } } });
+        let response = await GM_fetch(
+          `https://api.github.com/gists/${lib.settings.gistId}`,
+          {
+            method: 'PATCH',
+            headers: { Authorization: `token ${lib.settings.token}` },
+            body: `{ "files": { "${filename}": { "content": "${content}" } } }`,
+          }
+        )
+        return await response
       }
     },
 
-    makeBackup: async (request) => {
-      const saveString = unsafeWindow.exportGame();
+    makeBackup: async () => {
+      const saveString = unsafeWindow.exportGame()
       const response = await evolveCloudSave.createOrUpdateFile(
-        request,
         lib.settings.filename,
-        saveString,
-      );
-      return response;
+        saveString
+      )
+      return response
     },
 
-    getBackup: async (request) => {
-      const files = await evolveCloudSave.getFiles(request);
-      const filename = document.getElementById("cloudsave_fileSelect").value;
-      const content = files[filename].content;
-      document.querySelector("textarea#importExport").value = content;
+    getBackup: async () => {
+      const files = await evolveCloudSave.getFiles()
+      const filename = document.getElementById('cloudsave_fileSelect').value
+      const content = files[filename].content
+      document.querySelector('textarea#importExport').value = content
     },
 
-    addButtons: async (request) => {
-      const buttons = document.createElement("div");
-      let files = await evolveCloudSave.getFiles(request);
-      const filenames = Object.keys(files);
+    addButtons: async () => {
+      const buttons = document.createElement('div')
+      let files = await evolveCloudSave.getFiles()
+      const filenames = Object.keys(files)
 
       buttons.innerHTML = `
     <div class='importExport' style='display: flex; margin-top: 1rem'>
@@ -167,60 +186,53 @@ With this setup, your progress is secure, and you can easily transfer your saves
       <br>
       <button id='cloudsave_settingsButton' class='button' style='margin-top: .75rem'>Settings</button>
     <div id='success_message' style='display: none; position: fixed; top: 20px; right: 20px; background-color: green; color: white; padding: 10px; border-radius: 5px;'>Backup successful!</div>
-    `;
-      const div = document.querySelectorAll("div.importExport")[1];
-      div.appendChild(buttons);
+    `
+      const div = document.querySelectorAll('div.importExport')[1]
+      div.appendChild(buttons)
       document
-        .getElementById("cloudsave_importGistButton")
-        .addEventListener("click", () => {
-          evolveCloudSave.getBackup(request);
-        });
+        .getElementById('cloudsave_importGistButton')
+        .addEventListener('click', () => {
+          evolveCloudSave.getBackup()
+        })
       document
-        .getElementById("cloudsave_exportGistButton")
-        .addEventListener("click", async () => {
-          await evolveCloudSave.makeBackup(request);
-          const successMessage = document.getElementById("success_message");
-          successMessage.style.display = "block";
-          setTimeout(() => {
-            successMessage.style.transition = "opacity 1s";
-            successMessage.style.opacity = "0";
+        .getElementById('cloudsave_exportGistButton')
+        .addEventListener('click', async () => {
+          const response = await evolveCloudSave.makeBackup()
+          if (response.status === 200) {
+            const successMessage = document.getElementById('success_message')
+            successMessage.style.display = 'block'
             setTimeout(() => {
-              successMessage.style.display = "none";
-              successMessage.style.opacity = "1";
-            }, 1000);
-          }, 2000);
-        });
+              successMessage.style.transition = 'opacity 1s'
+              successMessage.style.opacity = '0'
+              setTimeout(() => {
+                successMessage.style.display = 'none'
+                successMessage.style.opacity = '1'
+              }, 1000)
+            }, 2000)
+          }
+          console.log(response)
+        })
       document
-        .getElementById("cloudsave_settingsButton")
-        .addEventListener("click", () => {
-          evolveCloudSave.openSettings(request);
-        });
+        .getElementById('cloudsave_settingsButton')
+        .addEventListener('click', () => {
+          evolveCloudSave.openSettings()
+        })
     },
+  }
 
-    init: async () => {
-      const request = new lib.Request(
-        `https://api.github.com/gists/${lib.settings.gistId}`,
-        {
-          Authorization: `token ${lib.settings.token}`,
-        },
-      );
-      evolveCloudSave.addButtons(request);
-    },
-  };
-
-  lib.waitFor("div#main", () => {
+  lib.waitFor('div#main', () => {
     if (lib.settings.gistId === undefined || lib.settings.token === undefined) {
-      evolveCloudSave.openSettings();
-      return;
+      evolveCloudSave.openSettings()
+      return
     } else {
-      evolveCloudSave.init();
+      evolveCloudSave.addButtons()
 
       // run every 15 minutes
-      setInterval(evolveCloudSave.makeBackup, 1000 * 60 * 15);
+      setInterval(evolveCloudSave.makeBackup, 1000 * 60 * 15)
 
       // export for manual use
-      unsafeWindow.evolveCloudSave = evolveCloudSave;
-      unsafeWindow.evolveCloudSave.settings = lib.settings;
+      unsafeWindow.evolveCloudSave = evolveCloudSave
+      unsafeWindow.evolveCloudSave.settings = lib.settings
     }
-  });
-})();
+  })
+})()

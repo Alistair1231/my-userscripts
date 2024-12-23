@@ -1,4 +1,4 @@
-// @version v1.0.5Hotfix1
+// @version v1.0.6
 // @license GPL-3.0
 // @author Alistair1231
 
@@ -7,7 +7,7 @@
 // @grant GM_setValue
 // @grant GM_deleteValue
 // @grant GM_listValues
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.5Hotfix1/libValues.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.6/libValues.js
 //! then in your script: `const lib = { ...libValues };`
 
 const libValues = (() => {

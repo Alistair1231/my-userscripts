@@ -1,10 +1,10 @@
-// @version v1.0.5Hotfix1
+// @version v1.0.6
 // @license GPL-3.0
 // @author Alistair1231
 
 //? Use like this:
 // @grant GM_xmlhttpRequest
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.5Hotfix1/libRequest.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@v1.0.6/libRequest.js
 //! then in your script: `const lib = { ...libRequest };`
 
 const libRequest = (() => {
@@ -32,7 +32,7 @@ const libRequest = (() => {
           method: options.method || "GET",
           headers,
           data: options.body || null,
-          onload: (response) => resolve(response),
+          onload: (response) => resolve(response.responseText),
           onerror: (error) => reject(error),
         });
       });

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Evolve Idle Cloud Save
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       1.2.0
+// @version       1.2.1
 // @description   Automatically upload your evolve save to a gist
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author        Alistair1231
@@ -37,7 +37,7 @@ I lost my save game 😞, so I created a quick backup solution using GitHub Gist
 
 With this setup, your progress is secure, and you can easily transfer your saves between devices.
 
-![UI changes](https://i.imgur.com/2rxSxb3.png)
+![UI changes](https://i.imgur.com/G1QCIXU.png)
 */
 
 ;(async function () {

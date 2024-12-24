@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Evolve Idle Cloud Save
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       1.1.2
+// @version       1.2.0
 // @description   Automatically upload your evolve save to a gist
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author        Alistair1231
@@ -12,6 +12,7 @@
 // @grant         GM.setValue
 // @grant         GM.deleteValue
 // @grant         GM.listValues
+// @grant         GM.addStyle
 // @grant         GM.xmlHttpRequest
 // @require       https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@5b9e5e7ee0169de3181ceab0332b390dab39c4d8/lib.js
 // @require       https://cdn.jsdelivr.net/npm/@trim21/gm-fetch@0.2.1
@@ -41,7 +42,6 @@ With this setup, your progress is secure, and you can easily transfer your saves
 
 ;(async function () {
   'use strict'
-  const lib = { ...libDefault, ...libValues }
 
   const evolveCloudSave = {
     // Create an overlay to collect secrets from the user
@@ -49,6 +49,8 @@ With this setup, your progress is secure, and you can easily transfer your saves
       const saveSettings = () => {
         const gistId = document.getElementById('gist_id').value.trim()
         const token = document.getElementById('gist_token').value.trim()
+        const frequency =
+          document.getElementById('save_frequency').value.trim() || '15'
         const filename =
           document.getElementById('file_name').value.trim() || 'save.txt'
         if (!gistId || !token) {
@@ -58,38 +60,53 @@ With this setup, your progress is secure, and you can easily transfer your saves
         lib.settings.gistId = gistId
         lib.settings.token = token
         lib.settings.filename = filename
+        lib.settings.frequency = frequency
         document.body.removeChild(overlay)
       }
 
-      const fillCurrentSettings = () => {
-        document.getElementById('gist_id').value = lib.settings.gistId || ''
-        document.getElementById('gist_token').value = lib.settings.token || ''
+      const fillCurrentSettings = async () => {
+        document.getElementById('gist_id').value =
+          (await lib.settings.gistId) || ''
+        document.getElementById('gist_token').value =
+          (await lib.settings.token) || ''
         document.getElementById('file_name').value =
-          lib.settings.filename || 'save.txt'
+          (await lib.settings.filename) || 'save.txt'
+        document.getElementById('save_frequency').value =
+          (await lib.settings.frequency) || '15'
       }
 
       let overlay = document.createElement('div')
       overlay.innerHTML = `
-    <div id='settings_overlay'
-        style='position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000'>
-        <div id='settings_modal'
-            style='background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 400px'>
-            <span style='font-size: 14px; margin-bottom: 10px'>
-                You will need a GistID and a Personal Access Token to use this cloud-save script. They will be saved as
-                cleartext in the Userscript storage!
-            </span>
-            <form id='settings_form'>
-                <input id='gist_id' type='text' placeholder='Enter your Gist ID'
-                    style='margin-top: 5px; padding: 8px; font-size: 14px'>
-                <input id='gist_token' type='text' placeholder='Enter your Token'
-                    style='margin-top: 5px; padding: 8px; font-size: 14px'>
-                <input id='file_name' type='text' placeholder='Enter your Filename'
-                    style='margin-top: 5px; padding: 8px; font-size: 14px'>
-                <button id='save_button'
-                    style='margin-top: 15px; padding: 10px; font-size: 14px; cursor: pointer'>Save</button>
-            </form>
+        <div id="settings_overlay"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000">
+            <div id="settings_modal"
+                style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 400px">
+                <span style="font-size: 14px; margin-bottom: 10px">
+                    You will need a GistID and a Personal Access Token to use this cloud-save script. They will be saved as
+                    cleartext in the Userscript storage!
+                </span>
+                <form id="settings_form">
+                    <div class="material-input">
+                        <input id="gist_id" type="text" required>
+                        <label for="gist_id">Gist ID</label>
+                    </div>
+                    <div class="material-input">
+                        <input id="gist_token" type="text" required>
+                        <label for="gist_token">Token with Gist scope</label>
+                    </div>
+                    <div class="material-input">
+                        <input id="file_name" type="text" required>
+                        <label for="file_name">Filename</label>
+                    </div>
+                    <div class="material-input">
+                        <input id="save_frequency" type="text" required>
+                        <label for="save_frequency">Save Frequency in minutes</label>
+                    </div>
+                    <button id="save_button" style="margin-top: 15px; padding: 10px; font-size: 14px; cursor: pointer">Save</button>
+                </form>
+            </div>
         </div>
-    </div>
+
     `
 
       document.body.appendChild(overlay)
@@ -119,33 +136,38 @@ With this setup, your progress is secure, and you can easily transfer your saves
 
     getFiles: async () => {
       let files = await GM_fetch(
-        `https://api.github.com/gists/${lib.settings.gistId}`,
+        `https://api.github.com/gists/${await lib.settings.gistId}`,
         {
           method: 'GET',
-          headers: { Authorization: `token ${lib.settings.token}` },
+          headers: { Authorization: `token ${await lib.settings.token}` },
         }
       )
-      files = await files.json()
-      return files.files
+      if (files.status === 200) {
+        files = await files.json()
+        return files.files
+      } else {
+        console.log(files)
+        return {}
+      }
     },
     createOrUpdateFile: async (filename, content) => {
       const files = await evolveCloudSave.getFiles()
       if (files[filename] === undefined) {
         let response = await GM_fetch(
-          `https://api.github.com/gists/${lib.settings.gistId}`,
+          `https://api.github.com/gists/${await lib.settings.gistId}`,
           {
             method: 'POST',
-            headers: { Authorization: `token ${lib.settings.token}` },
+            headers: { Authorization: `token ${await lib.settings.token}` },
             body: `{ "files": { "${filename}": { "content": "${content}" } } }`,
           }
         )
         return await response
       } else {
         let response = await GM_fetch(
-          `https://api.github.com/gists/${lib.settings.gistId}`,
+          `https://api.github.com/gists/${await lib.settings.gistId}`,
           {
             method: 'PATCH',
-            headers: { Authorization: `token ${lib.settings.token}` },
+            headers: { Authorization: `token ${await lib.settings.token}` },
             body: `{ "files": { "${filename}": { "content": "${content}" } } }`,
           }
         )
@@ -156,7 +178,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
     makeBackup: async () => {
       const saveString = unsafeWindow.exportGame()
       const response = await evolveCloudSave.createOrUpdateFile(
-        lib.settings.filename,
+        await lib.settings.filename,
         saveString
       )
       return response
@@ -181,7 +203,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
         ${filenames.map((file) => `<option value='${file}'>${file}</option>`)}
       </select>
       </div>
-      <button id='cloudsave_exportGistButton' class='button' style='margin-top: .75rem'>Save to "${lib.settings.filename}"</button>
+      <button id='cloudsave_exportGistButton' class='button' style='margin-top: .75rem'>Save to "${await lib.settings.filename}"</button>
       <br>
       <button id='cloudsave_settingsButton' class='button' style='margin-top: .75rem'>Settings</button>
     <div id='success_message' style='display: none; position: fixed; top: 20px; right: 20px; background-color: green; color: white; padding: 10px; border-radius: 5px;'>Backup successful!</div>
@@ -219,15 +241,62 @@ With this setup, your progress is secure, and you can easily transfer your saves
     },
   }
 
-  lib.waitFor('div#main', () => {
-    if (lib.settings.gistId === null || lib.settings.token === null) {
+  lib.waitFor('div#main', async () => {
+    GM.addStyle(`
+        .material-input {
+          position: relative;
+          margin-top: 15px;
+          font-size: 14px;
+      }
+
+      .material-input input {
+          width: 100%;
+          padding: 10px 5px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 14px;
+          outline: none;
+      }
+
+      .material-input input:focus {
+          border-color: #6200ee;
+      }
+
+      .material-input label {
+          position: absolute;
+          top: 50%;
+          left: 10px;
+          transform: translateY(-50%);
+          transition: 0.2s ease;
+          color: #999;
+          font-size: 14px;
+          pointer-events: none;
+      }
+
+      .material-input input:focus + label,
+      .material-input input:not(:placeholder-shown) + label {
+          top: 0;
+          left: 5px;
+          font-size: 12px;
+          color: #6200ee;
+          background: white;
+          padding: 0 4px;
+      }`)
+
+    if (
+      (await lib.settings.gistId) === null ||
+      (await lib.settings.token) === null
+    ) {
       evolveCloudSave.openSettings()
       return
     } else {
       evolveCloudSave.addButtons()
 
       // run every 15 minutes
-      setInterval(evolveCloudSave.makeBackup, 1000 * 60 * 15)
+      setInterval(
+        evolveCloudSave.makeBackup,
+        1000 * 60 * (await lib.settings.frequency)
+      )
 
       // export for manual use
       unsafeWindow.evolveCloudSave = evolveCloudSave

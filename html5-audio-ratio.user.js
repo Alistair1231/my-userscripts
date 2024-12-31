@@ -1,12 +1,11 @@
 // ==UserScript==
 // @name         HTML5 audio ratio fix
 // @namespace    http://tampermonkey.net/
-// @version      0.4.1
+// @version      0.5.0
 // @description  Makes the volume slider exponential so it's easier to select lower volumes.
 // @author       Marco Pfeiffer <git@marco.zone> / Alistair1231
 // @icon         https://music.youtube.com/favicon.ico
-// @match        https://music.youtube.com/*
-// @match        https://www.youtube.com/*
+// @match        *://*/*
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==

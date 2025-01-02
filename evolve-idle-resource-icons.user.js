@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Evolve Idle Resource Icons and Max Values
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       0.2.2
+// @version       0.3.0
 // @description   Adds icons to costs and storage for easier identification, also adds max storage limit after costs to see your bottlenecks.
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author        Alistair1231

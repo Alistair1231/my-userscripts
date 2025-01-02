@@ -59,6 +59,8 @@
           sidebar: `div#resources div#res${resource} h3`,
           stack: `div#resStorage div#stack-${resource} h3`,
           market: `div#market div#market-${resource} h3`,
+          sidebarHoverGain: `div.popper[data-id='inc${resource}'] div>div`,
+          sidebarHoverStorage: `div.popper[data-id='cnt${resource}'] div>div`,
         }
         Object.entries(selectors).forEach(([selectorType, selector]) => {
           const element = document.querySelector(selector)

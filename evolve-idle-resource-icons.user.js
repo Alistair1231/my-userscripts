@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name          Evolve Idle Resouce Icons
+// @name          Evolve Idle Resource Icons and Max Values
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       0.1.3
-// @description   Adds icons to costs and storage for easier identification
+// @version       0.2.0
+// @description   Adds icons to costs and storage for easier identification, also adds max storage limit after costs to see your bottlenecks.
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @author        Alistair1231
 // @match         https://pmotschmann.github.io/Evolve/*
@@ -17,6 +17,8 @@
   'use strict'
 
   const resources = {
+    // don't add icons to money but add storage-limits to prices
+    Money: '',
     Knowledge: 'res-icon--knowledge',
     Furs: 'res-icon--furs',
     Food: 'res-icon--food',
@@ -232,9 +234,22 @@
   // add icons to costs as they are added
   const observer = new MutationObserver(() => {
     Object.entries(resources).forEach(([resource, iconClass]) => {
+      // price elements are like `div.res-Money`, sidebar is `div#resMoney`
       document.querySelectorAll(`div.res-${resource}`).forEach((elem) => {
-        if (!elem.querySelector(`.${iconClass}`)) {
+        // only add once
+        if (!elem.innerHTML.includes('res-icon--common')) {
+          // prepend icon
           elem.innerHTML = `<span class='res-icon--common ${iconClass}'></span>${elem.innerHTML}`
+          // find out max value and add it to the price
+          let maxValue = document.querySelectorAll(`div#res${resource} span`)[1]
+            .innerHTML
+          // if 0 of resource, then syntax is "0" not "0/0"
+          if (!(maxValue === false) && maxValue.includes('/')) {
+            maxValue = maxValue.split('/')[1]
+          }
+          if (maxValue) {
+            elem.innerHTML += ` / ${maxValue}`
+          }
         }
       })
     })
@@ -243,9 +258,10 @@
 
   // add labels to resources sidebar once
   Object.entries(resources).forEach(([resource, iconClass]) => {
-    const selector = `div.resources div#res${resource} h3`
-    const element = document.querySelector(selector)
-    if (element) {
+    const element = document.querySelector(
+      `div.resources div#res${resource} h3`
+    )
+    if (element && !element.innerHTML.includes('res-icon--common')) {
       element.innerHTML = `<span class='res-icon--common ${iconClass}'></span> ${element.innerHTML}`
     }
   })

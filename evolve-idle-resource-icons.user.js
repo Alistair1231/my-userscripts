@@ -3,7 +3,7 @@
 // @namespace     https://github.com/Alistair1231/my-userscripts/
 // @version       0.4.0
 // @description   Adds icons to costs and storage for easier identification, also adds max storage limit after costs to see your bottlenecks.
-// @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
+// @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/evolve-idle-resource-icons.user.js
 // @author        Alistair1231
 // @match         https://pmotschmann.github.io/Evolve/*
 // @icon          https://icons.duckduckgo.com/ip2/github.io.ico

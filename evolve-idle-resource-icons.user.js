@@ -70,7 +70,6 @@
         }
         Object.entries(selectors).forEach(([selectorType, selector]) => {
           const element = document.querySelector(selector)
-          // just to be sure, check if execution is needed
           if (element && !element.innerHTML.includes('res-icon--common')) {
             element.innerHTML = `<span class='res-icon--common ${iconClass}'></span> ${element.innerHTML}`
           }

@@ -17,4 +17,6 @@ With this setup, your progress is secure, and you can easily transfer your saves
 ----
 ![UI changes](https://i.imgur.com/HIjgCpk.png)
 ## Settings window example with dummy data:
-![Settings](https://i.imgur.com/ggqEZZ4.png)
+![Settings](https://i.imgur.com/yrKXmN1.png)
+
+<!-- [imgur album](https://imgur.com/a/o791v3t) -->

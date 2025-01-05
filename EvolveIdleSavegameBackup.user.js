@@ -235,7 +235,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
             body: `{ "files": { "${filename}": { "content": "${content}" } } }`,
           }
         )
-        return await response
+        return response
       } else {
         let response = await GM_fetch(
           `https://api.github.com/gists/${gistId}`,
@@ -245,7 +245,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
             body: `{ "files": { "${filename}": { "content": "${content}" } } }`,
           }
         )
-        return await response
+        return response
       }
     },
 

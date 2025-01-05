@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Evolve Idle Cloud Save
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       1.3.2
+// @version       1.3.3
 // @description   Automatically upload your evolve save to a gist
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
@@ -152,7 +152,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
             <div id="settings_modal"
                 style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 400px">
                 <div style="color: #333; font-size: 14px; margin-bottom: 15px; line-height: 1.4">
-                    You will need a GistID and a Personal Access Token to use this cloud-save script. You can get one <a href="https://github.com/settings/tokens/new?scopes=gist&description=EvolveIdleSavegameBackup">here</a>
+                    You will need a GistID (last part of URL when viewing a Gist) and a Personal Access Token to use this cloud-save script. Create a gist <a href="https://gist.github.com/">here</a>, and a token <a href="https://github.com/settings/tokens/new?scopes=gist&description=EvolveIdleSavegameBackup">here</a>
                 </div>
                 <form id="settings_form">
                     <div class="material-input" style="margin-bottom: 15px">

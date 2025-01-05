@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Evolve Idle Cloud Save
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       1.3.1
+// @version       1.3.2
 // @description   Automatically upload your evolve save to a gist
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js

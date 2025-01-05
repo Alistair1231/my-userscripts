@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Evolve Idle Cloud Save
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       1.3.0
+// @version       1.3.1
 // @description   Automatically upload your evolve save to a gist
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
@@ -9,10 +9,6 @@
 // @match         https://pmotschmann.github.io/Evolve/
 // @icon          https://icons.duckduckgo.com/ip2/github.io.ico
 // @license       GPL-3.0
-// @grant         GM.getValue
-// @grant         GM.setValue
-// @grant         GM.deleteValue
-// @grant         GM.listValues
 // @grant         GM.addStyle
 // @grant         GM.xmlHttpRequest
 // @require       https://cdn.jsdelivr.net/npm/@trim21/gm-fetch@0.2.1

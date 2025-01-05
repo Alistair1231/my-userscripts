@@ -10,6 +10,7 @@ export default [
         ...globals.browser,
         ...globals.greasemonkey,
         ...globals.devtools,
+        GM_fetch: false,
       },
     },
     // 'no-debugger': false,

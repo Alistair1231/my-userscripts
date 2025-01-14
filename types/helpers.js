@@ -102,25 +102,27 @@ Object.defineProperty(String.prototype, 'format', {
 //! v --- Find by text --- v
 /**
  * Searches for elements within the calling array or NodeList that contain the specified text.
- * @param {string} text - Text to search for within elements.
+ * @param {string|RegExp} text Text to search for.
  * @returns {Array} Array of elements that contain the specified text.
  * @example
  * const elements = document.querySelectorAll('div');
  * const results = elements.findByText('hello'); // Finds divs containing the word 'hello'
  */
 function findByText(text) {
-  let entries = []
-  this.forEach((element) => {
-    const newEntries = _findByText(element)
-    entries.push(...newEntries)
-  })
-  return entries
+  let entries = new Set()
 
-  function _findByText(parentElement) {
-    var elements = parentElement.querySelectorAll('*')
-    return Array.prototype.filter.call(elements, function (element) {
-      return element.textContent.includes(text)
-    })
+  this.forEach((element) => {
+    if (textMatches(element.innerHTML, text)) {
+      entries.add(element)
+    }
+  })
+
+  return Array.from(entries)
+
+  function textMatches(content, searchText) {
+    return searchText instanceof RegExp
+      ? searchText.test(content)
+      : content.includes(searchText)
   }
 }
 

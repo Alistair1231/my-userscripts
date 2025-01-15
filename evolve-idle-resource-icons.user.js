@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Evolve Idle Resource Icons and Max Values
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       0.5.0
+// @version       0.5.1
 // @description   Adds icons to costs and storage for easier identification, also adds max storage limit after costs to see your bottlenecks.
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/evolve-idle-resource-icons.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/evolve-idle-resource-icons.user.js
@@ -42,7 +42,7 @@
     { name: 'Deuterium', style: 'res-icon--deuterium', color: '77baee' },
     { name: 'Helium_3', style: 'res-icon--helium-3', color: '777ded' },
     { name: 'Neutronium', style: 'res-icon--neutronium', color: 'c3dc2f' },
-    { name: 'Adamantite', style: 'res-icon--adamantite', color: '5f1697' },
+    { name: 'Adamantite', style: 'res-icon--adamantite', color: '78afad' },
     { name: 'Infernite', style: 'res-icon--infernite', color: 'b22222' },
     { name: 'Elerium', style: 'res-icon--elerium', color: '49db2a' },
     { name: 'Nano_Tube', style: 'res-icon--nano-tube', color: 'ae8f6e' },

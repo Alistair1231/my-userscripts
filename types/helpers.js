@@ -86,17 +86,11 @@ function waitFor(selector, callback, interval = 100, timeout = 5000) {
  * const template = "Hello, {0}!";
  * const result = template.format("world"); // "Hello, world!"
  */
-function formatString(...args) {
+String.prototype.format = function (...args) {
   return this.replace(/{(\d+)}/g, (match, number) => {
     return typeof args[number] !== 'undefined' ? args[number] : match
   })
 }
-
-Object.defineProperty(String.prototype, 'format', {
-  enumerable: false,
-  writable: true,
-  value: formatString,
-})
 //? ^ --- FormatString --- ^
 
 //! v --- Find by text --- v
@@ -108,7 +102,8 @@ Object.defineProperty(String.prototype, 'format', {
  * const elements = document.querySelectorAll('div');
  * const results = elements.findByText('hello'); // Finds divs containing the word 'hello'
  */
-NodeList.prototype.findByText = Array.prototype.findByText = function (text) {
+
+function findByText(text) {
   let entries = new Set()
 
   this.forEach((element) => {
@@ -126,6 +121,18 @@ NodeList.prototype.findByText = Array.prototype.findByText = function (text) {
   }
 }
 
+Object.defineProperty(NodeList.prototype, 'findByText', {
+  enumerable: false,
+  writable: true,
+  value: findByText,
+})
+
+Object.defineProperty(Array.prototype, 'findByText', {
+  enumerable: false,
+  writable: true,
+  value: findByText,
+})
+
 /**
  * Searches for elements within the calling array or NodeList that contain the specified text.
  * @param {string|RegExp} query - Text or regular expression to search for.
@@ -137,9 +144,7 @@ NodeList.prototype.findByText = Array.prototype.findByText = function (text) {
  *   x.innerHTML = x.innerHTML.replaceAll(regex, "$1l$2");
  * });
  */
-NodeList.prototype.findChildren = Array.prototype.findChildren = function (
-  query
-) {
+function findChildren(query) {
   const results = []
   const matcher =
     typeof query === 'string'
@@ -170,6 +175,17 @@ NodeList.prototype.findChildren = Array.prototype.findChildren = function (
       !results.some((other) => other !== element && element.contains(other))
   )
 }
+Object.defineProperty(NodeList.prototype, 'findChildren', {
+  enumerable: false,
+  writable: true,
+  value: findChildren,
+})
+
+Object.defineProperty(Array.prototype, 'findChildren', {
+  enumerable: false,
+  writable: true,
+  value: findChildren,
+})
 
 //? ^ --- Find by text --- ^
 

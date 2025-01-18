@@ -108,7 +108,7 @@ Object.defineProperty(String.prototype, 'format', {
  * const elements = document.querySelectorAll('div');
  * const results = elements.findByText('hello'); // Finds divs containing the word 'hello'
  */
-function findByText(text) {
+NodeList.prototype.findByText = Array.prototype.findByText = function (text) {
   let entries = new Set()
 
   this.forEach((element) => {
@@ -126,16 +126,51 @@ function findByText(text) {
   }
 }
 
-Object.defineProperty(Array.prototype, 'findByText', {
-  enumerable: false,
-  writable: true,
-  value: findByText,
-})
-Object.defineProperty(NodeList.prototype, 'findByText', {
-  enumerable: false,
-  writable: true,
-  value: findByText,
-})
+/**
+ * Searches for elements within the calling array or NodeList that contain the specified text.
+ * @param {string|RegExp} query - Text or regular expression to search for.
+ * @param {string} [attribute] - Optional attribute to search within.
+ * @returns {Array} Array of element-children that contain the specified text.
+ * @example
+ * var regex = /(https:\/\/[^\.]+\.domain\.com\/samples\/[^\/]+\/[^_]+\_)s(_.....)/g;
+ * document.querySelectorAll("div.message-body").searchChildren(regex).forEach((x) => {
+ *   x.innerHTML = x.innerHTML.replaceAll(regex, "$1l$2");
+ * });
+ */
+NodeList.prototype.findChildren = Array.prototype.findChildren = function (
+  query
+) {
+  const results = []
+  const matcher =
+    typeof query === 'string'
+      ? (html) => html.includes(query)
+      : (html) => query.test(html)
+
+  const search = (elements) => {
+    elements.forEach((element) => {
+      if (element.nodeType === Node.ELEMENT_NODE) {
+        const innerHTML = element.innerHTML || ''
+        if (matcher(innerHTML)) {
+          results.push(element)
+        }
+
+        // Recursively search children if the element has child nodes
+        if (element.childNodes && element.childNodes.length > 0) {
+          search(Array.from(element.childNodes))
+        }
+      }
+    })
+  }
+
+  search(this)
+
+  // Filter results to remove parent elements if their children are already in the results
+  return results.filter(
+    (element) =>
+      !results.some((other) => other !== element && element.contains(other))
+  )
+}
+
 //? ^ --- Find by text --- ^
 
 //! v --- createObserver --- v

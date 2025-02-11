@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Advanced Dark Mode Toggle
-// @namespace    http://tampermonkey.net/
+// @namespace    https
 // @version      1.1
 // @description  Customizable dark mode with partial inversion and smart UI
 // @author       Your Name

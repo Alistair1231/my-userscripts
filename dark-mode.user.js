@@ -1,15 +1,19 @@
 // ==UserScript==
-// @name         Advanced Dark Mode Toggle
-// @namespace    https
-// @version      1.1
-// @description  Customizable dark mode with partial inversion and smart UI
-// @author       Your Name
-// @match        *://*/*
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_registerMenuCommand
-// @run-at      document-start
+// @name          Dark Mode Toggle
+// @namespace     https://github.com/Alistair1231/my-userscripts/
+// @version       0.1.0
+// @description   Customizable dark mode with partial inversion and smart UI
+// @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
+// @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
+// @author        Alistair1231
+// @license       GPL-3.0
+// @match         *://*/*
+// @grant         GM_getValue
+// @grant         GM_setValue
+// @grant         GM_registerMenuCommand
+// @run-at        document-start
 // ==/UserScript==
+// https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
 
 (function () {
   "use strict";

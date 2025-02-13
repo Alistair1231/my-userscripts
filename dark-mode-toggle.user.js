@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Dark Mode Toggle
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       0.1.1
+// @version       0.1.2
 // @description   Customizable dark mode with partial inversion and smart UI
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
@@ -13,7 +13,6 @@
 // @grant         GM_registerMenuCommand
 // @run-at        document-start
 // ==/UserScript==
-// https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
 
 (function () {
   "use strict";
@@ -65,13 +64,14 @@
   }
 
   function toggleDarkMode() {
-    const style = document.getElementById("dark-mode-toggle-style");
-    if (style) {
-      style.remove();
+    const styleId = "dark-mode-toggle-style";
+    const existingStyle = document.getElementById(styleId);
+    if (existingStyle) {
+      existingStyle.remove();
       isActive = false;
     } else {
       const newStyle = document.createElement("style");
-      newStyle.id = "dark-mode-toggle-style";
+      newStyle.id = styleId;
       newStyle.textContent = `
           html {
               -webkit-filter: invert(${CONFIG.inversionPercent}%);
@@ -82,13 +82,32 @@
               filter: invert(${CONFIG.mediaInversionPercent}%);
           }
       `;
-      // Insert style before any existing styles
-      const firstStyle = document.querySelector("style");
-      if (firstStyle) {
-        document.head.insertBefore(newStyle, firstStyle);
+
+      // Function that inserts the style when document.head is available
+      const insertStyle = () => {
+        // Insert before an existing <style> element if possible
+        const firstStyle = document.querySelector("style");
+        if (firstStyle) {
+          document.head.insertBefore(newStyle, firstStyle);
+        } else {
+          document.head.appendChild(newStyle);
+        }
+      };
+
+      if (document.head) {
+        insertStyle();
       } else {
-        document.head.appendChild(newStyle);
+        // In the unlikely event that document.head is null,
+        // wait for DOMContentLoaded.
+        document.addEventListener(
+          "DOMContentLoaded",
+          () => {
+            insertStyle();
+          },
+          { once: true }
+        );
       }
+
       isActive = true;
     }
   }
@@ -122,11 +141,9 @@
     // Add keydown listener for Escape and Alt+Shift+D
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") handleEscPress();
-      if (e.altKey && e.shiftKey && e.key.toLowerCase() === "d")
+      if (e.altKey && e.shiftKey && e.key.toLowerCase() === "d") {
         toggleDarkMode();
-      // macos
-      if (e. && e.shiftKey && e.key.toLowerCase() === "d")
-        toggleDarkMode();
+      }
     });
 
     // Check localStorage and apply dark mode if needed
@@ -140,6 +157,6 @@
     createButton();
   });
 
-  // Run initial setup
+  // Run initial setup immediately
   init();
 })();

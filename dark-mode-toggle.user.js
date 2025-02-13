@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Dark Mode Toggle
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       0.1.0
+// @version       0.1.1
 // @description   Customizable dark mode with partial inversion and smart UI
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js

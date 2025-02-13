@@ -44,6 +44,7 @@
           cursor: pointer;
           border-radius: 4px;
           background: #fff;
+          color: #333;
           box-shadow: 0 2px 5px rgba(0,0,0,0.2);
           opacity: 0;
           visibility: hidden;

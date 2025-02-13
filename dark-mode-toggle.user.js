@@ -125,7 +125,7 @@
       if (e.altKey && e.shiftKey && e.key.toLowerCase() === "d")
         toggleDarkMode();
       // macos
-      if (e.metaKey && e.shiftKey && e.key.toLowerCase() === "d")
+      if (e. && e.shiftKey && e.key.toLowerCase() === "d")
         toggleDarkMode();
     });
 

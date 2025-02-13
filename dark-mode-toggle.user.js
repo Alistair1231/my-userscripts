@@ -124,6 +124,9 @@
       if (e.key === "Escape") handleEscPress();
       if (e.altKey && e.shiftKey && e.key.toLowerCase() === "d")
         toggleDarkMode();
+      // macos
+      if (e.metaKey && e.shiftKey && e.key.toLowerCase() === "d")
+        toggleDarkMode();
     });
 
     // Check localStorage and apply dark mode if needed

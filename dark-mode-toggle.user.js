@@ -85,7 +85,7 @@
               -webkit-filter: invert(${CONFIG.inversionPercent}%);
               filter: invert(${CONFIG.inversionPercent}%);
           }
-          img, video, picture, iframe, object, embed, canvas, svg {
+          img, video, iframe, object, embed, canvas, svg {
               -webkit-filter: invert(${CONFIG.mediaInversionPercent}%);
               filter: invert(${CONFIG.mediaInversionPercent}%);
           }

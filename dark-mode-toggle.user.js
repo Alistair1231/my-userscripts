@@ -2,7 +2,7 @@
 // @name          Dark Mode Toggle
 // @namespace     https://github.com/Alistair1231/my-userscripts/
 // @version       0.1.2
-// @description   dark mode with partial inversion, double-hit Esc for toggle button
+// @description   Dark mode with partial inversion, double-hit Esc for toggle button
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
 // @author        Alistair1231
@@ -35,19 +35,19 @@
       btn = document.createElement("button");
       btn.textContent = "🌓 Toggle Dark Mode";
       btn.style.cssText = `
-          position: fixed;
-          bottom: 20px;
-          right: 20px;
-          z-index: 2147483647 !important;
-          padding: 8px 12px;
-          cursor: pointer;
-          border-radius: 4px;
-          background: #fff;
-          color: #333;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-          opacity: 0;
-          visibility: hidden;
-          transition: opacity 0.3s ease;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 2147483647 !important;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        background: #fff;
+        color: #333;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
       `;
       btn.addEventListener("click", () => {
         if (window.localStorage.darkMode === "true") {
@@ -71,19 +71,33 @@
       const newStyle = document.createElement("style");
       newStyle.id = styleId;
       newStyle.textContent = `
-          html {
-              -webkit-filter: invert(${CONFIG.inversionPercent}%);
-              filter: invert(${CONFIG.inversionPercent}%);
-          }
-          img, video, picture, iframe, object, embed, canvas {
-              -webkit-filter: invert(${CONFIG.mediaInversionPercent}%);
-              filter: invert(${CONFIG.mediaInversionPercent}%);
-          }
+        /* Invert the whole document */
+        html {
+          -webkit-filter: invert(${CONFIG.inversionPercent}%);
+          filter: invert(${CONFIG.inversionPercent}%);
+        }
+        /* Re-invert common media elements so that images, videos,
+           inline SVGs, etc. appear in the correct colors. */
+        img,
+        video,
+        picture,
+        iframe,
+        object,
+        embed,
+        canvas,
+        svg {
+          -webkit-filter: invert(${CONFIG.mediaInversionPercent}%);
+          filter: invert(${CONFIG.mediaInversionPercent}%);
+        }
+        /* Re-invert elements that use inline styles with URL-based images. */
+        [style*="url("] {
+          -webkit-filter: invert(${CONFIG.mediaInversionPercent}%);
+          filter: invert(${CONFIG.mediaInversionPercent}%);
+        }
       `;
 
-      // Function that inserts the style when document.head is available
+      // Insert the style element as soon as document.head is available.
       const insertStyle = () => {
-        // Insert before an existing <style> element if possible.
         const firstStyle = document.querySelector("style");
         if (firstStyle) {
           document.head.insertBefore(newStyle, firstStyle);
@@ -108,13 +122,7 @@
     }
   }
 
-  function handleEscPress() {
-    const now = Date.now();
-    if (now - lastEscPress < CONFIG.doublePressDelay) {
-      showToggleUI();
-    }
-    lastEscPress = now;
-  }
+  function handleEscPress() 
 
   function showToggleUI() {
     clearTimeout(uiTimeout);
@@ -132,27 +140,30 @@
     }, CONFIG.uiTimeout);
   }
 
-  // Initial setup that can run immediately
+  // Initial setup
   function init() {
-    // Add keydown listener for Escape and Alt+Shift+D
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") handleEscPress();
+      if (e.key === "Escape")
+          {
+    const now = Date.now();
+    if (now - lastEscPress < CONFIG.doublePressDelay) {
+      showToggleUI();
+    }
+    lastEscPress = now;
+  }
       if (e.altKey && e.shiftKey && e.key.toLowerCase() === "d") {
         toggleDarkMode();
       }
     });
 
-    // Check localStorage and apply dark mode if needed
     if (window.localStorage.darkMode === "true") {
       toggleDarkMode();
     }
   }
 
-  // Wait for DOM to be ready before creating the button
   document.addEventListener("DOMContentLoaded", () => {
     createButton();
   });
 
-  // Run initial setup immediately
   init();
 })();

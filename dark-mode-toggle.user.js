@@ -10,7 +10,6 @@
 // @match         *://*/*
 // @grant         GM_getValue
 // @grant         GM_setValue
-// @grant         GM_registerMenuCommand
 // @run-at        document-start
 // ==/UserScript==
 

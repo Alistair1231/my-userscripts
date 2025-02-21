@@ -8,8 +8,6 @@
 // @author        Alistair1231
 // @license       GPL-3.0
 // @match         *://*/*
-// @grant         GM_getValue
-// @grant         GM_setValue
 // @run-at        document-start
 // ==/UserScript==
 

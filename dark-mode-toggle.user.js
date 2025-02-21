@@ -29,12 +29,11 @@
   let uiTimeout;
   let btn = null;
 
-  // Function to create the toggle button
-  function createButton() {
-    if (!btn) {
-      btn = document.createElement("button");
-      btn.textContent = "🌓 Toggle Dark Mode";
-      btn.style.cssText = `
+  document.addEventListener("DOMContentLoaded", () => {
+    // create the toggle button
+    btn = document.createElement("button");
+    btn.textContent = "🌓 Toggle Dark Mode";
+    btn.style.cssText = `
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -49,16 +48,50 @@
         visibility: hidden;
         transition: opacity 0.3s ease;
       `;
-      btn.addEventListener("click", () => {
-        if (window.localStorage.darkMode === "true") {
-          window.localStorage.darkMode = false;
-        } else {
-          window.localStorage.darkMode = true;
+    btn.addEventListener("click", () => {
+      if (window.localStorage.darkMode === "true") {
+        window.localStorage.darkMode = false;
+      } else {
+        window.localStorage.darkMode = true;
+      }
+      toggleDarkMode();
+    });
+    document.body.appendChild(btn);
+  });
+
+  // init
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const now = Date.now();
+      if (now - lastEscPress < CONFIG.doublePressDelay) {
+        // show toggle ui
+        clearTimeout(uiTimeout);
+        if (btn) {
+          btn.style.visibility = "visible";
+          btn.style.opacity = "1";
         }
-        toggleDarkMode();
-      });
-      document.body.appendChild(btn);
+        uiTimeout = setTimeout(() => {
+          if (btn) {
+            btn.style.opacity = "0";
+            setTimeout(() => {
+              btn.style.visibility = "hidden";
+            }, 300);
+          }
+        }, CONFIG.uiTimeout);
+      }
+      lastEscPress = now;
     }
+    if (
+      (e.ctrlKey || e.altKey) && // ctrl for mac. alt for windows
+      e.shiftKey &&
+      e.key.toLowerCase() === "d"
+    ) {
+      toggleDarkMode();
+    }
+  });
+
+  if (window.localStorage.darkMode === "true") {
+    toggleDarkMode();
   }
 
   function toggleDarkMode() {
@@ -121,49 +154,4 @@
       isActive = true;
     }
   }
-
-  function handleEscPress() 
-
-  function showToggleUI() {
-    clearTimeout(uiTimeout);
-    if (btn) {
-      btn.style.visibility = "visible";
-      btn.style.opacity = "1";
-    }
-    uiTimeout = setTimeout(() => {
-      if (btn) {
-        btn.style.opacity = "0";
-        setTimeout(() => {
-          btn.style.visibility = "hidden";
-        }, 300);
-      }
-    }, CONFIG.uiTimeout);
-  }
-
-  // Initial setup
-  function init() {
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape")
-          {
-    const now = Date.now();
-    if (now - lastEscPress < CONFIG.doublePressDelay) {
-      showToggleUI();
-    }
-    lastEscPress = now;
-  }
-      if (e.altKey && e.shiftKey && e.key.toLowerCase() === "d") {
-        toggleDarkMode();
-      }
-    });
-
-    if (window.localStorage.darkMode === "true") {
-      toggleDarkMode();
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    createButton();
-  });
-
-  init();
 })();

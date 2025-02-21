@@ -38,7 +38,7 @@
           position: fixed;
           bottom: 20px;
           right: 20px;
-          z-index: 9999;
+          z-index: 2147483647 !important;
           padding: 8px 12px;
           cursor: pointer;
           border-radius: 4px;
@@ -52,8 +52,6 @@
       btn.addEventListener("click", () => {
         if (window.localStorage.darkMode === "true") {
           window.localStorage.darkMode = false;
-        } else if (window.localStorage.darkMode === "false") {
-          window.localStorage.darkMode = true;
         } else {
           window.localStorage.darkMode = true;
         }
@@ -85,7 +83,7 @@
 
       // Function that inserts the style when document.head is available
       const insertStyle = () => {
-        // Insert before an existing <style> element if possible
+        // Insert before an existing <style> element if possible.
         const firstStyle = document.querySelector("style");
         if (firstStyle) {
           document.head.insertBefore(newStyle, firstStyle);
@@ -97,8 +95,6 @@
       if (document.head) {
         insertStyle();
       } else {
-        // In the unlikely event that document.head is null,
-        // wait for DOMContentLoaded.
         document.addEventListener(
           "DOMContentLoaded",
           () => {

@@ -2,7 +2,7 @@
 // @name          Dark Mode Toggle
 // @namespace     https://github.com/Alistair1231/my-userscripts/
 // @version       0.2.1
-// @description   dark mode with partial inversion, double-hit Esc for toggle button
+// @description   dark mode using inversion, double-hit Esc for toggle button
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
 // @author        Alistair1231

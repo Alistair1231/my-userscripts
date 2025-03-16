@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Dark Mode Toggle
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       0.1.2
+// @version       0.2.1
 // @description   dark mode with partial inversion, double-hit Esc for toggle button
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
@@ -9,6 +9,7 @@
 // @license       GPL-3.0
 // @match         *://*/*
 // @run-at        document-start
+// @grant         GM.addStyle
 // ==/UserScript==
 
 (function () {
@@ -25,6 +26,16 @@
   let lastEscPress = 0;
   let uiTimeout;
   let btn = null;
+  const style = `
+          html {
+              -webkit-filter: invert(${CONFIG.inversionPercent}%);
+              filter: invert(${CONFIG.inversionPercent}%);
+          }
+          img, video, iframe, object, embed, canvas, svg {
+              -webkit-filter: invert(${CONFIG.mediaInversionPercent}%);
+              filter: invert(${CONFIG.mediaInversionPercent}%);
+          }
+      `;
 
   // Run initial setup immediately
   init();
@@ -65,58 +76,9 @@
         } else {
           window.localStorage.darkMode = true;
         }
-        toggleDarkMode();
+        window.location.reload();
       });
       document.body.appendChild(btn);
-    }
-  }
-
-  function toggleDarkMode() {
-    const styleId = "dark-mode-toggle-style";
-    const existingStyle = document.getElementById(styleId);
-    if (existingStyle) {
-      existingStyle.remove();
-      isActive = false;
-    } else {
-      const newStyle = document.createElement("style");
-      newStyle.id = styleId;
-      newStyle.textContent = `
-          html {
-              -webkit-filter: invert(${CONFIG.inversionPercent}%);
-              filter: invert(${CONFIG.inversionPercent}%);
-          }
-          img, video, iframe, object, embed, canvas, svg {
-              -webkit-filter: invert(${CONFIG.mediaInversionPercent}%);
-              filter: invert(${CONFIG.mediaInversionPercent}%);
-          }
-      `;
-
-      // Function that inserts the style when document.head is available
-      const insertStyle = () => {
-        // Insert before an existing <style> element if possible
-        const firstStyle = document.querySelector("style");
-        if (firstStyle) {
-          document.head.insertBefore(newStyle, firstStyle);
-        } else {
-          document.head.appendChild(newStyle);
-        }
-      };
-
-      if (document.head) {
-        insertStyle();
-      } else {
-        // In the unlikely event that document.head is null,
-        // wait for DOMContentLoaded.
-        document.addEventListener(
-          "DOMContentLoaded",
-          () => {
-            insertStyle();
-          },
-          { once: true }
-        );
-      }
-
-      isActive = true;
     }
   }
 
@@ -149,14 +111,11 @@
     // Add keydown listener for Escape and Alt+Shift+D
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") handleEscPress();
-      if (e.altKey && e.shiftKey && e.key.toLowerCase() === "d") {
-        toggleDarkMode();
-      }
     });
 
     // Check localStorage and apply dark mode if needed
     if (window.localStorage.darkMode === "true") {
-      toggleDarkMode();
+        GM.addStyle(style);
     }
   }
 })();

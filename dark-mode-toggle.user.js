@@ -110,7 +110,6 @@
 
   // Initial setup that can run immediately
   function init() {
-    // Add keydown listener for Escape and Alt+Shift+D
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") handleEscPress();
     });

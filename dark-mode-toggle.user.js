@@ -11,6 +11,8 @@
 // @run-at        document-start
 // @grant         GM.addStyle
 // ==/UserScript==
+// https://github.com/Alistair1231/my-userscripts/blob/master/dark-mode-toggle.user.js
+// https://greasyfork.org/en/scripts/530023-dark-mode-toggle
 
 (function () {
   "use strict";

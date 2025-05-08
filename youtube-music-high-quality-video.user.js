@@ -23,7 +23,7 @@
     document.getElementById("movie_player").setPlaybackQualityRange(quality);
 
   var checkElement = () => {
-    element = document.getElementById("movie_player");
+    const element = document.getElementById("movie_player");
     if (!element) setTimeout(checkElement, 500);
     else {
       setQuality("hd1440");

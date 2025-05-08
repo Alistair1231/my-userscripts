@@ -25,7 +25,7 @@
     document.getElementById("movie_player").setPlaybackQualityRange(quality);
 
   const run = () => {
-    setQuality("hd1440");
+    // check if the video player is available
       // create a MutationObserver to watch for new videos
       const observer = new MutationObserver((mutations) => {
         for (const mutation of mutations) {

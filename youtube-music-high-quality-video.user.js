@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Youtube Music High Quality Video
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.0
+// @version      0.1.1
 // @description  Sets the video quality to 1440p on Youtube Music
 // @author       Alistair1231
 // @match        https://music.youtube.com/watch*

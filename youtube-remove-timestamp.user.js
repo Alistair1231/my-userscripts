@@ -9,7 +9,7 @@
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/464497-mapgenie-smaller-icon-size
-// https://github.com/Alistair1231/my-userscripts/blob/main/youtube-remove-timestamp.user.js
+// https://github.com/Alistair1231/my-userscripts/blob/master/youtube-remove-timestamp.user.js
 (function () {
   "use strict";
   // Get all the query parameters from the URL, except for the timestamp

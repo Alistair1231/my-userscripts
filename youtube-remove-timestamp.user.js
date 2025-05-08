@@ -18,7 +18,7 @@
   window.history.pushState(
     null,
     "",
-    
+    // build the new URL with the same path and query parameters, but without the timestamp
     `${window.location.origin}${window.location.pathname}${search}`
   );
 })();

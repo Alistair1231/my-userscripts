@@ -20,10 +20,10 @@
    * If a quality is unavailable, it will be set to the next best quality.
    * @returns
    */
-  var setQuality = (quality) =>
+  const setQuality = (quality) =>
     document.getElementById("movie_player").setPlaybackQualityRange(quality);
 
-  var checkElement = () => {
+  const checkElement = () => {
     const element = document.getElementById("movie_player");
     if (!element) setTimeout(checkElement, 500);
     else {

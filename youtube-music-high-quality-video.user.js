@@ -13,7 +13,6 @@
 
 (function () {
   "use strict";
-  // auto / highres (8k or 'original') / hd2880 / hd2160 / hd1440 / hd1080 / hd720 / large / medium / small / tiny
   /**
    * 
    * @param {string} quality - The quality to set the video to. Can be one of the following:

@@ -15,6 +15,8 @@
   "use strict";
   // Get all the query parameters from the URL, except for the timestamp
   search = window.location.search.split("&").filter((x) => !x.startsWith("t="));
+  
+  // Update the URL in the address bar without reloading the page
   window.history.pushState(
     null,
     "",

@@ -24,11 +24,7 @@
   const setQuality = (quality) =>
     document.getElementById("movie_player").setPlaybackQualityRange(quality);
 
-  const checkElement = () => {
-    const element = document.getElementById("movie_player");
-    if (!element) setTimeout(checkElement, 500);
-    else {
-      setQuality("hd1440");
+  const run = () => {
       // create a MutationObserver to watch for new videos
       const observer = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
@@ -47,7 +43,6 @@
         subtree: true,
       });
     }
-  };
 
-  checkElement();
+  run();
 })();

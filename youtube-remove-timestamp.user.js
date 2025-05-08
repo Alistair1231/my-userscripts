@@ -10,3 +10,15 @@
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/464497-mapgenie-smaller-icon-size
 // https://openuserjs.org/scripts/Alistair1231/MapGenie_-_Smaller_Icon_Size
+
+(function () {
+  "use strict";
+  // Get all the query parameters from the URL, except for the timestamp
+  search = window.location.search.split("&").filter((x) => !x.startsWith("t="));
+  window.history.pushState(
+    null,
+    "",
+    
+    `${window.location.origin}${window.location.pathname}${search}`
+  );
+})();

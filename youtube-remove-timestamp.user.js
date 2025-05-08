@@ -15,12 +15,15 @@
   "use strict";
   // Get all the query parameters from the URL, except for the timestamp
   search = window.location.search.split("&").filter((x) => !x.startsWith("t="));
-  
-  // Update the URL in the address bar without reloading the page
-  window.history.pushState(
-    null,
-    "",
-    // build the new URL with the same path and query parameters, but without the timestamp
-    `${window.location.origin}${window.location.pathname}${search}`
-  );
+
+  // Wait for 10 seconds before updating the URL
+  setTimeout(() => {
+    // Update the URL in the address bar without reloading the page
+    window.history.pushState(
+      null,
+      "",
+      // build the new URL with the same path and query parameters, but without the timestamp
+      `${window.location.origin}${window.location.pathname}${search}`
+    );
+  }, 10000);
 })();

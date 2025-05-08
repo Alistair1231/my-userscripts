@@ -33,7 +33,7 @@
         if (mutation.type === "childList") {
           // check if the video has changed
           const newElement = document.getElementById("movie_player");
-          if (newElement && newElement !== element) {
+          if (newElement) {
             setQuality("hd1440");
           }
         }

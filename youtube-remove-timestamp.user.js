@@ -2,7 +2,7 @@
 // @name         Youtube Remove Timestamp
 // @namespace    https://github.com/Auncaughbove17/my-userscripts/
 // @version      0.3.3
-// @description  Updates the hi
+// @description  Removes the timestamp from URL, so it doesn't invalidate your progress when you reload the page.
 // @author       Alistair1231
 // @match        https://mapgenie.io/*
 // @icon         https://icons.duckduckgo.com/ip2/mapgenie.io.ico

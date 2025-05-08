@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Youtube Music High Quality Video
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.0
+// @version      0.2.1
 // @description  Tries to set the video quality to 1440p on Youtube Music (or the highest available quality)
 // @author       Alistair1231
 // @match        https://music.youtube.com/watch*
@@ -17,7 +17,7 @@
    *
    * @param {string} quality - The quality to set the video to. Can be one of the following:
    * auto / highres / hd2880 / hd2160 / hd1440 / hd1080 / hd720 / large / medium / small / tiny
-   * If a quality is unavailable, it will be set to the next best quality. 
+   * If a quality is unavailable, it will be set to the next best quality.
    * On Youtube Music, videos seem to be limited to 1080p on the backend, but no harm in trying for more.
    * @returns
    */
@@ -25,25 +25,26 @@
     document.getElementById("movie_player").setPlaybackQualityRange(quality);
 
   const run = () => {
-    // check if the video player is available
-      // create a MutationObserver to watch for new videos
-      const observer = new MutationObserver((mutations) => {
-        for (const mutation of mutations) {
-          if (mutation.type === "childList") {
-            // check if the video has changed
-            const newElement = document.getElementById("movie_player");
-            if (newElement && newElement !== element) {
-              setQuality("hd1440");
-            }
+    if (document.getElementById("movie_player")) setQuality("hd1440");
+
+    // create a MutationObserver to watch for new videos
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === "childList") {
+          // check if the video has changed
+          const newElement = document.getElementById("movie_player");
+          if (newElement && newElement !== element) {
+            setQuality("hd1440");
           }
         }
-      });
-      // start observing the element for changes
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
-    }
+      }
+    });
+    // start observing the element for changes
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  };
 
-  setTimeout(run,2000);
+  setTimeout(run, 2000);
 })();

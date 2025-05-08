@@ -29,6 +29,19 @@
     if (!element) setTimeout(checkElement, 500);
     else {
       setQuality("hd1440");
+      // create a MutationObserver to watch for new videos
+      const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.type === "childList") {
+            // check if the video has changed
+            const newElement = document.getElementById("movie_player");
+            if (newElement && newElement !== element) {
+              setQuality("hd1440");
+            }
+          }
+        }
+      });
+
     }
   };
 

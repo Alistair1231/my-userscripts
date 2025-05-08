@@ -16,7 +16,7 @@
   // Get all the query parameters from the URL, except for the timestamp
   search = window.location.search.split("&").filter((x) => !x.startsWith("t="));
 
-  // Wait for 10 seconds before updating the URL, if done too quick, Youtube will re-add the timestamp under certain conditions
+  // Wait for 10 seconds before updating the URL. If done too quick, Youtube will re-add the timestamp under certain conditions
   setTimeout(() => {
     // Update the URL in the address bar without reloading the page
     window.history.pushState(

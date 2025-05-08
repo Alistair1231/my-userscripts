@@ -21,6 +21,8 @@
    */
   var setQuality = (quality) =>
     document.getElementById("movie_player").setPlaybackQualityRange(quality);
+  
+  
   var checkElement = () => {
     element = document.getElementById("movie_player");
     if (!element) setTimeout(checkElement, 500);

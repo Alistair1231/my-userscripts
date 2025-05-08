@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Youtube Music High Quality Video
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.1
-// @description  Sets the video quality to 1440p on Youtube Music
+// @version      0.1.2
+// @description  Tries to set the video quality to 1440p on Youtube Music (or the highest available quality)
 // @author       Alistair1231
 // @match        https://music.youtube.com/watch*
 // @icon         https://icons.duckduckgo.com/ip2/youtube.com.ico
@@ -17,7 +17,8 @@
    *
    * @param {string} quality - The quality to set the video to. Can be one of the following:
    * auto / highres / hd2880 / hd2160 / hd1440 / hd1080 / hd720 / large / medium / small / tiny
-   * If a quality is unavailable, it will be set to the next best quality.
+   * If a quality is unavailable, it will be set to the next best quality. 
+   * On Youtube Music, videos seem to be limited to 1080p on the backend, but no harm in trying for more.
    * @returns
    */
   const setQuality = (quality) =>

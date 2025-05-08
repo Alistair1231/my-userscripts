@@ -4,8 +4,8 @@
 // @version      0.1.0
 // @description  Removes the timestamp from URL, so it doesn't invalidate your progress when you reload the page.
 // @author       Alistair1231
-// @match        https://mapgenie.io/*
-// @icon         https://icons.duckduckgo.com/ip2/mapgenie.io.ico
+// @match        https://www.youtube.com/watch*
+// @icon         https://icons.duckduckgo.com/ip2/youtube.com.ico
 // @license      MIT
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/464497-mapgenie-smaller-icon-size

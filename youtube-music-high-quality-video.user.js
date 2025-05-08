@@ -14,15 +14,14 @@
 (function () {
   "use strict";
   /**
-   * 
+   *
    * @param {string} quality - The quality to set the video to. Can be one of the following:
    * auto / highres (8k or 'original') / hd2880 / hd2160 / hd1440 / hd1080 / hd720 / large / medium / small / tiny
-   * @returns 
+   * @returns
    */
   var setQuality = (quality) =>
     document.getElementById("movie_player").setPlaybackQualityRange(quality);
-  
-  
+
   var checkElement = () => {
     element = document.getElementById("movie_player");
     if (!element) setTimeout(checkElement, 500);

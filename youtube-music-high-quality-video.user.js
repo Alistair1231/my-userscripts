@@ -45,5 +45,5 @@
       });
     }
 
-  setTimeout(run,1000);
+  setTimeout(run,2000);
 })();

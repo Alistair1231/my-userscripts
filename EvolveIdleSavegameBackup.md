@@ -3,7 +3,7 @@
 I lost my save game 😞, so I created a quick backup solution using GitHub Gist to store save data. 
 
 ### Key Features:
-- **Automatic Upload:** On first use, you'll be prompted to enter your Gist ID and Personal Access Token. These credentials are stored as plain text in the Userscript storage. The token must have the `gist` scope.
+- **Automatic Upload:** On first use, you'll be prompted to enter your Gist ID and Personal Access Token. These credentials are stored as plain text in the local storage. The token must have the `gist` scope.
 - **Manual Setup:** You need to manually create the Gist and enter its ID in the settings. 
 - **Export Settings:** Saves are exported to the filename specified in the settings.
 - **Import Flexibility:** Import your save from any file in the Gist, making it easy to restore data after switching devices or PCs.

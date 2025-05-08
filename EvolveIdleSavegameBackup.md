@@ -15,8 +15,9 @@ I lost my save game 😞, so I created a quick backup solution using GitHub Gist
 With this setup, your progress is secure, and you can easily transfer your saves between devices.
 
 ----
-![UI changes](https://i.imgur.com/HIjgCpk.png)
-## Settings window example with dummy data:
+❗This script is incompatible with Greasemonkey. Greasemonkey does not support GM.addStyle, which is used for styling. Please use Tampermonkey or Violentmonkey instead. I personally use this on Firefox with Violentmonkey.
+
+Settings window example with dummy data, also the new buttons are in the background:
 ![Settings](https://i.imgur.com/EUujcoO.png)
 
 <!-- [imgur album](https://imgur.com/a/o791v3t) -->

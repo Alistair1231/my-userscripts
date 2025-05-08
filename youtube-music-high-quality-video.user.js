@@ -30,4 +30,6 @@
       setQuality("hd1440");
     }
   };
+
+  checkElement();
 })();

@@ -8,7 +8,7 @@
 // @icon         https://icons.duckduckgo.com/ip2/youtube.com.ico
 // @license      MIT
 // ==/UserScript==
-// https://greasyfork.org/en/scripts/535336-youtube-music-high-quality-video
+// https://greasyfork.org/en/scripts/535348-youtube-music-high-quality-video
 // https://github.com/Alistair1231/my-userscripts/blob/master/youtube-music-high-quality-video.user.js
 
 (function () {

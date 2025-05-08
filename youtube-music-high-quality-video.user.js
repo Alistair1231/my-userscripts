@@ -16,7 +16,8 @@
   /**
    *
    * @param {string} quality - The quality to set the video to. Can be one of the following:
-   * auto / highres (8k or 'original') / hd2880 / hd2160 / hd1440 / hd1080 / hd720 / large / medium / small / tiny
+   * auto / highres / hd2880 / hd2160 / hd1440 / hd1080 / hd720 / large / medium / small / tiny
+   * If a quality is unavailable, it will be set to the next best quality.
    * @returns
    */
   var setQuality = (quality) =>

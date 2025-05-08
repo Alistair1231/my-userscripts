@@ -3,7 +3,7 @@
 I lost my save game 😞, so I created a quick backup solution using GitHub Gist to store save data. 
 
 ### Key Features:
-- **Automatic Upload:** On first use, you'll be prompted to enter your Gist ID and Personal Access Token. These credentials are stored as plain text in the local storage. To create a token, you can use this link: 
+- **Automatic Upload:** On first use, you'll be prompted to enter your Gist ID and Personal Access Token. These credentials are stored as plain text in the local storage. To create a token, you can use this link: https://github.com/settings/tokens/new?scopes=gist&description=EvolveIdleSavegameBackup
 - **Manual Setup:** You need to manually create the Gist and enter its ID in the settings. 
 - **Export Settings:** Saves are exported to the filename specified in the settings.
 - **Import Flexibility:** Import your save from any file in the Gist, making it easy to restore data after switching devices or PCs.

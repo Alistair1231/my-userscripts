@@ -22,7 +22,10 @@
   const removeTimestamp = () => {
     console.log("Trying to remove timestamp from URL...");
     // Get all the query parameters from the URL, except for the timestamp
-    const search = window.location.search.split("&").filter((x) => !x.startsWith("t=")).join("&");
+    const search = window.location.search
+      .split("&")
+      .filter((x) => !x.startsWith("t="))
+      .join("&");
 
     // Update the URL in the address bar without reloading the page
     window.history.pushState(
@@ -31,23 +34,26 @@
       // build the new URL with the same path and query parameters, but without the timestamp
       `${window.location.origin}${window.location.pathname}${search}`
     );
-  }
-  
+  };
+
   // Wait for 10 seconds before updating the URL. If done too quick, Youtube will re-add the timestamp under certain conditions
-  setTimeout(() => {
-    removeTimestamp();
-    // mutattion observer to watch for new video loads
-    const observer = new MutationObserver(() => {
-      // check if the URL has a timestamp
-      if (window.location.search.includes("t=")) {
-        console.log("Timestamp found in URL, removing...");
-        setTimeout(removeTimestamp, 2000);
-      }
-    });
-    // start observing the body for changes
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-  }, 10000);
+  while(!window.location.search.includes("t=")) {
+    console.log("Waiting for timestamp to be added to URL...");
+    // wait for 10 seconds
+    await new Promise((resolve) => setTimeout(resolve, 10000));
+  }
+  removeTimestamp();
+  // mutattion observer to watch for new video loads
+  const observer = new MutationObserver(() => {
+    // check if the URL has a timestamp
+    if (window.location.search.includes("t=")) {
+      console.log("Timestamp found in URL, removing...");
+      setTimeout(removeTimestamp, 2000);
+    }
+  });
+  // start observing the body for changes
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
 })();

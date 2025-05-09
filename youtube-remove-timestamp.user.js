@@ -36,7 +36,7 @@
       // check if the URL has a timestamp
       if (window.location.search.includes("t=")) {
         console.log("Timestamp found in URL, removing...");
-        removeTimestamp();
+        setTimeout(removeTimestamp, 2000);
       }
     });
     // start observing the body for changes

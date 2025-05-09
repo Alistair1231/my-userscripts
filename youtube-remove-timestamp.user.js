@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Youtube Remove Timestamp
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.1.4
+// @version      0.2.0
 // @description  Removes the timestamp from URL, so it doesn't invalidate your progress when you reload the page.
 // @author       Alistair1231
 // @match        https://www.youtube.com/watch*
@@ -30,5 +30,17 @@
   // Wait for 10 seconds before updating the URL. If done too quick, Youtube will re-add the timestamp under certain conditions
   setTimeout(() => {
     removeTimestamp();
+    // mutattion observer to watch for new video loads
+    const observer = new MutationObserver(() => {
+      // check if the URL has a timestamp
+      if (window.location.search.includes("t=")) {
+        removeTimestamp();
+      }
+    });
+    // start observing the body for changes
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
   }, 10000);
 })();

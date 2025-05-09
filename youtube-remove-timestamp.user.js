@@ -21,7 +21,7 @@
     const params = new URLSearchParams(window.location.search);
     if (!params.has("t")) return; // No timestamp, nothing to do
 
-    cons
+    console.log("Removing timestamp from URL");
     params.delete("t");
     const newSearch = params.toString();
     const newUrl =

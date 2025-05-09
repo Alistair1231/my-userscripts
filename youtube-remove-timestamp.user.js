@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Youtube Remove Timestamp
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.3.0
+// @version      0.4.0
 // @description  Removes the timestamp from URL, so it doesn't invalidate your progress when you reload the page.
 // @author       Alistair1231
 // @match        https://www.youtube.com/*

@@ -15,6 +15,14 @@
   "use strict";
 
   let lastUrl = location.href;
+  setInterval(() => {
+    if (location.href !== lastUrl) {
+      lastUrl = location.href;
+      // Your navigation code here
+      console.log('URL changed:', lastUrl);
+    }
+  }, 200); // 200ms is a good balance
+  
 
   function removeTimestamp() {
     if (!window.location.href.includes("https://www.youtube.com/watch")) return;
@@ -31,35 +39,6 @@
       console.log("Timestamp removed from URL.");
     }
   }
-
-  // Debounce function to avoid spamming
-  function debounce(fn, delay) {
-    let timer = null;
-    return function (...args) {
-      clearTimeout(timer);
-      timer = setTimeout(() => fn.apply(this, args), delay);
-    };
-  }
-
-  // Listen for YouTube navigation events
-  function addListeners() {
-    // YouTube fires this event on navigation
-    window.addEventListener("yt-navigate-finish", debouncedRemove);
-    // Fallback for browser navigation
-    window.addEventListener("popstate", debouncedRemove);
-  }
-
-  // Poll for URL changes as a fallback (SPA navigation)
-  function pollUrlChange() {
-    setInterval(() => {
-      if (location.href !== lastUrl) {
-        lastUrl = location.href;
-        debouncedRemove();
-      }
-    }, 1000);
-  }
-
-  const debouncedRemove = debounce(removeTimestamp, 1000);
 
   // Wait for 10 seconds before first run (as in your script)
   setTimeout(() => {

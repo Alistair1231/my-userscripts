@@ -13,9 +13,7 @@
 
 (function () {
   "use strict";
-
   
-
   function removeTimestamp() {
     if (!window.location.href.includes("https://www.youtube.com/watch")) return;
 

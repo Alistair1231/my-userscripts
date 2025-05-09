@@ -8,6 +8,8 @@
 // @icon         https://icons.duckduckgo.com/ip2/youtube.com.ico
 // @license      MIT
 // ==/UserScript==
+// https://greasyfork.org/en/scripts/535336-youtube-remove-timestamp/
+// https://github.com/Alistair1231/my-userscripts/blob/master/youtube-remove-timestamp.user.js
 
 (function () {
   "use strict";

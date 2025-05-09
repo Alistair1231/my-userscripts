@@ -31,6 +31,7 @@
     }
   }
 
+  removeTimestamp();
   let lastUrl = location.href;
   setInterval(() => {
     if (location.href !== lastUrl) {

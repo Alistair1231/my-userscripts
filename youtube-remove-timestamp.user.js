@@ -18,14 +18,14 @@
   setInterval(() => {
     if (location.href !== lastUrl) {
       lastUrl = location.href;
-      // Your navigation code here
-      console.log('URL changed:', lastUrl);
+      removeTimestamp();
     }
   }, 200); // 200ms is a good balance
   
 
   function removeTimestamp() {
     if (!window.location.href.includes("https://www.youtube.com/watch")) return;
+    console.log("Removing timestamp from URL");
 
     // Get all the query parameters from the URL, except for the timestamp
     const search = window.location.search.split("&").filter((x) => !x.startsWith("t=")).join("&");

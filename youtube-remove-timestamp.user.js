@@ -27,17 +27,16 @@
   function removeTimestamp() {
     if (!window.location.href.includes("https://www.youtube.com/watch")) return;
 
-    const params = new URLSearchParams(window.location.search);
-    if (params.has("t")) {
-      params.delete("t");
-      const newUrl =
-        window.location.origin +
-        window.location.pathname +
-        (params.toString() ? "?" + params.toString() : "") +
-        window.location.hash;
-      window.history.replaceState(null, "", newUrl);
-      console.log("Timestamp removed from URL.");
-    }
+    // Get all the query parameters from the URL, except for the timestamp
+    const search = window.location.search.split("&").filter((x) => !x.startsWith("t=")).join("&");
+    // Update the URL in the address bar without reloading the page
+
+    window.history.pushState(
+      null,
+      "",
+      // build the new URL with the same path and query parameters, but without the timestamp
+      `${window.location.origin}${window.location.pathname}${search}`
+    );
   }
 
   // Wait for 10 seconds before first run (as in your script)

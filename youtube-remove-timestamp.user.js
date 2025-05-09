@@ -41,7 +41,9 @@
   setTimeout(() => {
     removeTimestamp();
     // mutattion observer to watch for new video loads
-    const observer = new MutationObserver(() => {
+    const observer = new MutationObserver((mutations) => {
+
+      if(mutations.filter(m => m.addedNodes.length > 0).length === 0) {
       // check if the URL has a timestamp
       if (window.location.search.includes("t=")) {
         console.log("Timestamp found in URL, removing...");

@@ -25,9 +25,10 @@
     params.delete("t");
     const newSearch = params.toString();
     const newUrl =
-      window.location.origin +
+      `${window.location.origin}${window.location.pathname}` +
+      url2=  +
       window.location.pathname +
-      (newSearch ? "?" + newSearch : "") +
+      (newSearch ? `?${newSearch}` : "") +
       window.location.hash;
 
     // Only update if different

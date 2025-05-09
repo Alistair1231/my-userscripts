@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Youtube Remove Timestamp
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.3
+// @version      0.3.0
 // @description  Removes the timestamp from URL, so it doesn't invalidate your progress when you reload the page.
 // @author       Alistair1231
 // @match        https://www.youtube.com/*
@@ -14,7 +14,25 @@
 (function () {
   "use strict";
 
-  // Debounce utility
+  let lastUrl = location.href;
+
+  function removeTimestamp() {
+    if (!window.location.href.includes("https://www.youtube.com/watch")) return;
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("t")) {
+      params.delete("t");
+      const newUrl =
+        window.location.origin +
+        window.location.pathname +
+        (params.toString() ? "?" + params.toString() : "") +
+        window.location.hash;
+      window.history.replaceState(null, "", newUrl);
+      console.log("Timestamp removed from URL.");
+    }
+  }
+
+  // Debounce function to avoid spamming
   function debounce(fn, delay) {
     let timer = null;
     return function (...args) {
@@ -23,47 +41,30 @@
     };
   }
 
-  function removeTimestamp() {
-    if (!window.location.href.includes("https://www.youtube.com/watch")) {
-      return;
-    }
+  // Listen for YouTube navigation events
+  function addListeners() {
+    // YouTube fires this event on navigation
+    window.addEventListener("yt-navigate-finish", debouncedRemove);
+    // Fallback for browser navigation
+    window.addEventListener("popstate", debouncedRemove);
+  }
 
-    // Only proceed if there is a timestamp to remove
-    if (!window.location.search.includes("t=")) {
-      return;
-    }
+  // Poll for URL changes as a fallback (SPA navigation)
+  function pollUrlChange() {
+    setInterval(() => {
+      if (location.href !== lastUrl) {
+        lastUrl = location.href;
+        debouncedRemove();
+      }
+    }, 1000);
+  }
 
-    // Get all the query parameters from the URL, except for the timestamp
-    const search = window.location.search
-      .split("&")
-      .filter((x) => !x.startsWith("t="))
-      .join("&");
+  const debouncedRemove = debounce(removeTimestamp, 1000);
 
-    // Update the URL in the address bar without reloading the page
-    window.history.pushState(
-      null,
-      "",
-      `${window.location.origin}${window.location.pathname}${search}`
-    );
-    console.log("Timestamp found in URL, removing...");
-  };
-
-  
+  // Wait for 10 seconds before first run (as in your script)
   setTimeout(() => {
     removeTimestamp();
-    const observer = new MutationObserver((mutations) => {
-      // Only act if new nodes have been added
-      if (mutations.some((m) => m.addedNodes.length > 0)) {
-        // Only call if there's a timestamp
-        if (window.location.search.includes("t=")) {
-          // Debounced to avoid spamming
-          debounce(removeTimestamp, 1000);
-        }
-      }
-    });
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
+    addListeners();
+    pollUrlChange();
   }, 4000);
 })();

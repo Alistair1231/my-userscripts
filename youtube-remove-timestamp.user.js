@@ -25,7 +25,7 @@
 
   function removeTimestamp() {
     if (!window.location.href.includes("https://www.youtube.com/watch")) return;
-    console.log("Removing timestamp from URL");
+    console.log("Removing timestamp from URL, if present");
 
     // Get all the query parameters from the URL, except for the timestamp
     const search = window.location.search.split("&").filter((x) => !x.startsWith("t=")).join("&");

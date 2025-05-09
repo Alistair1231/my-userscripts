@@ -4,7 +4,7 @@
 // @version      0.2.1
 // @description  Removes the timestamp from URL, so it doesn't invalidate your progress when you reload the page.
 // @author       Alistair1231
-// @match        https://www.youtube.com/watch*
+// @match        https://www.youtube.com/*
 // @icon         https://icons.duckduckgo.com/ip2/youtube.com.ico
 // @license      MIT
 // ==/UserScript==
@@ -13,7 +13,8 @@
 
 (function () {
   "use strict";
-  
+  // check if on "https://www.youtube.com/watch*", as youtube is a SPA, we need to load the script on the homepage too, but we only want to remove the timestamp on the watch page
+
   const removeTimestamp = () => {
     console.log("Trying to remove timestamp from URL...");
     // Get all the query parameters from the URL, except for the timestamp

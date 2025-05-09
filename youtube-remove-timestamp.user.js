@@ -17,16 +17,22 @@
   function removeTimestamp() {
     if (!window.location.href.includes("https://www.youtube.com/watch")) return;
 
-    // Get all the query parameters from the URL, except for the timestamp
-    const search = window.location.search.split("&").filter((x) => !x.startsWith("t=")).join("&");
-    // Update the URL in the address bar without reloading the page
+    // Parse query parameters
+    const params = new URLSearchParams(window.location.search);
+    if (!params.has("t")) return; // No timestamp, nothing to do
 
-    window.history.pushState(
-      null,
-      "",
-      // build the new URL with the same path and query parameters, but without the timestamp
-      `${window.location.origin}${window.location.pathname}${search}`
-    );
+    params.delete("t");
+    const newSearch = params.toString();
+    const newUrl =
+      window.location.origin +
+      window.location.pathname +
+      (newSearch ? "?" + newSearch : "") +
+      window.location.hash;
+
+    // Only update if different
+    if (window.location.href !== newUrl) {
+      window.history.replaceState(null, "", newUrl);
+    }
   }
 
   let lastUrl = location.href;

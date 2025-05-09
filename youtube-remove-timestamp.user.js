@@ -14,6 +14,10 @@
 (function () {
   "use strict";
   // check if on "https://www.youtube.com/watch*", as youtube is a SPA, we need to load the script on the homepage too, but we only want to remove the timestamp on the watch page
+  if (!window.location.href.includes("https://www.youtube.com/watch")) {
+    // if not on the watch page, return
+    return;
+  }
 
   const removeTimestamp = () => {
     console.log("Trying to remove timestamp from URL...");

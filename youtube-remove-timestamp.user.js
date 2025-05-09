@@ -24,9 +24,7 @@
     console.log("Removing timestamp from URL");
     params.delete("t");
     const newSearch = params.toString() ? `?${params.toString()}` : "";
-    const newUrl =
-      `${window.location.origin}${window.location.pathname}${newSearch}${window.location.hash};
-
+    const newUrl = `${window.location.origin}${window.location.pathname}${newSearch}${window.location.hash};`
     // Only update if different
     if (window.location.href !== newUrl) {
       window.history.replaceState(null, "", newUrl);

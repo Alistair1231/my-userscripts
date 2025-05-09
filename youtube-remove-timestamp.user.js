@@ -15,6 +15,7 @@
   "use strict";
   
   const removeTimestamp = () => {
+    console.log("Trying to remove timestamp from URL...");
     // Get all the query parameters from the URL, except for the timestamp
     const search = window.location.search.split("&").filter((x) => !x.startsWith("t=")).join("&");
 
@@ -34,6 +35,7 @@
     const observer = new MutationObserver(() => {
       // check if the URL has a timestamp
       if (window.location.search.includes("t=")) {
+        console.log("Timestamp found in URL, removing...");
         removeTimestamp();
       }
     });

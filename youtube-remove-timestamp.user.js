@@ -42,8 +42,10 @@
     removeTimestamp();
     // mutattion observer to watch for new video loads
     const observer = new MutationObserver((mutations) => {
-
+      // check if new nodes have been added to the DOM
       if(mutations.filter(m => m.addedNodes.length > 0).length === 0) {
+        return;
+      }
       // check if the URL has a timestamp
       if (window.location.search.includes("t=")) {
         console.log("Timestamp found in URL, removing...");

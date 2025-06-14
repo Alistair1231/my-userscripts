@@ -1,24 +1,23 @@
 /* eslint-disable no-unused-vars */
-// @version v1.2.0
+// @version v1.3.0
 // @license GPL-3.0
 // @author Alistair1231
 
 //? Use like this:
-// @grant GM.getValue
-// @grant GM.setValue
-// @grant GM.deleteValue
-// @grant GM.listValues
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_hash}/types/lib.js
+// In metadata block of your userscript, add:
+//  @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_hash}/types/lib.js
 
-// /** 
-//  * @typedef {import('./types/lib.js').Lib} Lib
-//  * @type {Lib}
-//  */
-// const lib = window.lib;
-// if (!lib) {
-//   console.error("lib.js not loaded. Please ensure the script is included correctly.");
-//   return;
-// }
+// The following @grant permissions are used, just start without them and add them as needed:
+//  GM.getValue, GM.setValue, GM.deleteValue, GM.listValues
+
+// Then define a userscript like this:
+//  (async () => {
+//    /** 
+//     * @typedef {import('./types/lib.js').Lib} Lib
+//     * @type {Lib}
+//     */  
+//    YOUR CODE HERE
+//  })(lib);
 
 /**
  * A library of utility functions for userscripts.

@@ -22,18 +22,46 @@ const lib = (() => {
     interval = 100,
     timeout = 5000
   ) => {
-    const startTime = Date.now()
+    const startTime = Date.now();
 
     const check = () => {
-      const element = document.querySelector(selector)
+      const element = document.querySelector(selector);
       if (element) {
-        callback(element)
+        callback(element);
       } else if (Date.now() - startTime < timeout) {
-        setTimeout(check, interval)
+        setTimeout(check, interval);
+      }
+    };
+    check();
+  };
+
+  /**
+   * Retries an async function until it succeeds or max retries are reached.
+   * @param {Function} fn - The async function to retry. Should return a Promise.
+   * @param {number} retries - Number of times to retry.
+   * @param {number} delay - Delay between retries in ms.
+   * @returns {Promise<*>} - Resolves with the function's result or rejects after all retries.
+   * example:
+   * lib.retry(() => async () => {
+   *  const foo = document.querySelector('#foo');
+   *  if (!foo) throw new Error('Element not found');
+   *  return foo;
+   * }, 5, 200)
+   */
+  const retry = async (fn, retries = 5, delay = 200) => {
+    let lastError;
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      try {
+        return await fn();
+      } catch (err) {
+        lastError = err;
+        if (attempt < retries) {
+          await new Promise((resolve) => setTimeout(resolve, delay));
+        }
       }
     }
-    check()
-  }
+    throw lastError;
+  };
 
   /**
    * Intercepts events on specific elements matching a selector.
@@ -44,31 +72,31 @@ const lib = (() => {
   const intercept = async (eventType, selector, handler) => {
     document.addEventListener(eventType, (event) => {
       if (event.target.matches(selector)) {
-        handler(event)
+        handler(event);
       }
-    })
-  }
+    });
+  };
 
   const settings = new Proxy(
     {},
     {
       get: (target, key) => {
-        const value = GM.getValue(key, null)
+        const value = GM.getValue(key, null);
         try {
-          return JSON.parse(value)
+          return JSON.parse(value);
         } catch {
-          return value
+          return value;
         }
       },
       set: (target, key, value) => {
         const toStore =
-          typeof value === 'object' ? JSON.stringify(value) : value
-        GM.setValue(key, toStore)
-        return true
+          typeof value === "object" ? JSON.stringify(value) : value;
+        GM.setValue(key, toStore);
+        return true;
       },
       deleteProperty: (target, key) => {
-        GM.deleteValue(key)
-        return true
+        GM.deleteValue(key);
+        return true;
       },
       ownKeys: () => GM.listValues(),
       has: (target, key) => GM.listValues().includes(key),
@@ -79,16 +107,16 @@ const lib = (() => {
             enumerable: true,
             value: GM.getValue(key, null),
             writable: true,
-          }
+          };
         }
-        return undefined
+        return undefined;
       },
     }
-  )
+  );
 
   return {
     waitFor,
     intercept,
     settings,
-  }
-})()
+  };
+})();

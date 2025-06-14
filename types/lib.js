@@ -8,7 +8,7 @@
 // @grant GM.setValue
 // @grant GM.deleteValue
 // @grant GM.listValues
-// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_hash}/lib.js
+// @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_hash}/types/lib.js
 
 // /** 
 //  * @typedef {import('./types/lib.js').Lib} Lib

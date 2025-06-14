@@ -10,6 +10,16 @@
 // @grant GM.listValues
 // @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_hash}/lib.js
 
+// /** 
+//  * @typedef {import('./types/lib.js').Lib} Lib
+//  * @type {Lib}
+//  */
+// const lib = window.lib;
+// if (!lib) {
+//   console.error("lib.js not loaded. Please ensure the script is included correctly.");
+//   return;
+// }
+
 /**
  * A library of utility functions for userscripts.
  * Provides functions to wait for elements, intercept events, and manage settings.

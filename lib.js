@@ -12,7 +12,10 @@
 const lib = (() => {
   /**
    * Waits for a specific element to exist in the DOM before executing a callback.
-   *
+   * @param {string} selector - CSS selector for the element to wait for.
+   * @param {Function} callback - Function to execute when the element is found.
+   * @param {number} [interval=100] - Time in milliseconds to wait between checks.
+   * @param {number} [timeout=5000] - Maximum time in milliseconds to wait for the element.
    * Example:
    * lib.waitFor('#elementId', (element) => console.log('Element found:', element));
    */

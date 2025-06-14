@@ -12,6 +12,7 @@
 
 // Then define a userscript like this:
 //  (async () => {
+//    /*global lib */
 //    /** 
 //     * @typedef {import('./types/lib.js').Lib} Lib
 //     * @type {Lib}

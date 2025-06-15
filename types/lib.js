@@ -13,10 +13,10 @@
 // Then define a userscript like this:
 //  (async () => {
 //    /*global lib */
-//    /** 
+//    /**
 //     * @typedef {import('./types/lib.js').Lib} Lib
 //     * @type {Lib}
-//     */  
+//     */
 //    YOUR CODE HERE
 //  })(lib);
 
@@ -31,47 +31,34 @@
  */
 const lib = {
   /**
-   * Waits for a specific element to exist in the DOM before executing a callback.
+   * Waits for an element to appear in the DOM and executes a callback when found.
    * @param {string} selector - CSS selector for the element to wait for.
    * @param {Function} callback - Function to execute when the element is found.
    * @param {boolean} [multiple=false] - If true, applies querySelectorAll instead of querySelector. Success if length is > 0.
    * @param {number} [interval=100] - Time in milliseconds to wait between checks. default is 100ms.
    * @param {number} [timeout=5000] - Maximum time in milliseconds to wait for the element. default is 5000ms.
    * Example:
-   * lib.waitFor('#elementId', (element) => console.log('Element found:', element));
+   *  const btn = await lib.waitFor('.ytp-settings-button')
+   *  btn.click()
    */
-  waitFor: async (
-    selector,
-    callback,
-    multiple = false,
-    interval = 100,
-    timeout = 5000
-  ) => {
-    const startTime = Date.now()
-
-    const check = () => {
-      let element
-      let recheck = false
-
-      // Check if the element exists
-      // If multiple is true, use querySelectorAll, otherwise use querySelector
-      if (multiple) element = document.querySelectorAll(selector)
-      else element = document.querySelector(selector)
-
-      // If the element is not found, recheck after the interval
-      // If multiple is true, check if the NodeList is empty
-      if (multiple && element.length === 0) recheck = true
-      // If not multiple, check if the element is null
-      else if (!multiple && !element) recheck = true
-
-      // If the element was not found and the timeout has not been reached, recheck
-      if (recheck && Date.now() - startTime < timeout) {
-        setTimeout(check, interval)
+  waitFor: (selector, multiple = false, interval = 100, timeout = 5000) => {
+    return new Promise((resolve, reject) => {
+      const startTime = Date.now()
+      const check = () => {
+        let element = multiple
+          ? document.querySelectorAll(selector)
+          : document.querySelector(selector)
+        let found = multiple ? element.length > 0 : !!element
+        if (found) {
+          resolve(element)
+        } else if (Date.now() - startTime < timeout) {
+          setTimeout(check, interval)
+        } else {
+          reject(new Error('Timeout waiting for ' + selector))
+        }
       }
-      // If the element is found, execute the callback and pass the element(s)
-      callback(element)
-    }
-    check()
+      check()
+    })
   },
 
   /**

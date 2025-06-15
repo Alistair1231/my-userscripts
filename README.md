@@ -19,3 +19,10 @@ The credit for this script goes to the Marco Pfeiffer, I just added a different 
 
 
 [half-page-scroll.user.js](https://github.com/Alistair1231/my-userscripts/blob/master/half-page-scroll.user.js): This makes Page Up and Page Down scroll half a page instead of a full page, which is useful for reading long articles.
+
+-----
+
+As a tip, if you want to use one of these without a Userscript Manager, you can make a Bookmarklet out of it and run it on demand. I use this for the audio ratio script on some devices. I tend to use this bookmarklet maker: https://caiorss.github.io/bookmarklet-maker/
+
+As Userscript Managers I currently recommend [Violentmonkey](https://violentmonkey.github.io/) or [Tampermonkey](https://www.tampermonkey.net/).  
+I currently develop on Violentmonkey with Firefox. But even with that, there are no guarantees. Websites change, and I don't always notice. Especially for older scripts which I may not use anymore.

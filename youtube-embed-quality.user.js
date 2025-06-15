@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Embedded YouTube Video Quality Preference
 // @namespace    https://greasyfork.org/en/users/85671-jcunews
-// @version      1.0.0
+// @version      1.0.1
 // @license      AGPLv3
 // @author       Alistair1231
 // @description  Set initial video quality for embedded YouTube videos based on a set of preferred video qualities
@@ -10,6 +10,7 @@
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/youtube-embed-quality.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/youtube-embed-quality.user.js
 // ==/UserScript==
+// https://greasyfork.org/en/scripts/539509-embedded-youtube-video-quality-preference
 // https://github.com/Alistair1231/my-userscripts/blob/master/youtube-embed-quality.user.js
 ;(async () => {
   // select quality in order of preference

@@ -60,10 +60,31 @@ const lib = {
       check()
     })
   },
+  /**
+   * Waits for one or more elements matching a selector whose text content matches
+   * a string or regular expression.
+   *
+   * @param {string} selector - CSS selector for the elements to search for.
+   * @param {string|RegExp} text - The text or RegExp to match against element textContent.
+   * @param {boolean} [regex=false] - If true, treat `text` as a RegExp (or create one from string).
+   * @param {boolean} [multiple=false] - If true, resolve with all matching elements as an array; otherwise, resolve with the first match.
+   * @param {number} [interval=100] - Polling interval in milliseconds.
+   * @param {number} [timeout=5000] - Maximum time to wait in milliseconds.
+   * @returns {Promise<Element|Element[]>} Resolves with the first matching element, or an array of all matches if `multiple` is true.
+   *
+   * @example
+   * // Wait for the first element containing "Quality"
+   * const el = await waitForText('.ytp-menuitem-label', 'Quality');
+   *
+   * @example
+   * // Wait for all elements matching a regex
+   * const allQualities = await waitForText('.ytp-menuitem-label', /\d{3,4}p/, true, true);
+   */
   waitForText: (
     selector,
     text,
     regex = false,
+    multiple = false,
     interval = 100,
     timeout = 5000
   ) => {
@@ -71,18 +92,23 @@ const lib = {
       const startTime = Date.now()
       const check = () => {
         const elements = document.querySelectorAll(selector)
+        const matches = []
         for (const el of elements) {
           if (regex) {
-            if (new RegExp(text).test(el.textContent)) {
-              resolve(el)
-              return
+            // Accept RegExp or string
+            const re = text instanceof RegExp ? text : new RegExp(text)
+            if (re.test(el.textContent)) {
+              matches.push(el)
             }
           } else {
             if (el.textContent.includes(text)) {
-              resolve(el)
-              return
+              matches.push(el)
             }
           }
+        }
+        if (matches.length > 0) {
+          resolve(multiple ? matches : matches[0])
+          return
         }
         if (Date.now() - startTime < timeout) {
           setTimeout(check, interval)

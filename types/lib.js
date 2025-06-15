@@ -60,15 +60,28 @@ const lib = {
       check()
     })
   },
-  waitForText: (selector, text, interval = 100, timeout = 5000) => {
+  waitForText: (
+    selector,
+    text,
+    regex = false,
+    interval = 100,
+    timeout = 5000
+  ) => {
     return new Promise((resolve, reject) => {
       const startTime = Date.now()
       const check = () => {
         const elements = document.querySelectorAll(selector)
         for (const el of elements) {
-          if (el.textContent.includes(text)) {
-            resolve(el)
-            return
+          if (regex) {
+            if (new RegExp(text).test(el.textContent)) {
+              resolve(el)
+              return
+            }
+          } else {
+            if (el.textContent.includes(text)) {
+              resolve(el)
+              return
+            }
           }
         }
         if (Date.now() - startTime < timeout) {

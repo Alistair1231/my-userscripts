@@ -41,7 +41,7 @@ const lib = {
    *  const btn = await lib.waitFor('.ytp-settings-button')
    *  btn.click()
    */
-  waitFor: (selector, multiple = false, interval = 100, timeout = 5000) => {
+  waitFor: async (selector, multiple = false, interval = 100, timeout = 5000) => {
     return new Promise((resolve, reject) => {
       const startTime = Date.now()
       const check = () => {

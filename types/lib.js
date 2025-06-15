@@ -41,7 +41,7 @@ const lib = {
    *  const btn = await lib.waitFor('.ytp-settings-button')
    *  btn.click()
    */
-  waitFor: async (selector, multiple = false, interval = 100, timeout = 5000) => {
+  waitFor: (selector, multiple = false, interval = 100, timeout = 5000) => {
     return new Promise((resolve, reject) => {
       const startTime = Date.now()
       const check = () => {
@@ -55,6 +55,28 @@ const lib = {
           setTimeout(check, interval)
         } else {
           reject(new Error('Timeout waiting for ' + selector))
+        }
+      }
+      check()
+    })
+  },
+  waitForText: (selector, text, interval = 100, timeout = 5000) => {
+    return new Promise((resolve, reject) => {
+      const startTime = Date.now()
+      const check = () => {
+        const elements = document.querySelectorAll(selector)
+        for (const el of elements) {
+          if (el.textContent.includes(text)) {
+            resolve(el)
+            return
+          }
+        }
+        if (Date.now() - startTime < timeout) {
+          setTimeout(check, interval)
+        } else {
+          reject(
+            new Error(`Timeout waiting for ${selector} with text "${text}"`)
+          )
         }
       }
       check()

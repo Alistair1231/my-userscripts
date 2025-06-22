@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name         Embedded YouTube Video Quality Preference
+// @name         YouTube (incl embedded) Video Quality Preference
 // @namespace    https://github.com/Alistair1231/my-userscripts/blob/master/youtube-embed-quality.user.js
-// @version      1.0.2
+// @version      1.1.0
 // @license      AGPLv3
 // @author       Alistair1231
-// @description  Set initial video quality for embedded YouTube videos based on a set of preferred video qualities
+// @description  Set initial video quality for all YouTube videos (embedded or on youtube.com) based on a set of preferred video qualities
 // @match        *://www.youtube.com/embed/*
+// @match        *://www.youtube.com/*
 // @require      https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@b2046277b444b73e076f64021d68426da93d71c3/types/lib.js
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/youtube-embed-quality.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/youtube-embed-quality.user.js

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Dark Mode Toggle
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       0.2.1
+// @version       0.3.0
 // @description   dark mode using inversion, double-hit Esc for toggle button
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/dark-mode-toggle.user.js
@@ -32,6 +32,7 @@
           html {
               -webkit-filter: invert(${CONFIG.inversionPercent}%);
               filter: invert(${CONFIG.inversionPercent}%);
+              background-color: white;
           }
           img, video, iframe, object, embed, canvas, svg {
               -webkit-filter: invert(${CONFIG.mediaInversionPercent}%);

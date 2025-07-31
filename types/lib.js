@@ -6,6 +6,8 @@
 //? Use like this:
 // In metadata block of your userscript, add:
 //  @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@{commit_hash}/types/lib.js
+// e.g.
+//  @require https://cdn.jsdelivr.net/gh/Alistair1231/my-userscripts@e984d1c5990f54383dde6afad5c504f7fa72c7dc/types/lib.js
 
 // The following @grant permissions are used, just start without them and add them as needed:
 //  GM.getValue, GM.setValue, GM.deleteValue, GM.listValues

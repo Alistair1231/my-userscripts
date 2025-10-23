@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Universal Media Hotkeys
 // @namespace    https://github.com/Alistair1231/my-userscripts
-// @version      0.1.0
+// @version      0.1.1
 // @license      AGPLv3
 // @description  Instantly show all content on thisweekinvideogames.com by disabling animations
 // @match        http*://*/*
@@ -18,16 +18,22 @@
   // Helper to get the next/previous speed
   function getNextSpeed(current) {
     const idx = SPEED_STEPS.indexOf(current);
-    if (idx === -1 || idx === SPEED_STEPS.length - 1) {
+    if (idx === -1) {
       return SPEED_STEPS[0];
+    } else if (idx === SPEED_STEPS.length - 1) {
+      // stay at max
+      return SPEED_STEPS[idx];
     }
     return SPEED_STEPS[idx + 1];
   }
 
   function getPrevSpeed(current) {
     const idx = SPEED_STEPS.indexOf(current);
-    if (idx === -1 || idx === 0) {
+    if (idx === -1) {
       return SPEED_STEPS[SPEED_STEPS.length - 1];
+    } else if (idx === 0) {
+      // stay at min
+      return SPEED_STEPS[idx];
     }
     return SPEED_STEPS[idx - 1];
   }

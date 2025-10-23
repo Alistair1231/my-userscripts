@@ -3,7 +3,7 @@
 // @namespace    https://github.com/Alistair1231/my-userscripts
 // @version      0.1.1
 // @license      AGPLv3
-// @description  Instantly show all content on thisweekinvideogames.com by disabling animations
+// @description  Use &lt; and &gt; keys to adjust playback speed of any playing audio or video on any website (except YouTube). Shows a toast notification with the current speed.
 // @match        http*://*/*
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/universal-media-hotkeys.user.js
 // @updateURL    https://github.com/Alistair1231/my-userscripts/raw/master/universal-media-hotkeys.user.js

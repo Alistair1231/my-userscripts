@@ -25,7 +25,9 @@ The credit for this script goes to the Marco Pfeiffer, I just added a different 
 -----
 
 As a tip, if you want to use one of these without a Userscript Manager, you can make a Bookmarklet out of it and run it on demand. I use this for the audio ratio script on some devices. I tend to use this bookmarklet maker: https://caiorss.github.io/bookmarklet-maker/
+Note: This only works if no Userscript-specific functions (`GM.*`,`GM_*`) are used.
 
 As Userscript Managers I currently recommend [Tampermonkey](https://www.tampermonkey.net/).  
 
 I currently develop on Tampermonkey with Brave. But even with that, there are no guarantees. Websites change, and I don't always notice. Especially for older scripts which I may not use anymore.
+

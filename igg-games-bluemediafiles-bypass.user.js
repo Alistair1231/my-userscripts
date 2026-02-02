@@ -21,9 +21,10 @@
 
     function run() {
       const link = document.querySelector('#btn-download')?.href;
-      if (link && /.*\/get-url.*\.php\?url=.*/.test(link)) {
+      if (link && link !== "") {
         clearInterval(loop);
         console.log(`Link decoding succeeded, ${link}`);
+        window.location=link;
       }
     }
 

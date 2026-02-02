@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Old Reddit Side Bar toggle and max width
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.0
+// @version      0.2.1
 // @description  limits the width of the side bar to 20vw, adds a button to toggle the sidebar and auto-hides the sidebar if the window width is less than 1200px
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/reddit-side-bar-max-width.user.js
 // @author       Alistair1231
 // @match        https://old.reddit.com/*
-// @icon         https://icons.duckduckgo.com/ip2/github.com.ico
+// @icon         https://icons.duckduckgo.com/ip2/reddit.com.ico
 // @license MIT
 // ==/UserScript==
 // https://github.com/Alistair1231/my-userscripts/raw/master/reddit-side-bar-max-width.user.js

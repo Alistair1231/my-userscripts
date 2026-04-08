@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Old Reddit Side Bar toggle and max width
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      0.2.1
+// @version      0.2.2
 // @description  limits the width of the side bar to 20vw, adds a button to toggle the sidebar and auto-hides the sidebar if the window width is less than 1200px
 // @downloadURL  https://github.com/Alistair1231/my-userscripts/raw/master/reddit-side-bar-max-width.user.js
 // @author       Alistair1231
@@ -25,6 +25,7 @@
     }
     div.content {
     margin: 25px 15px 10px 15px !important;
+    max-width: 95vw;
     }
     body {
       margin: auto !important;

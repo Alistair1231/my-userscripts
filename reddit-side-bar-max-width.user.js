@@ -11,6 +11,7 @@
 // ==/UserScript==
 // https://github.com/Alistair1231/my-userscripts/raw/master/reddit-side-bar-max-width.user.js
 
+
 ;(() => {
   const addStyle = (css) => {
     const style = document.createElement('style')
@@ -21,6 +22,9 @@
   addStyle(`
     .side {
         max-width: 20vw;
+    }
+    div.content {
+    margin: 25px 15px 10px 15px !important;
     }
     body {
       margin: auto !important;
@@ -67,3 +71,4 @@
   newSeparator.className = 'separator'
   sidebarToggle.after(newSeparator)
 })()
+

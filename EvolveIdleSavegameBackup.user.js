@@ -1,7 +1,8 @@
 // ==UserScript==
+
 // @name          Evolve Idle Cloud Save
 // @namespace     https://github.com/Alistair1231/my-userscripts/
-// @version       1.3.3
+// @version       1.4.0
 // @description   Automatically upload your evolve save to a gist
 // @downloadURL   https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
 // @updateURL     https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
@@ -11,7 +12,7 @@
 // @license       GPL-3.0
 // @grant         GM.addStyle
 // @grant         GM.xmlHttpRequest
-// @require       https://cdn.jsdelivr.net/npm/@trim21/gm-fetch@0.2.1
+// @require       https://cdn.jsdelivr.net/npm/@trim21/gm-fetch@0.3.0
 // ==/UserScript==
 // https://greasyfork.org/en/scripts/490376-automatic-evolve-save-upload-to-gist
 // https://github.com/Alistair1231/my-userscripts/raw/master/EvolveIdleSavegameBackup.user.js
@@ -19,11 +20,11 @@
 /*
 # Evolve Idle Cloud Save
 
-I lost my save game 😞, so I created a quick backup solution using GitHub Gist to store save data. 
+I lost my save game 😞, so I created a quick backup solution using GitHub Gist to store save data.
 
 ### Key Features:
 - **Automatic Upload:** On first use, you'll be prompted to enter your Gist ID and Personal Access Token. These credentials are stored as plain text in the Userscript storage. The token must have the `gist` scope.
-- **Manual Setup:** You need to manually create the Gist and enter its ID in the settings. 
+- **Manual Setup:** You need to manually create the Gist and enter its ID in the settings.
 - **Export Settings:** Saves are exported to the filename specified in the settings.
 - **Import Flexibility:** Import your save from any file in the Gist, making it easy to restore data after switching devices or PCs.
 - **Backup Options:**
@@ -36,7 +37,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
 ![UI changes](https://i.imgur.com/G1QCIXU.png)
 */
 
-;(async function () {
+; (async function () {
   'use strict'
   /**
    * Settings utility object for managing localStorage data
@@ -259,6 +260,98 @@ With this setup, your progress is secure, and you can easily transfer your saves
       return response
     },
 
+    getRecentBackups: async (targetElement, onLoaded) => {
+      const gistId = await storage.get('gistId')
+      const token = await storage.get('token')
+
+      const j = async (url) => {
+        const r = await GM_fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2026-03-10',
+          },
+        })
+        if (!r.ok) throw new Error(`${r.status} ${url}: ${await r.text()}`)
+        return r.json()
+      }
+
+      const escapeHtml = (v) =>
+        String(v)
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+
+      const N = 3
+      // N+1 revisions, because N diffs need N+1 endpoints
+      const commits = await j(
+        `https://api.github.com/gists/${gistId}/commits?per_page=${N + 1}`
+      )
+
+      const revs = await Promise.all(
+        commits.map(async (c) => ({
+          sha: c.version,
+          time: c.committed_at,
+          status: c.change_status,
+          files: (await j(`https://api.github.com/gists/${gistId}/${c.version}`))
+            .files,
+        }))
+      )
+
+      const diffs = revs.slice(0, N).map((cur, i) => {
+        const prev = revs[i + 1]?.files ?? {} // newest-first, so the parent is the next entry
+        const names = new Set([...Object.keys(cur.files), ...Object.keys(prev)])
+        const changed = [...names].flatMap((n) => {
+          const a = prev[n]?.raw_url
+          const b = cur.files[n]?.raw_url
+          if (a === b) return []
+          return [{ file: n, kind: !a ? 'added' : !b ? 'removed' : 'modified' }]
+        })
+        return {
+          time: cur.time,
+          sha: cur.sha.slice(0, 7),
+          total: cur.status?.total,
+          changed,
+        }
+      })
+
+      if (targetElement) {
+        if (diffs.length === 0) {
+          targetElement.innerHTML = '<div>No recent backup revisions found.</div>'
+        } else {
+          targetElement.innerHTML = `
+            <div style='margin-top: .75rem; font-weight: 600'>Recent backups</div>
+            <ul style='margin: .5rem 0 0 1rem; padding: 0'>
+              ${diffs
+                .map((d) => {
+                  const changed = d.changed
+                    .map((c) => `${escapeHtml(c.file)} (${c.kind})`)
+                    .join(', ')
+                  const when = new Date(d.time).toLocaleString()
+                  return `<li style='margin-bottom: .35rem'>${escapeHtml(when)} - ${escapeHtml(d.sha)} - ${escapeHtml(d.total ?? d.changed.length)} changes${changed ? `: ${changed}` : ''}</li>`
+                })
+                .join('')}
+            </ul>
+          `
+        }
+      }
+
+      console.log(diffs)
+      console.table(
+        diffs.map((d) => ({
+          ...d,
+          changed: d.changed.map((c) => `${c.file} (${c.kind})`).join(', '),
+        }))
+      )
+
+      if (typeof onLoaded === 'function') {
+        onLoaded(diffs)
+      }
+
+      return diffs
+    },
+
     getBackup: async () => {
       const remote_files = await evolveCloudSave.getFiles()
       const remote_filename = document.getElementById(
@@ -285,6 +378,7 @@ With this setup, your progress is secure, and you can easily transfer your saves
       <button id='cloudsave_exportGistButton' class='button' style='margin-top: .75rem'>Save to "${local_filename}"</button>
       <br>
       <button id='cloudsave_settingsButton' class='button' style='margin-top: .75rem'>Settings</button>
+      <div id='cloudsave_recentBackups' style='margin-top: .75rem'></div>
     <div id='success_message' style='display: none; position: fixed; top: 20px; right: 20px; background-color: green; color: white; padding: 10px; border-radius: 5px;'>Backup successful!</div>
     `
       const div = document.querySelectorAll('div.importExport')[1]
@@ -316,6 +410,31 @@ With this setup, your progress is secure, and you can easily transfer your saves
         .getElementById('cloudsave_settingsButton')
         .addEventListener('click', () => {
           evolveCloudSave.openSettings()
+        })
+
+      const recentBackupsElement = document.getElementById(
+        'cloudsave_recentBackups'
+      )
+      const fileSelect = document.getElementById('cloudsave_fileSelect')
+      recentBackupsElement.innerText = 'Loading recent backups...'
+      evolveCloudSave
+        .getRecentBackups(recentBackupsElement, (diffs) => {
+          const latestChangedFile =
+            diffs?.[0]?.changed?.find((c) => c.kind !== 'removed')?.file ??
+            diffs?.[0]?.changed?.[0]?.file
+          if (
+            latestChangedFile &&
+            [...fileSelect.options].some(
+              (option) => option.value === latestChangedFile
+            )
+          ) {
+            fileSelect.value = latestChangedFile
+          }
+        })
+        .catch((error) => {
+          recentBackupsElement.innerText =
+            'Could not load recent backups. Check console for details.'
+          console.error(error)
         })
     },
   }

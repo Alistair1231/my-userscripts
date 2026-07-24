@@ -14,7 +14,7 @@ I lost my save game 😞, so I created a quick backup solution using GitHub Gist
 ----
 ❗This script is incompatible with Greasemonkey. Greasemonkey does not support GM.addStyle, which is used for styling. Please use Tampermonkey or Violentmonkey instead. I personally use this on Brave with Tampermonkey.
 
-Settings window example with dummy data, also the new buttons are in the background:
+Settings window example with dummy data:
 ![Settings-Page](https://i.imgur.com/EUujcoO.png)
 
 These fields are added to the normal settings:  

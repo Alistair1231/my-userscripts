@@ -11,6 +11,9 @@ My personal must-have scripts are currently (2025-06-15) these:
 [youtube-embed-quality.user.js](https://github.com/Alistair1231/my-userscripts/blob/master/youtube-embed-quality.user.js): This sets the default quality for YouTube embeds to 4k or maximum available quality.
 
 
+[youtube-longer-buffer.user.js](https://github.com/Alistair1231/my-userscripts/blob/master/youtube-longer-buffer.user.js): This makes YouTube buffer up to 30 minutes ahead (configurable) instead of the usual minute or two. See [youtube-longer-buffer.md](https://github.com/Alistair1231/my-userscripts/blob/master/youtube-longer-buffer.md) for how it works and the browser flags needed to go past the browser's own buffer limits.
+
+
 [reddit-side-bar-max-width.user.js](https://github.com/Alistair1231/my-userscripts/blob/master/reddit-side-bar-max-width.user.js): This makes the sidebar be toggable on Reddit, also sets a max width for the sidebar to prevent it from being too wide. 
 
 

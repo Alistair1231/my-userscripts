@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Longer Buffer
 // @namespace    https://github.com/Alistair1231/my-userscripts/
-// @version      1.0.0
+// @version      1.1.0
 // @description  Makes YouTube buffer far ahead (30 minutes by default, configurable below) instead of the usual ~1-2 minutes
 // @author       Alistair1231
 // @match        *://www.youtube.com/*
@@ -23,13 +23,13 @@
 // (layer 2) - without that, 20 MB of video is only ~1 minute at 1080p and the 30 minutes never apply.
 //
 // On top of all that, the browser caps MSE buffers at 150 MiB video / 12 MiB audio. To go past that
-// (needed for a real 30 minutes at high quality), launch the browser with e.g.
-//   open -a "Brave Browser" --args --mse-video-buffer-size-limit-mb=1024 --mse-audio-buffer-size-limit-mb=64
+// (needed for more than ~2 minutes at high quality), launch the browser with e.g.
+//   open -a "Brave Browser" --args --mse-video-buffer-size-limit-mb=512 --mse-audio-buffer-size-limit-mb=32
 // Without those flags YouTube hits QuotaExceededError, shrinks its own budget and re-seeks; the
 // script notices that and tells you in the console.
 //
-// Note: 30 minutes of 1080p is roughly a gigabyte of memory per tab, and it gets downloaded even if
-// you close the tab right after.
+// Note: the buffer is real memory in the tab, it is downloaded even if you close the tab right
+// after, and every tab gets its own. See videoBudgetMB below for what it costs.
 
 ;(function () {
   'use strict'
@@ -39,8 +39,11 @@
     initialBufferMinutes: 30, // read-ahead allowed right away (lower it to ramp up instead)
     growthRateMs: 1000, // read-ahead gained per ms of playback, 1000 = 1s per 1s
     patchByteBudget: true, // layer 2, without it the 20 MB video budget still caps the buffer
-    videoBudgetMB: 1024,
-    audioBudgetMB: 64,
+    // Real memory, per tab. 1080p60 runs about 0.62 MB/s and 4K60 about 2.5 MB/s, so 512 MB buys
+    // roughly 14 minutes at 1080p60 or 3.5 minutes at 4K60. It does not compress, so on macOS it
+    // swaps rather than shrinking - raise these only if you have the RAM to spare.
+    videoBudgetMB: 512,
+    audioBudgetMB: 32,
     debug: true,
   }
 
@@ -164,6 +167,9 @@
         !!value &&
         typeof value === 'object' &&
         value !== window &&
+        // a cross-origin iframe's window is not an instanceof our Window, so check the self
+        // reference too - reading anything else off it throws
+        value.window !== value &&
         !(value instanceof Node) &&
         !(value instanceof Window)
       )
@@ -207,7 +213,12 @@
   }
 
   function findPolicy() {
+    // The policy hangs off the page's pubsub instance, not off the player element - as of player
+    // b0d2d49a it sits at ytPubsubPubsubInstance...app.mediaElement.<x>.loader.policy, 8 levels
+    // below window. The player roots stay in the list because they are cheap and would give a much
+    // shorter path if a later build moves it back under the player.
     const roots = [
+      window,
       document.getElementById('movie_player'),
       document.querySelector('ytd-player'),
       document.querySelector('video'),
@@ -335,8 +346,9 @@
         `the browser refused to buffer this much (video budget is down to ${mb(video)}, audio ${mb(
           audio
         )}). ` +
-          'Restart the browser with --mse-video-buffer-size-limit-mb and ' +
-          '--mse-audio-buffer-size-limit-mb to allow more, or lower videoBudgetMB/audioBudgetMB.'
+          `Restart the browser with --mse-video-buffer-size-limit-mb=${CONFIG.videoBudgetMB} and ` +
+          `--mse-audio-buffer-size-limit-mb=${CONFIG.audioBudgetMB} to allow more, or lower ` +
+          'videoBudgetMB/audioBudgetMB.'
       )
     }
   }, 5000)

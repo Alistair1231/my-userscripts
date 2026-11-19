@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Universal Media Hotkeys
 // @namespace    https://github.com/Alistair1231/my-userscripts
-// @version      0.3.0
+// @version      0.3.1
 // @license      AGPLv3
 // @description  Speed Hotkeys
 // @match        http*://*/*
@@ -14,6 +14,9 @@
   const EXCLUDED_HOSTNAMES = ["youtube.com"];
   // Define the playback speed steps
   const SPEED_STEPS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
+
+  // Store target speed per video element (WeakMap so it doesn't leak memory)
+  const targetSpeeds = new WeakMap();
 
   // Helper to find the closest speed in SPEED_STEPS
   function findClosestSpeedIndex(current) {
@@ -83,6 +86,19 @@
     }, 1700);
   }
 
+  // Function to get current target speed for an element
+  function getCurrentSpeed(el) {
+    // Use stored target speed if available, otherwise use actual playbackRate
+    return targetSpeeds.has(el) ? targetSpeeds.get(el) : el.playbackRate;
+  }
+
+  // Function to enforce speed on an element
+  function enforceSpeed(el, speed) {
+    targetSpeeds.set(el, speed);
+    el.playbackRate = speed;
+    console.log(`[Media Hotkeys] Set speed to ${speed} (actual: ${el.playbackRate})`);
+  }
+
   // Function to change speed
   function changeSpeed(direction) {
     let currentSpeed = null;
@@ -90,13 +106,13 @@
     document.querySelectorAll("audio, video").forEach((el) => {
       // Only change speed if media is playing
       if (!el.paused && !el.ended && el.currentTime > 0) {
-        const oldRate = el.playbackRate;
+        const oldSpeed = getCurrentSpeed(el);
         const newSpeed =
           direction === "increase"
-            ? getNextSpeed(el.playbackRate)
-            : getPrevSpeed(el.playbackRate);
-        console.log(`[Media Hotkeys] Speed change: ${oldRate} -> ${newSpeed} (${direction})`);
-        el.playbackRate = newSpeed;
+            ? getNextSpeed(oldSpeed)
+            : getPrevSpeed(oldSpeed);
+        console.log(`[Media Hotkeys] Speed change: ${oldSpeed} -> ${newSpeed} (${direction})`);
+        enforceSpeed(el, newSpeed);
         currentSpeed = newSpeed;
         foundPlaying = true;
       }
@@ -105,6 +121,20 @@
       showSpeedToast(currentSpeed);
     }
   }
+
+  // Continuously enforce target speeds (some sites reset playbackRate)
+  setInterval(() => {
+    document.querySelectorAll("audio, video").forEach((el) => {
+      if (targetSpeeds.has(el) && !el.paused && !el.ended && el.currentTime > 0) {
+        const targetSpeed = targetSpeeds.get(el);
+        // Only update if the site has reset it
+        if (Math.abs(el.playbackRate - targetSpeed) > 0.01) {
+          console.log(`[Media Hotkeys] Enforcing speed: ${el.playbackRate} -> ${targetSpeed}`);
+          el.playbackRate = targetSpeed;
+        }
+      }
+    });
+  }, 500); // Check every 500ms
 
   // Add keyboard event listener (prevent duplicates)
   if (!window.speedControllerActive) {

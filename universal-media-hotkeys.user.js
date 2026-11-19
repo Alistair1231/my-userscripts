@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Universal Media Hotkeys
 // @namespace    https://github.com/Alistair1231/my-userscripts
-// @version      0.2
+// @version      0.2.1
 // @license      AGPLv3
 // @description  Speed Hotkeys
 // @match        http*://*/*
@@ -98,32 +98,65 @@
     window.speedControllerActive = true;
 
     document.addEventListener("keydown", function (e) {
+      // DEBUG: Log all key presses
+      console.log("[Media Hotkeys] Key pressed:", {
+        key: e.key,
+        code: e.code,
+        shiftKey: e.shiftKey,
+        hostname: window.location.hostname
+      });
+
       // Exclude certain hostnames
       if (
         EXCLUDED_HOSTNAMES.some((domain) =>
           window.location.hostname.includes(domain)
         )
-      )
+      ) {
+        console.log("[Media Hotkeys] Skipping - excluded hostname");
         return;
+      }
+
       // Only trigger if no input/textarea is focused
+      const activeTag = document.activeElement.tagName;
+      console.log("[Media Hotkeys] Active element:", activeTag);
+
       if (
-        document.activeElement.tagName !== "INPUT" &&
-        document.activeElement.tagName !== "TEXTAREA"
+        activeTag !== "INPUT" &&
+        activeTag !== "TEXTAREA" &&
+        !document.activeElement.isContentEditable
       ) {
         // Check if any audio or video is currently playing
-        const isMediaPlaying = Array.from(
-          document.querySelectorAll("audio, video")
-        ).some((el) => !el.paused && !el.ended && el.currentTime > 0);
+        const mediaElements = Array.from(document.querySelectorAll("audio, video"));
+        console.log("[Media Hotkeys] Found media elements:", mediaElements.length);
+
+        const isMediaPlaying = mediaElements.some((el) => {
+          const playing = !el.paused && !el.ended && el.currentTime > 0;
+          console.log("[Media Hotkeys] Media status:", {
+            element: el.tagName,
+            paused: el.paused,
+            ended: el.ended,
+            currentTime: el.currentTime,
+            playing: playing
+          });
+          return playing;
+        });
+
+        console.log("[Media Hotkeys] Is media playing:", isMediaPlaying);
+
         if (isMediaPlaying) {
-          if (e.key === ">") {
+          if (e.key === ">" || (e.shiftKey && e.code === "Period")) {
+            console.log("[Media Hotkeys] Increasing speed");
             e.preventDefault();
             changeSpeed("increase");
-          } else if (e.key === "<") {
+          } else if (e.key === "<" || (e.shiftKey && e.code === "Comma")) {
+            console.log("[Media Hotkeys] Decreasing speed");
             e.preventDefault();
             changeSpeed("decrease");
           }
         }
         // If no media is playing, let browser handle the key
+      } else {
+        console.log("[Media Hotkeys] Skipping - input/textarea focused or contentEditable");
       }
     });
   }

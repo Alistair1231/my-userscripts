@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Universal Media Hotkeys
 // @namespace    https://github.com/Alistair1231/my-userscripts
-// @version      0.2.1
+// @version      0.3.0
 // @license      AGPLv3
 // @description  Speed Hotkeys
 // @match        http*://*/*
@@ -15,12 +15,25 @@
   // Define the playback speed steps
   const SPEED_STEPS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
 
+  // Helper to find the closest speed in SPEED_STEPS
+  function findClosestSpeedIndex(current) {
+    let closestIdx = 0;
+    let minDiff = Math.abs(SPEED_STEPS[0] - current);
+
+    for (let i = 1; i < SPEED_STEPS.length; i++) {
+      const diff = Math.abs(SPEED_STEPS[i] - current);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIdx = i;
+      }
+    }
+    return closestIdx;
+  }
+
   // Helper to get the next/previous speed
   function getNextSpeed(current) {
-    const idx = SPEED_STEPS.indexOf(current);
-    if (idx === -1) {
-      return SPEED_STEPS[0];
-    } else if (idx === SPEED_STEPS.length - 1) {
+    const idx = findClosestSpeedIndex(current);
+    if (idx === SPEED_STEPS.length - 1) {
       // stay at max
       return SPEED_STEPS[idx];
     }
@@ -28,10 +41,8 @@
   }
 
   function getPrevSpeed(current) {
-    const idx = SPEED_STEPS.indexOf(current);
-    if (idx === -1) {
-      return SPEED_STEPS[SPEED_STEPS.length - 1];
-    } else if (idx === 0) {
+    const idx = findClosestSpeedIndex(current);
+    if (idx === 0) {
       // stay at min
       return SPEED_STEPS[idx];
     }
@@ -79,10 +90,12 @@
     document.querySelectorAll("audio, video").forEach((el) => {
       // Only change speed if media is playing
       if (!el.paused && !el.ended && el.currentTime > 0) {
+        const oldRate = el.playbackRate;
         const newSpeed =
           direction === "increase"
             ? getNextSpeed(el.playbackRate)
             : getPrevSpeed(el.playbackRate);
+        console.log(`[Media Hotkeys] Speed change: ${oldRate} -> ${newSpeed} (${direction})`);
         el.playbackRate = newSpeed;
         currentSpeed = newSpeed;
         foundPlaying = true;
